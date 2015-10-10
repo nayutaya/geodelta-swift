@@ -1,7 +1,11 @@
 
-import Foundation
+import WebMercator
 
 public class Projector {
+    // 緯度をメルカトルY座標に変換する
+    public static func latToMy(lat: Double) -> Double {
+        return WebMercator.Projector.latitudeToMercatorY(lat)
+    }
 }
 
 /*
@@ -15,10 +19,6 @@ var RAD2DEG = 180.0 / Math.PI;
 var DELTA_HEIGHT = Math.sqrt(0.75);
 projector.DELTA_HEIGHT = function() { return DELTA_HEIGHT; };
 
-// 緯度をメルカトルY座標に変換する
-projector.latToMy = function(lat) {
-  return math.atanh(Math.sin(lat * DEG2RAD)) / Math.PI;
-};
 
 // 経度をメルカトルX座標に変換する
 projector.lngToMx = function(lng) {

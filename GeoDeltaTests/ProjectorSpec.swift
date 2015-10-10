@@ -5,10 +5,19 @@ import Nimble
 
 class ProjectorSpec : QuickSpec {
     override func spec() {
+        describe(".latToMy") {
+            it("緯度をメルカトルY座標に変換する") {
+                expect(Projector.latToMy(+85.05112)).to(beCloseTo(+1.0, within: 1e-5))
+                expect(Projector.latToMy(  0.00000)).to(beCloseTo( 0.0, within: 1e-5))
+                expect(Projector.latToMy(-85.05112)).to(beCloseTo(-1.0, within: 1e-5))
+            }
+        }
+        /*
         describe("") {
             it("") {
             }
         }
+        */
     }
 }
 
@@ -17,14 +26,6 @@ describe("projector", function() {
   var assertRoughlyEquals = function(expected, actual, delta) {
     assert(Math.abs(expected - actual) < delta);
   };
-
-  describe(".latToMy", function() {
-    it("緯度をメルカトルY座標に変換する", function() {
-      assertRoughlyEquals(+1.0, projector.latToMy(+85.0511), 1e-05);
-      assertRoughlyEquals( 0.0, projector.latToMy(  0.0000), 1e-05);
-      assertRoughlyEquals(-1.0, projector.latToMy(-85.0511), 1e-05);
-    });
-  });
 
   describe(".lngToMx", function() {
     it("経度をメルカトルX座標に変換する", function() {
