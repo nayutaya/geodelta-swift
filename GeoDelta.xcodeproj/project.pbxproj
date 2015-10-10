@@ -10,6 +10,11 @@
 		FA6DA6F81BC8DE5E006BBA36 /* GeoDelta.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6DA6F71BC8DE5E006BBA36 /* GeoDelta.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA6DA6FF1BC8DE5E006BBA36 /* GeoDelta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA6F41BC8DE5E006BBA36 /* GeoDelta.framework */; settings = {ASSET_TAGS = (); }; };
 		FA6DA7041BC8DE5E006BBA36 /* GeoDeltaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA7031BC8DE5E006BBA36 /* GeoDeltaTests.swift */; };
+		FA6DA70F1BC8E05B006BBA36 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA70E1BC8E05B006BBA36 /* Quick.framework */; };
+		FA6DA7111BC8E05D006BBA36 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA7101BC8E05D006BBA36 /* Nimble.framework */; };
+		FA6DA7131BC8E06F006BBA36 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA6DA70E1BC8E05B006BBA36 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA6DA7141BC8E073006BBA36 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA6DA7101BC8E05D006BBA36 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA6DA7161BC8E087006BBA36 /* GeoDeltaSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA7151BC8E087006BBA36 /* GeoDeltaSpec.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +27,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FA6DA7121BC8E063006BBA36 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FA6DA7141BC8E073006BBA36 /* Nimble.framework in CopyFiles */,
+				FA6DA7131BC8E06F006BBA36 /* Quick.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		FA6DA6F41BC8DE5E006BBA36 /* GeoDelta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GeoDelta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6DA6F71BC8DE5E006BBA36 /* GeoDelta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoDelta.h; sourceTree = "<group>"; };
@@ -29,6 +48,9 @@
 		FA6DA6FE1BC8DE5E006BBA36 /* GeoDeltaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoDeltaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6DA7031BC8DE5E006BBA36 /* GeoDeltaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDeltaTests.swift; sourceTree = "<group>"; };
 		FA6DA7051BC8DE5E006BBA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA6DA70E1BC8E05B006BBA36 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
+		FA6DA7101BC8E05D006BBA36 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
+		FA6DA7151BC8E087006BBA36 /* GeoDeltaSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDeltaSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +66,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6DA6FF1BC8DE5E006BBA36 /* GeoDelta.framework in Frameworks */,
+				FA6DA70F1BC8E05B006BBA36 /* Quick.framework in Frameworks */,
+				FA6DA7111BC8E05D006BBA36 /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +77,8 @@
 		FA6DA6EA1BC8DE5E006BBA36 = {
 			isa = PBXGroup;
 			children = (
+				FA6DA7101BC8E05D006BBA36 /* Nimble.framework */,
+				FA6DA70E1BC8E05B006BBA36 /* Quick.framework */,
 				FA6DA6F61BC8DE5E006BBA36 /* GeoDelta */,
 				FA6DA7021BC8DE5E006BBA36 /* GeoDeltaTests */,
 				FA6DA6F51BC8DE5E006BBA36 /* Products */,
@@ -82,6 +108,7 @@
 			children = (
 				FA6DA7031BC8DE5E006BBA36 /* GeoDeltaTests.swift */,
 				FA6DA7051BC8DE5E006BBA36 /* Info.plist */,
+				FA6DA7151BC8E087006BBA36 /* GeoDeltaSpec.swift */,
 			);
 			path = GeoDeltaTests;
 			sourceTree = "<group>";
@@ -125,6 +152,7 @@
 				FA6DA6FA1BC8DE5E006BBA36 /* Sources */,
 				FA6DA6FB1BC8DE5E006BBA36 /* Frameworks */,
 				FA6DA6FC1BC8DE5E006BBA36 /* Resources */,
+				FA6DA7121BC8E063006BBA36 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -201,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6DA7041BC8DE5E006BBA36 /* GeoDeltaTests.swift in Sources */,
+				FA6DA7161BC8E087006BBA36 /* GeoDeltaSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +368,10 @@
 		FA6DA70C1BC8DE5E006BBA36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GeoDeltaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.nayutaya.GeoDeltaTests;
@@ -349,6 +382,10 @@
 		FA6DA70D1BC8DE5E006BBA36 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GeoDeltaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.nayutaya.GeoDeltaTests;
