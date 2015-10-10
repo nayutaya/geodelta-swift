@@ -1,2 +1,3 @@
 github "Quick/Nimble" "v2.0.0"
 github "Quick/Quick" "v0.6.0"
+github "nayutaya/web-mercator-swift" "0.1.0"
