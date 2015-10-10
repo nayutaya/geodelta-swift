@@ -31,6 +31,18 @@ class ProjectorSpec : QuickSpec {
             }
         }
 
+        describe(".mxToLng") {
+            it("メルカトルX座標を経度に変換する") {
+                expect(Projector.mxToLng(+1.5)).to(beCloseTo( -90.0, within: 1e-15))
+                expect(Projector.mxToLng(+1.0)).to(beCloseTo(+180.0, within: 1e-15))
+                expect(Projector.mxToLng(+0.5)).to(beCloseTo( +90.0, within: 1e-15))
+                expect(Projector.mxToLng( 0.0)).to(beCloseTo(   0.0, within: 1e-15))
+                expect(Projector.mxToLng(-0.5)).to(beCloseTo( -90.0, within: 1e-15))
+                expect(Projector.mxToLng(-1.0)).to(beCloseTo(-180.0, within: 1e-15))
+                expect(Projector.mxToLng(-1.5)).to(beCloseTo( +90.0, within: 1e-15))
+            }
+        }
+
         /*
         describe("") {
             it("") {
@@ -42,22 +54,6 @@ class ProjectorSpec : QuickSpec {
 
 /*
 describe("projector", function() {
-  var assertRoughlyEquals = function(expected, actual, delta) {
-    assert(Math.abs(expected - actual) < delta);
-  };
-
-  describe(".mxToLng", function() {
-    it("メルカトルX座標を経度に変換する", function() {
-      assertRoughlyEquals( -90.0, projector.mxToLng(+1.5), 1e-15);
-      assertRoughlyEquals(-180.0, projector.mxToLng(+1.0), 1e-15);
-      assertRoughlyEquals( +90.0, projector.mxToLng(+0.5), 1e-15);
-      assertRoughlyEquals(   0.0, projector.mxToLng( 0.0), 1e-15);
-      assertRoughlyEquals( -90.0, projector.mxToLng(-0.5), 1e-15);
-      assertRoughlyEquals(-180.0, projector.mxToLng(-1.0), 1e-15);
-      assertRoughlyEquals( +90.0, projector.mxToLng(-1.5), 1e-15);
-    });
-  });
-
   describe(".myToNy", function() {
     it("メルカトルY座標を正規化Y座標に変換する", function() {
       var max = projector.DELTA_HEIGHT();
