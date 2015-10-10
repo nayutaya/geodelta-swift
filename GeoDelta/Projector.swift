@@ -11,6 +11,11 @@ public class Projector {
     public static func lngToMx(lng: Double) -> Double {
         return WebMercator.Projector.longitudeToMercatorX(lng)
     }
+    
+    // メルカトルY座標を緯度に変換する
+    public static func myToLat(my: Double) -> Double {
+        return WebMercator.Projector.mercatorYToLatitude(my)
+    }
 }
 
 /*
@@ -23,11 +28,6 @@ var RAD2DEG = 180.0 / Math.PI;
 // 一辺を1.0とする正三角形の高さ
 var DELTA_HEIGHT = Math.sqrt(0.75);
 projector.DELTA_HEIGHT = function() { return DELTA_HEIGHT; };
-
-// メルカトルY座標を緯度に変換する
-projector.myToLat = function(my) {
-  return Math.asin(math.tanh(my * Math.PI)) * RAD2DEG;
-};
 
 // メルカトルX座標を経度に変換する
 projector.mxToLng = function(mx) {
