@@ -60,6 +60,15 @@ class ProjectorSpec : QuickSpec {
             }
         }
 
+        describe(".nyToMy") {
+            it("正規化Y座標をメルカトルY座標に変換する") {
+                let max = Projector.DELTA_HEIGHT
+                expect(Projector.nyToMy(+12.0)).to(beCloseTo(+max, within: 1e-15))
+                expect(Projector.nyToMy(  0.0)).to(beCloseTo( 0.0, within: 1e-15))
+                expect(Projector.nyToMy(-12.0)).to(beCloseTo(-max, within: 1e-15))
+            }
+        }
+
         /*
         describe("") {
             it("") {
@@ -71,15 +80,6 @@ class ProjectorSpec : QuickSpec {
 
 /*
 describe("projector", function() {
-
-  describe(".nyToMy", function() {
-    it("正規化Y座標をメルカトルY座標に変換する", function() {
-      var max = projector.DELTA_HEIGHT();
-      assertRoughlyEquals(+max, projector.nyToMy(+12.0), 1e-15);
-      assertRoughlyEquals( 0.0, projector.nyToMy(  0.0), 1e-15);
-      assertRoughlyEquals(-max, projector.nyToMy(-12.0), 1e-15);
-    });
-  });
 
   describe(".nxToMx", function() {
     it("正規化X座標をメルカトルX座標に変換する", function() {
