@@ -375,6 +375,7 @@
 				FA6DA70A1BC8DE5E006BBA36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA6DA70B1BC8DE5E006BBA36 /* Build configuration list for PBXNativeTarget "GeoDeltaTests" */ = {
 			isa = XCConfigurationList;
@@ -383,6 +384,7 @@
 				FA6DA70D1BC8DE5E006BBA36 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
