@@ -52,6 +52,14 @@ class ProjectorSpec : QuickSpec {
             }
         }
 
+        describe(".mxToNx") {
+            it("メルカトルX座標を正規化X座標に変換する") {
+                expect(Projector.mxToNx(+1.0)).to(beCloseTo(+12.0, within: 1e-15))
+                expect(Projector.mxToNx( 0.0)).to(beCloseTo(  0.0, within: 1e-15))
+                expect(Projector.mxToNx(-1.0)).to(beCloseTo(-12.0, within: 1e-15))
+            }
+        }
+
         /*
         describe("") {
             it("") {
@@ -63,14 +71,6 @@ class ProjectorSpec : QuickSpec {
 
 /*
 describe("projector", function() {
-
-  describe(".mxToNx", function() {
-    it("メルカトルX座標を正規化X座標に変換する", function() {
-      assertRoughlyEquals(+12.0, projector.mxToNx(+1.0), 1e-15);
-      assertRoughlyEquals(  0.0, projector.mxToNx( 0.0), 1e-15);
-      assertRoughlyEquals(-12.0, projector.mxToNx(-1.0), 1e-15);
-    });
-  });
 
   describe(".nyToMy", function() {
     it("正規化Y座標をメルカトルY座標に変換する", function() {

@@ -29,14 +29,14 @@ public class Projector {
     public static func myToNy(my: Double) -> Double {
         return my / DELTA_HEIGHT * 12.0
     }
+    
+    // メルカトルX座標を正規化X座標に変換する
+    public static func mxToNx(mx: Double) -> Double {
+        return mx * 12.0
+    }
 }
 
 /*
-
-// メルカトルX座標を正規化X座標に変換する
-projector.mxToNx = function(mx) {
-  return mx * 12.0;
-};
 
 // 正規化Y座標をメルカトルY座標に変換する
 projector.nyToMy = function(ny) {
