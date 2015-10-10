@@ -2,6 +2,9 @@
 import WebMercator
 
 public class Projector {
+    // 一辺を1.0とする正三角形の高さ
+    public static let DELTA_HEIGHT = sqrt(0.75)
+
     // 緯度をメルカトルY座標に変換する
     public static func latToMy(lat: Double) -> Double {
         return WebMercator.Projector.latitudeToMercatorY(lat)
@@ -21,17 +24,14 @@ public class Projector {
     public static func mxToLng(mx: Double) -> Double {
         return WebMercator.Projector.mercatorXToLongitude(mx)
     }
+    
+    // メルカトルY座標を正規化Y座標に変換する
+    public static func myToNy(my: Double) -> Double {
+        return my / DELTA_HEIGHT * 12.0
+    }
 }
 
 /*
-// 一辺を1.0とする正三角形の高さ
-var DELTA_HEIGHT = Math.sqrt(0.75);
-projector.DELTA_HEIGHT = function() { return DELTA_HEIGHT; };
-
-// メルカトルY座標を正規化Y座標に変換する
-projector.myToNy = function(my) {
-  return my / DELTA_HEIGHT * 12.0;
-};
 
 // メルカトルX座標を正規化X座標に変換する
 projector.mxToNx = function(mx) {
