@@ -15,6 +15,8 @@
 		FA6DA7131BC8E06F006BBA36 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA6DA70E1BC8E05B006BBA36 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA6DA7141BC8E073006BBA36 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA6DA7101BC8E05D006BBA36 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA6DA7161BC8E087006BBA36 /* GeoDeltaSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA7151BC8E087006BBA36 /* GeoDeltaSpec.swift */; settings = {ASSET_TAGS = (); }; };
+		FA6DA7181BC8E542006BBA36 /* Projector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA7171BC8E542006BBA36 /* Projector.swift */; settings = {ASSET_TAGS = (); }; };
+		FA6DA71A1BC8E553006BBA36 /* ProjectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA7191BC8E553006BBA36 /* ProjectorSpec.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		FA6DA70E1BC8E05B006BBA36 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		FA6DA7101BC8E05D006BBA36 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
 		FA6DA7151BC8E087006BBA36 /* GeoDeltaSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDeltaSpec.swift; sourceTree = "<group>"; };
+		FA6DA7171BC8E542006BBA36 /* Projector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projector.swift; sourceTree = "<group>"; };
+		FA6DA7191BC8E553006BBA36 /* ProjectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectorSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 			children = (
 				FA6DA6F71BC8DE5E006BBA36 /* GeoDelta.h */,
 				FA6DA6F91BC8DE5E006BBA36 /* Info.plist */,
+				FA6DA7171BC8E542006BBA36 /* Projector.swift */,
 			);
 			path = GeoDelta;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 				FA6DA7031BC8DE5E006BBA36 /* GeoDeltaTests.swift */,
 				FA6DA7051BC8DE5E006BBA36 /* Info.plist */,
 				FA6DA7151BC8E087006BBA36 /* GeoDeltaSpec.swift */,
+				FA6DA7191BC8E553006BBA36 /* ProjectorSpec.swift */,
 			);
 			path = GeoDeltaTests;
 			sourceTree = "<group>";
@@ -170,6 +176,7 @@
 		FA6DA6EB1BC8DE5E006BBA36 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Nayutaya Inc.";
 				TargetAttributes = {
@@ -221,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6DA7181BC8E542006BBA36 /* Projector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6DA7041BC8DE5E006BBA36 /* GeoDeltaTests.swift in Sources */,
+				FA6DA71A1BC8E553006BBA36 /* ProjectorSpec.swift in Sources */,
 				FA6DA7161BC8E087006BBA36 /* GeoDeltaSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +345,7 @@
 		FA6DA7091BC8DE5E006BBA36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -346,12 +356,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.nayutaya.GeoDelta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		FA6DA70A1BC8DE5E006BBA36 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
