@@ -49,14 +49,14 @@ public class Projector {
     public static func latToNy(lat: Double) -> Double {
         return myToNy(latToMy(lat))
     }
+    
+    // 経度を正規化X座標に変換する
+    public static func lngToNx(lng: Double) -> Double {
+        return mxToNx(lngToMx(lng))
+    }
 }
 
 /*
-
-// 経度を正規化X座標に変換する
-projector.lngToNx = function(lng) {
-  return projector.mxToNx(projector.lngToMx(lng));
-};
 
 // 正規化Y座標を緯度に変換する
 projector.nyToLat = function(ny) {
