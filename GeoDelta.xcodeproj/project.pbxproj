@@ -9,12 +9,15 @@
 /* Begin PBXBuildFile section */
 		FA6DA6F81BC8DE5E006BBA36 /* GeoDelta.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6DA6F71BC8DE5E006BBA36 /* GeoDelta.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA6DA6FF1BC8DE5E006BBA36 /* GeoDelta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA6F41BC8DE5E006BBA36 /* GeoDelta.framework */; settings = {ASSET_TAGS = (); }; };
-		FA6DA7041BC8DE5E006BBA36 /* GeoDeltaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA7031BC8DE5E006BBA36 /* GeoDeltaTests.swift */; };
 		FA6DA70F1BC8E05B006BBA36 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA70E1BC8E05B006BBA36 /* Quick.framework */; };
 		FA6DA7111BC8E05D006BBA36 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA7101BC8E05D006BBA36 /* Nimble.framework */; };
 		FA6DA7131BC8E06F006BBA36 /* Quick.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA6DA70E1BC8E05B006BBA36 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA6DA7141BC8E073006BBA36 /* Nimble.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA6DA7101BC8E05D006BBA36 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FA6DA7161BC8E087006BBA36 /* GeoDeltaSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA7151BC8E087006BBA36 /* GeoDeltaSpec.swift */; settings = {ASSET_TAGS = (); }; };
+		FA6DA7181BC8E542006BBA36 /* Projector.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA7171BC8E542006BBA36 /* Projector.swift */; settings = {ASSET_TAGS = (); }; };
+		FA6DA71A1BC8E553006BBA36 /* ProjectorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6DA7191BC8E553006BBA36 /* ProjectorSpec.swift */; settings = {ASSET_TAGS = (); }; };
+		FA6DA71C1BC8E806006BBA36 /* WebMercator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA71B1BC8E806006BBA36 /* WebMercator.framework */; };
+		FAC4FDF21BC8FB1B00556CA9 /* WebMercator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA71B1BC8E806006BBA36 /* WebMercator.framework */; };
+		FAC4FDF31BC8FB2900556CA9 /* WebMercator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA6DA71B1BC8E806006BBA36 /* WebMercator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				FAC4FDF31BC8FB2900556CA9 /* WebMercator.framework in CopyFiles */,
 				FA6DA7141BC8E073006BBA36 /* Nimble.framework in CopyFiles */,
 				FA6DA7131BC8E06F006BBA36 /* Quick.framework in CopyFiles */,
 			);
@@ -46,11 +50,12 @@
 		FA6DA6F71BC8DE5E006BBA36 /* GeoDelta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoDelta.h; sourceTree = "<group>"; };
 		FA6DA6F91BC8DE5E006BBA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA6DA6FE1BC8DE5E006BBA36 /* GeoDeltaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoDeltaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		FA6DA7031BC8DE5E006BBA36 /* GeoDeltaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoDeltaTests.swift; sourceTree = "<group>"; };
 		FA6DA7051BC8DE5E006BBA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA6DA70E1BC8E05B006BBA36 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		FA6DA7101BC8E05D006BBA36 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		FA6DA7151BC8E087006BBA36 /* GeoDeltaSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoDeltaSpec.swift; sourceTree = "<group>"; };
+		FA6DA7171BC8E542006BBA36 /* Projector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Projector.swift; sourceTree = "<group>"; };
+		FA6DA7191BC8E553006BBA36 /* ProjectorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectorSpec.swift; sourceTree = "<group>"; };
+		FA6DA71B1BC8E806006BBA36 /* WebMercator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebMercator.framework; path = Carthage/Build/iOS/WebMercator.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6DA71C1BC8E806006BBA36 /* WebMercator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +74,7 @@
 				FA6DA6FF1BC8DE5E006BBA36 /* GeoDelta.framework in Frameworks */,
 				FA6DA70F1BC8E05B006BBA36 /* Quick.framework in Frameworks */,
 				FA6DA7111BC8E05D006BBA36 /* Nimble.framework in Frameworks */,
+				FAC4FDF21BC8FB1B00556CA9 /* WebMercator.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +84,7 @@
 		FA6DA6EA1BC8DE5E006BBA36 = {
 			isa = PBXGroup;
 			children = (
+				FA6DA71B1BC8E806006BBA36 /* WebMercator.framework */,
 				FA6DA7101BC8E05D006BBA36 /* Nimble.framework */,
 				FA6DA70E1BC8E05B006BBA36 /* Quick.framework */,
 				FA6DA6F61BC8DE5E006BBA36 /* GeoDelta */,
@@ -99,6 +107,7 @@
 			children = (
 				FA6DA6F71BC8DE5E006BBA36 /* GeoDelta.h */,
 				FA6DA6F91BC8DE5E006BBA36 /* Info.plist */,
+				FA6DA7171BC8E542006BBA36 /* Projector.swift */,
 			);
 			path = GeoDelta;
 			sourceTree = "<group>";
@@ -106,9 +115,8 @@
 		FA6DA7021BC8DE5E006BBA36 /* GeoDeltaTests */ = {
 			isa = PBXGroup;
 			children = (
-				FA6DA7031BC8DE5E006BBA36 /* GeoDeltaTests.swift */,
 				FA6DA7051BC8DE5E006BBA36 /* Info.plist */,
-				FA6DA7151BC8E087006BBA36 /* GeoDeltaSpec.swift */,
+				FA6DA7191BC8E553006BBA36 /* ProjectorSpec.swift */,
 			);
 			path = GeoDeltaTests;
 			sourceTree = "<group>";
@@ -170,6 +178,7 @@
 		FA6DA6EB1BC8DE5E006BBA36 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Nayutaya Inc.";
 				TargetAttributes = {
@@ -221,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA6DA7181BC8E542006BBA36 /* Projector.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,8 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA6DA7041BC8DE5E006BBA36 /* GeoDeltaTests.swift in Sources */,
-				FA6DA7161BC8E087006BBA36 /* GeoDeltaSpec.swift in Sources */,
+				FA6DA71A1BC8E553006BBA36 /* ProjectorSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,26 +345,37 @@
 		FA6DA7091BC8DE5E006BBA36 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GeoDelta/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.co.nayutaya.GeoDelta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		FA6DA70A1BC8DE5E006BBA36 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = GeoDelta/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
