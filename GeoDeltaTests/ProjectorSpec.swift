@@ -12,6 +12,17 @@ class ProjectorSpec : QuickSpec {
                 expect(Projector.latToMy(-85.05112)).to(beCloseTo(-1.0, within: 1e-5))
             }
         }
+
+        describe(".lngToMx") {
+            it("経度をメルカトルX座標に変換する") {
+                expect(Projector.lngToMx(+180.0)).to(beCloseTo(+1.0, within: 1e-5))
+                expect(Projector.lngToMx( +90.0)).to(beCloseTo(+0.5, within: 1e-5))
+                expect(Projector.lngToMx(   0.0)).to(beCloseTo( 0.0, within: 1e-5))
+                expect(Projector.lngToMx( -90.0)).to(beCloseTo(-0.5, within: 1e-5))
+                expect(Projector.lngToMx(-180.0)).to(beCloseTo(-1.0, within: 1e-5))
+            }
+        }
+        
         /*
         describe("") {
             it("") {
@@ -26,16 +37,6 @@ describe("projector", function() {
   var assertRoughlyEquals = function(expected, actual, delta) {
     assert(Math.abs(expected - actual) < delta);
   };
-
-  describe(".lngToMx", function() {
-    it("経度をメルカトルX座標に変換する", function() {
-      assertRoughlyEquals(+1.0, projector.lngToMx(+180.0), 1e-05);
-      assertRoughlyEquals(+0.5, projector.lngToMx( +90.0), 1e-05);
-      assertRoughlyEquals( 0.0, projector.lngToMx(   0.0), 1e-05);
-      assertRoughlyEquals(-0.5, projector.lngToMx( -90.0), 1e-05);
-      assertRoughlyEquals(-1.0, projector.lngToMx(-180.0), 1e-05);
-    });
-  });
 
   describe(".myToLat", function() {
     it("メルカトルY座標を緯度に変換する", function() {
