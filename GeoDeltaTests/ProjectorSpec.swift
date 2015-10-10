@@ -109,6 +109,17 @@ class ProjectorSpec : QuickSpec {
             }
         }
 
+        describe(".latLngToNxy") {
+            it("緯度経度を正規化XY座標に変換する") {
+                expect(Projector.latLngToNxy(lat: +82.4674, lng: +180.0).nx).to(beCloseTo(Projector.lngToNx(+180.0000), within: 1e-15))
+                expect(Projector.latLngToNxy(lat: +82.4674, lng: +180.0).ny).to(beCloseTo(Projector.latToNy( +82.4674), within: 1e-15))
+                expect(Projector.latLngToNxy(lat: 0.0, lng: 0.0).nx).to(beCloseTo(0.0, within: 1e-15))
+                expect(Projector.latLngToNxy(lat: 0.0, lng: 0.0).ny).to(beCloseTo(0.0, within: 1e-15))
+                expect(Projector.latLngToNxy(lat: -82.4674, lng: -180.0).nx).to(beCloseTo(Projector.lngToNx(-180.0000), within: 1e-15))
+                expect(Projector.latLngToNxy(lat: -82.4674, lng: -180.0).ny).to(beCloseTo(Projector.latToNy( -82.4674), within: 1e-15))
+            }
+        }
+
         /*
         describe("") {
             it("") {
@@ -120,17 +131,6 @@ class ProjectorSpec : QuickSpec {
 
 /*
 describe("projector", function() {
-
-  describe(".latLngToNxy", function() {
-    it("緯度経度を正規化XY座標に変換する", function() {
-      assertRoughlyEquals(projector.lngToNx(+180.0000), projector.latLngToNxy(+82.4674, +180.0).nx, 1e-15);
-      assertRoughlyEquals(projector.latToNy( +82.4674), projector.latLngToNxy(+82.4674, +180.0).ny, 1e-15);
-      assertRoughlyEquals(0.0, projector.latLngToNxy(0.0, 0.0).nx, 1e-15);
-      assertRoughlyEquals(0.0, projector.latLngToNxy(0.0, 0.0).ny, 1e-15);
-      assertRoughlyEquals(projector.lngToNx(-180.0000), projector.latLngToNxy(-82.4674, -180.0).nx, 1e-15);
-      assertRoughlyEquals(projector.latToNy( -82.4674), projector.latLngToNxy(-82.4674, -180.0).ny, 1e-15);
-    });
-  });
 
   describe(".nxyToLatLng", function() {
     it("正規化XY座標を緯度経度に変換する", function() {
