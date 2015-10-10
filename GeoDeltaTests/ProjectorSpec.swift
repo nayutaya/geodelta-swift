@@ -120,46 +120,15 @@ class ProjectorSpec : QuickSpec {
             }
         }
 
-        /*
-        describe("") {
-            it("") {
+        describe(".nxyToLatLng") {
+            it("正規化XY座標を緯度経度に変換する") {
+                expect(Projector.nxyToLatLng(nx: +12.0, ny: +12.0).lat).to(beCloseTo(Projector.nyToLat(+12.0), within: 1e-15))
+                expect(Projector.nxyToLatLng(nx: +12.0, ny: +12.0).lng).to(beCloseTo(Projector.nxToLng(+12.0), within: 1e-15))
+                expect(Projector.nxyToLatLng(nx: 0.0, ny: 0.0).lat).to(beCloseTo(0.0, within: 1e-15))
+                expect(Projector.nxyToLatLng(nx: 0.0, ny: 0.0).lng).to(beCloseTo(0.0, within: 1e-15))
+                expect(Projector.nxyToLatLng(nx: -12.0, ny: -12.0).lat).to(beCloseTo(Projector.nyToLat(-12.0), within: 1e-15))
+                expect(Projector.nxyToLatLng(nx: -12.0, ny: -12.0).lng).to(beCloseTo(Projector.nxToLng(-12.0), within: 1e-15))
             }
         }
-        */
     }
 }
-
-/*
-describe("projector", function() {
-
-  describe(".nxyToLatLng", function() {
-    it("正規化XY座標を緯度経度に変換する", function() {
-      assertRoughlyEquals(projector.nyToLat(+12.0), projector.nxyToLatLng(+12.0, +12.0).lat, 1e-15);
-      assertRoughlyEquals(projector.nxToLng(+12.0), projector.nxyToLatLng(+12.0, +12.0).lng, 1e-15);
-      assertRoughlyEquals(0.0, projector.nxyToLatLng(0.0, 0.0).lat, 1e-15);
-      assertRoughlyEquals(0.0, projector.nxyToLatLng(0.0, 0.0).lng, 1e-15);
-      assertRoughlyEquals(projector.nyToLat(-12.0), projector.nxyToLatLng(-12.0, -12.0).lat, 1e-15);
-      assertRoughlyEquals(projector.nxToLng(-12.0), projector.nxyToLatLng(-12.0, -12.0).lng, 1e-15);
-    });
-  });
-
-TODO: function test_randomLatLngAndNxy()
-{
-  final double latMax = geodelta.projector.nyToLat(+12.0);
-  final double lngMax = 180.0;
-  final Random r = new Random();
-  for ( int i = 0; i < 1000; i++ )
-  {
-    final double lat1 = r.nextDouble() * latMax * 2 - latMax;
-    final double lng1 = r.nextDouble() * lngMax * 2 - lngMax;
-    final double nx = geodelta.projector.lngToNx(lng1);
-    final double ny = geodelta.projector.latToNy(lat1);
-    final double lat2 = geodelta.projector.nyToLat(ny);
-    final double lng2 = geodelta.projector.nxToLng(nx);
-    assertRoughlyEquals(lat1, lat2, 1E-13);
-    assertRoughlyEquals(lng1, lng2, 1E-13);
-  }
-}
-
-});
-*/
