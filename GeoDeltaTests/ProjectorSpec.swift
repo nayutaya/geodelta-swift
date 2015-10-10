@@ -109,25 +109,25 @@ class ProjectorSpec : QuickSpec {
             }
         }
 
-        describe(".latLngToNxy") {
+        describe(".latLngToNxNy") {
             it("緯度経度を正規化XY座標に変換する") {
-                expect(Projector.latLngToNxy(lat: +82.4674, lng: +180.0).nx).to(beCloseTo(Projector.lngToNx(+180.0000), within: 1e-15))
-                expect(Projector.latLngToNxy(lat: +82.4674, lng: +180.0).ny).to(beCloseTo(Projector.latToNy( +82.4674), within: 1e-15))
-                expect(Projector.latLngToNxy(lat: 0.0, lng: 0.0).nx).to(beCloseTo(0.0, within: 1e-15))
-                expect(Projector.latLngToNxy(lat: 0.0, lng: 0.0).ny).to(beCloseTo(0.0, within: 1e-15))
-                expect(Projector.latLngToNxy(lat: -82.4674, lng: -180.0).nx).to(beCloseTo(Projector.lngToNx(-180.0000), within: 1e-15))
-                expect(Projector.latLngToNxy(lat: -82.4674, lng: -180.0).ny).to(beCloseTo(Projector.latToNy( -82.4674), within: 1e-15))
+                expect(Projector.latLngToNxNy(lat: +82.4674, lng: +180.0).nx).to(beCloseTo(Projector.lngToNx(+180.0000), within: 1e-15))
+                expect(Projector.latLngToNxNy(lat: +82.4674, lng: +180.0).ny).to(beCloseTo(Projector.latToNy( +82.4674), within: 1e-15))
+                expect(Projector.latLngToNxNy(lat: 0.0, lng: 0.0).nx).to(beCloseTo(0.0, within: 1e-15))
+                expect(Projector.latLngToNxNy(lat: 0.0, lng: 0.0).ny).to(beCloseTo(0.0, within: 1e-15))
+                expect(Projector.latLngToNxNy(lat: -82.4674, lng: -180.0).nx).to(beCloseTo(Projector.lngToNx(-180.0000), within: 1e-15))
+                expect(Projector.latLngToNxNy(lat: -82.4674, lng: -180.0).ny).to(beCloseTo(Projector.latToNy( -82.4674), within: 1e-15))
             }
         }
 
-        describe(".nxyToLatLng") {
+        describe(".nxNyToLatLng") {
             it("正規化XY座標を緯度経度に変換する") {
-                expect(Projector.nxyToLatLng(nx: +12.0, ny: +12.0).lat).to(beCloseTo(Projector.nyToLat(+12.0), within: 1e-15))
-                expect(Projector.nxyToLatLng(nx: +12.0, ny: +12.0).lng).to(beCloseTo(Projector.nxToLng(+12.0), within: 1e-15))
-                expect(Projector.nxyToLatLng(nx: 0.0, ny: 0.0).lat).to(beCloseTo(0.0, within: 1e-15))
-                expect(Projector.nxyToLatLng(nx: 0.0, ny: 0.0).lng).to(beCloseTo(0.0, within: 1e-15))
-                expect(Projector.nxyToLatLng(nx: -12.0, ny: -12.0).lat).to(beCloseTo(Projector.nyToLat(-12.0), within: 1e-15))
-                expect(Projector.nxyToLatLng(nx: -12.0, ny: -12.0).lng).to(beCloseTo(Projector.nxToLng(-12.0), within: 1e-15))
+                expect(Projector.nxNyToLatLng(nx: +12.0, ny: +12.0).lat).to(beCloseTo(Projector.nyToLat(+12.0), within: 1e-15))
+                expect(Projector.nxNyToLatLng(nx: +12.0, ny: +12.0).lng).to(beCloseTo(Projector.nxToLng(+12.0), within: 1e-15))
+                expect(Projector.nxNyToLatLng(nx: 0.0, ny: 0.0).lat).to(beCloseTo(0.0, within: 1e-15))
+                expect(Projector.nxNyToLatLng(nx: 0.0, ny: 0.0).lng).to(beCloseTo(0.0, within: 1e-15))
+                expect(Projector.nxNyToLatLng(nx: -12.0, ny: -12.0).lat).to(beCloseTo(Projector.nyToLat(-12.0), within: 1e-15))
+                expect(Projector.nxNyToLatLng(nx: -12.0, ny: -12.0).lng).to(beCloseTo(Projector.nxToLng(-12.0), within: 1e-15))
             }
         }
     }

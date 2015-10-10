@@ -66,12 +66,12 @@ public class Projector {
     }
     
     // 緯度経度を正規化XY座標に変換する
-    public static func latLngToNxy(lat lat: Double, lng: Double) -> (nx: Double, ny: Double) {
+    public static func latLngToNxNy(lat lat: Double, lng: Double) -> (nx: Double, ny: Double) {
         return (lngToNx(lng), latToNy(lat))
     }
     
     // 正規化XY座標を緯度経度に変換する
-    public static func nxyToLatLng(nx nx: Double, ny: Double) -> (lat: Double, lng: Double) {
+    public static func nxNyToLatLng(nx nx: Double, ny: Double) -> (lat: Double, lng: Double) {
         return (nyToLat(ny), nxToLng(nx))
     }
 }
