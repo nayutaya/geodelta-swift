@@ -6,10 +6,14 @@ public class Encoder {
     static let SUB_DELTA_TABLE1  = ["K", "M", "N", "P"]
     static let SUB_DELTA_TABLE2  = [["2", "3", "4", "5"], ["6", "7", "8", "A"], ["B", "C", "D", "E"], ["F", "G", "H", "J"]]
 
+    enum EncodeError : ErrorType {
+        case InvalidId
+    }
+    
     // ワールドデルタIDをエンコードする
-    public static func encodeWorldDelta(id: Int) -> String? {
-        guard id >= 0 else { return nil }
-        guard id <= 7 else { return nil }
+    public static func encodeWorldDelta(id: Int) throws -> String {
+        guard id >= 0 else { throw EncodeError.InvalidId }
+        guard id <= 7 else { throw EncodeError.InvalidId }
         return WORLD_DELTA_TABLE[id]
     }
 
@@ -79,7 +83,7 @@ public class Encoder {
     public static func encode(ids: [Int]) -> String? {
         guard ids.count >= 1 else { return nil }
         var code = ""
-        code += encodeWorldDelta(ids[0])!
+        code += try! encodeWorldDelta(ids[0])
         if ids.count >= 2 {
             code += encodeSubDelta(Array(ids.suffix(ids.count - 1)))!
         }

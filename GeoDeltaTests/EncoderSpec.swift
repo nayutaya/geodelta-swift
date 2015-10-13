@@ -7,18 +7,18 @@ class EncoderSpec : QuickSpec {
     override func spec() {
         describe(".encodeWorldDelta") {
             it("ワールドデルタIDをエンコードする") {
-                expect(Encoder.encodeWorldDelta(0)).to(equal("Z"))
-                expect(Encoder.encodeWorldDelta(1)).to(equal("Y"))
-                expect(Encoder.encodeWorldDelta(2)).to(equal("X"))
-                expect(Encoder.encodeWorldDelta(3)).to(equal("W"))
-                expect(Encoder.encodeWorldDelta(4)).to(equal("V"))
-                expect(Encoder.encodeWorldDelta(5)).to(equal("T"))
-                expect(Encoder.encodeWorldDelta(6)).to(equal("S"))
-                expect(Encoder.encodeWorldDelta(7)).to(equal("R"))
+                expect(try! Encoder.encodeWorldDelta(0)).to(equal("Z"))
+                expect(try! Encoder.encodeWorldDelta(1)).to(equal("Y"))
+                expect(try! Encoder.encodeWorldDelta(2)).to(equal("X"))
+                expect(try! Encoder.encodeWorldDelta(3)).to(equal("W"))
+                expect(try! Encoder.encodeWorldDelta(4)).to(equal("V"))
+                expect(try! Encoder.encodeWorldDelta(5)).to(equal("T"))
+                expect(try! Encoder.encodeWorldDelta(6)).to(equal("S"))
+                expect(try! Encoder.encodeWorldDelta(7)).to(equal("R"))
             }
-            it("異常値の場合、nilを返す") {
-                expect(Encoder.encodeWorldDelta(-1)).to(beNil())
-                expect(Encoder.encodeWorldDelta(8)).to(beNil())
+            it("異常値の場合、エラーをスローする") {
+                expect { try Encoder.encodeWorldDelta(-1) }.to(throwError())
+                expect { try Encoder.encodeWorldDelta( 8) }.to(throwError())
             }
         }
 
