@@ -10,7 +10,7 @@ public class Encoder {
         case InvalidId
         case InvalidCode
     }
-    
+
     // ワールドデルタIDをエンコードする
     public static func encodeWorldDelta(id: Int) throws -> String {
         guard id >= 0 else { throw EncodeError.InvalidId }
@@ -31,7 +31,7 @@ public class Encoder {
         guard id <= 3 else { throw EncodeError.InvalidId }
         return SUB_DELTA_TABLE1[id]
     }
-    
+
     private static func encodeSubDelta2(id1: Int, _ id2: Int) throws -> String {
         guard id1 >= 0 else { throw EncodeError.InvalidId }
         guard id1 <= 3 else { throw EncodeError.InvalidId }
@@ -39,7 +39,7 @@ public class Encoder {
         guard id2 <= 3 else { throw EncodeError.InvalidId }
         return SUB_DELTA_TABLE2[id1][id2]
     }
-    
+
     // サブデルタID列をエンコードする
     public static func encodeSubDelta(ids: [Int]) throws -> String {
         guard ids.count >= 1 else { throw EncodeError.InvalidId }
@@ -64,30 +64,30 @@ public class Encoder {
         let chars = code.characters
         guard chars.count >= 1 else { throw EncodeError.InvalidCode }
 
-        var ids:[Int] = []
+        var ids: [Int] = []
         for ch in chars {
             switch ( ch ) {
-            case "2": ids.append(0); ids.append(0)
-            case "3": ids.append(0); ids.append(1)
-            case "4": ids.append(0); ids.append(2)
-            case "5": ids.append(0); ids.append(3)
-            case "6": ids.append(1); ids.append(0)
-            case "7": ids.append(1); ids.append(1)
-            case "8": ids.append(1); ids.append(2)
-            case "A": ids.append(1); ids.append(3)
-            case "B": ids.append(2); ids.append(0)
-            case "C": ids.append(2); ids.append(1)
-            case "D": ids.append(2); ids.append(2)
-            case "E": ids.append(2); ids.append(3)
-            case "F": ids.append(3); ids.append(0)
-            case "G": ids.append(3); ids.append(1)
-            case "H": ids.append(3); ids.append(2)
-            case "J": ids.append(3); ids.append(3)
-            case "K": ids.append(0)
-            case "M": ids.append(1)
-            case "N": ids.append(2)
-            case "P": ids.append(3)
-            default: throw EncodeError.InvalidCode
+                case "2": ids += [0, 0]
+                case "3": ids += [0, 1]
+                case "4": ids += [0, 2]
+                case "5": ids += [0, 3]
+                case "6": ids += [1, 0]
+                case "7": ids += [1, 1]
+                case "8": ids += [1, 2]
+                case "A": ids += [1, 3]
+                case "B": ids += [2, 0]
+                case "C": ids += [2, 1]
+                case "D": ids += [2, 2]
+                case "E": ids += [2, 3]
+                case "F": ids += [3, 0]
+                case "G": ids += [3, 1]
+                case "H": ids += [3, 2]
+                case "J": ids += [3, 3]
+                case "K": ids += [0]
+                case "M": ids += [1]
+                case "N": ids += [2]
+                case "P": ids += [3]
+                default: throw EncodeError.InvalidCode
             }
         }
         return ids
@@ -103,7 +103,7 @@ public class Encoder {
         }
         return code
     }
-    
+
     // GeoDeltaコードをデコードする
     public static func decode(code: String) throws -> [Int] {
         let chars = code.characters
