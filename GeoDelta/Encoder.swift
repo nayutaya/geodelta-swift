@@ -29,8 +29,8 @@ public class Encoder {
         var result = ""
         var i = 0
         let len = ids.count
-        while ( i < len ) {
-            let rest = len - i;
+        while i < len {
+            let rest = len - i
             if rest == 1 {
                 result += SUB_DELTA_TABLE1[ids[i]]
             } else {
@@ -42,14 +42,12 @@ public class Encoder {
     }
 
     // サブデルタコードをデコードする
-    public static func decodeSubDelta(code: String) -> [Int] {
-        // TODO:
-        //    if ( code == null || code == "" ) {
-        //    // TODO: throw new IllegalArgumentException();
-        //    return null;
-        //    }
+    public static func decodeSubDelta(code: String) -> [Int]? {
+        let chars = code.characters
+        guard chars.count >= 1 else { return nil }
+
         var ids:[Int] = []
-        for ch in code.characters {
+        for ch in chars {
             switch ( ch ) {
             case "2": ids.append(0); ids.append(0)
             case "3": ids.append(0); ids.append(1)
@@ -71,9 +69,7 @@ public class Encoder {
             case "M": ids.append(1)
             case "N": ids.append(2)
             case "P": ids.append(3)
-            default:
-                break;
-                // TODO: throw new IllegalArgumentException();
+            default: return nil
             }
         }
         return ids
@@ -104,7 +100,7 @@ public class Encoder {
         } else {
             let w = decodeWorldDelta((code as NSString).substringToIndex(1))
             let s = decodeSubDelta((code as NSString).substringFromIndex(1))
-            return [w!] + s
+            return [w!] + s!
         }
     }
 }

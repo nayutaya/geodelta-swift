@@ -105,6 +105,10 @@ class EncoderSpec : QuickSpec {
                 expect(Encoder.decodeSubDelta("3N")).to(equal([0, 1, 2   ]))
                 expect(Encoder.decodeSubDelta("3E")).to(equal([0, 1, 2, 3]))
             }
+            it("異常値の場合、nilを返す") {
+                expect(Encoder.decodeSubDelta("")).to(beNil())
+                expect(Encoder.decodeSubDelta("?")).to(beNil())
+            }
         }
 
         describe(".encode") {
