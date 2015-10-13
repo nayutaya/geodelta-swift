@@ -16,7 +16,7 @@ class EncoderSpec : QuickSpec {
                 expect(Encoder.encodeWorldDelta(6)).to(equal("S"))
                 expect(Encoder.encodeWorldDelta(7)).to(equal("R"))
             }
-            it("異常値についてはnilを返す") {
+            it("異常値の場合、nilを返す") {
                 expect(Encoder.encodeWorldDelta(-1)).to(beNil())
                 expect(Encoder.encodeWorldDelta(8)).to(beNil())
             }
@@ -33,7 +33,7 @@ class EncoderSpec : QuickSpec {
                 expect(Encoder.decodeWorldDelta("S")).to(equal(6))
                 expect(Encoder.decodeWorldDelta("R")).to(equal(7))
             }
-            it("異常値についてはnilを返す") {
+            it("異常値の場合、nilを返す") {
                 expect(Encoder.decodeWorldDelta("?")).to(beNil())
             }
         }
@@ -68,6 +68,9 @@ class EncoderSpec : QuickSpec {
                 expect(Encoder.encodeSubDelta([0, 0, 0, 0])).to(equal("22"))
                 expect(Encoder.encodeSubDelta([0, 1, 2   ])).to(equal("3N"))
                 expect(Encoder.encodeSubDelta([0, 1, 2, 3])).to(equal("3E"))
+            }
+            it("異常値の場合、nilを返す") {
+                expect(Encoder.encodeSubDelta([])).to(beNil())
             }
         }
 
