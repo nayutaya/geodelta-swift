@@ -27,8 +27,8 @@ public class Encoder {
     }
 
     // サブデルタID列をエンコードする
-    public static func encodeSubDelta(ids: [Int]) -> String? {
-        guard ids.count >= 1 else { return nil }
+    public static func encodeSubDelta(ids: [Int]) throws -> String {
+        guard ids.count >= 1 else { throw EncodeError.InvalidId }
 
         var result = ""
         var i = 0
@@ -85,7 +85,7 @@ public class Encoder {
         var code = ""
         code += try! encodeWorldDelta(ids[0])
         if ids.count >= 2 {
-            code += encodeSubDelta(Array(ids.suffix(ids.count - 1)))!
+            code += try! encodeSubDelta(Array(ids.suffix(ids.count - 1)))
         }
         return code
     }

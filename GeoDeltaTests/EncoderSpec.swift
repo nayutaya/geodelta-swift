@@ -40,37 +40,37 @@ class EncoderSpec : QuickSpec {
 
         describe(".encodeSubDelta") {
             it("サブデルタID列をエンコードする") {
-                expect(Encoder.encodeSubDelta([0, 0])).to(equal("2"))
-                expect(Encoder.encodeSubDelta([0, 1])).to(equal("3"))
-                expect(Encoder.encodeSubDelta([0, 2])).to(equal("4"))
-                expect(Encoder.encodeSubDelta([0, 3])).to(equal("5"))
-                expect(Encoder.encodeSubDelta([1, 0])).to(equal("6"))
-                expect(Encoder.encodeSubDelta([1, 1])).to(equal("7"))
-                expect(Encoder.encodeSubDelta([1, 2])).to(equal("8"))
-                expect(Encoder.encodeSubDelta([1, 3])).to(equal("A"))
-                expect(Encoder.encodeSubDelta([2, 0])).to(equal("B"))
-                expect(Encoder.encodeSubDelta([2, 1])).to(equal("C"))
-                expect(Encoder.encodeSubDelta([2, 2])).to(equal("D"))
-                expect(Encoder.encodeSubDelta([2, 3])).to(equal("E"))
-                expect(Encoder.encodeSubDelta([3, 0])).to(equal("F"))
-                expect(Encoder.encodeSubDelta([3, 1])).to(equal("G"))
-                expect(Encoder.encodeSubDelta([3, 2])).to(equal("H"))
-                expect(Encoder.encodeSubDelta([3, 3])).to(equal("J"))
+                expect(try! Encoder.encodeSubDelta([0, 0])).to(equal("2"))
+                expect(try! Encoder.encodeSubDelta([0, 1])).to(equal("3"))
+                expect(try! Encoder.encodeSubDelta([0, 2])).to(equal("4"))
+                expect(try! Encoder.encodeSubDelta([0, 3])).to(equal("5"))
+                expect(try! Encoder.encodeSubDelta([1, 0])).to(equal("6"))
+                expect(try! Encoder.encodeSubDelta([1, 1])).to(equal("7"))
+                expect(try! Encoder.encodeSubDelta([1, 2])).to(equal("8"))
+                expect(try! Encoder.encodeSubDelta([1, 3])).to(equal("A"))
+                expect(try! Encoder.encodeSubDelta([2, 0])).to(equal("B"))
+                expect(try! Encoder.encodeSubDelta([2, 1])).to(equal("C"))
+                expect(try! Encoder.encodeSubDelta([2, 2])).to(equal("D"))
+                expect(try! Encoder.encodeSubDelta([2, 3])).to(equal("E"))
+                expect(try! Encoder.encodeSubDelta([3, 0])).to(equal("F"))
+                expect(try! Encoder.encodeSubDelta([3, 1])).to(equal("G"))
+                expect(try! Encoder.encodeSubDelta([3, 2])).to(equal("H"))
+                expect(try! Encoder.encodeSubDelta([3, 3])).to(equal("J"))
             }
             it("サブデルタID列をエンコードする") {
-                expect(Encoder.encodeSubDelta([0])).to(equal("K"))
-                expect(Encoder.encodeSubDelta([1])).to(equal("M"))
-                expect(Encoder.encodeSubDelta([2])).to(equal("N"))
-                expect(Encoder.encodeSubDelta([3])).to(equal("P"))
+                expect(try! Encoder.encodeSubDelta([0])).to(equal("K"))
+                expect(try! Encoder.encodeSubDelta([1])).to(equal("M"))
+                expect(try! Encoder.encodeSubDelta([2])).to(equal("N"))
+                expect(try! Encoder.encodeSubDelta([3])).to(equal("P"))
             }
             it("サブデルタID列をエンコードする") {
-                expect(Encoder.encodeSubDelta([0, 0, 0   ])).to(equal("2K"))
-                expect(Encoder.encodeSubDelta([0, 0, 0, 0])).to(equal("22"))
-                expect(Encoder.encodeSubDelta([0, 1, 2   ])).to(equal("3N"))
-                expect(Encoder.encodeSubDelta([0, 1, 2, 3])).to(equal("3E"))
+                expect(try! Encoder.encodeSubDelta([0, 0, 0   ])).to(equal("2K"))
+                expect(try! Encoder.encodeSubDelta([0, 0, 0, 0])).to(equal("22"))
+                expect(try! Encoder.encodeSubDelta([0, 1, 2   ])).to(equal("3N"))
+                expect(try! Encoder.encodeSubDelta([0, 1, 2, 3])).to(equal("3E"))
             }
-            it("異常値の場合、nilを返す") {
-                expect(Encoder.encodeSubDelta([])).to(beNil())
+            it("異常値の場合、エラーをスローする") {
+                expect { try Encoder.encodeSubDelta([]) }.to(throwError())
             }
         }
 
