@@ -16,11 +16,11 @@ public class Encoder {
     }
 
     // ワールドデルタコードをデコードする
-    public static func decodeWorldDelta(code: String) -> Int? {
+    public static func decodeWorldDelta(code: String) -> Int {
         if let index = WORLD_DELTA_TABLE.indexOf(code) {
             return index
         } else {
-            return nil
+            return -1 // TODO: exception
         }
     }
 
@@ -96,23 +96,19 @@ public class Encoder {
         }
         return code
     }
+    
+    // GeoDeltaコードをデコードする
+    public static func decode(code: String) -> [Int] {
+        //    if ( code == null || code.length == 0 ) {
+        //    // TODO: throw new IllegalArgumentException();
+        //    return null;
+        if code.characters.count == 1 {
+            let w = decodeWorldDelta((code as NSString).substringToIndex(1))
+            return [w]
+        } else {
+            let w = decodeWorldDelta((code as NSString).substringToIndex(1))
+            let s = decodeSubDelta((code as NSString).substringFromIndex(1))
+            return [w] + s
+        }
+    }
 }
-
-/*
-
-// GeoDeltaコードをデコードする
-encoder.decode = function(code) {
-  if ( code == null || code.length == 0 ) {
-    // TODO: throw new IllegalArgumentException();
-    return null;
-  } else if ( code.length == 1 ) {
-    return [encoder.decodeWorldDelta(code.charAt(0))];
-  } else {
-    var worldId = encoder.decodeWorldDelta(code.charAt(0));
-    var subIds  = encoder.decodeSubDelta(code.substring(1));
-    return [worldId].concat(subIds);
-  }
-};
-
-module.exports = encoder;
-*/
