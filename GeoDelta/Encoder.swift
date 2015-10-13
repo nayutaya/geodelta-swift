@@ -38,20 +38,19 @@ public class Encoder {
 
     // サブデルタID列をエンコードする
     public static func encodeSubDelta(ids: [Int]) throws -> String {
-        guard ids.count >= 1 else { throw EncodeError.InvalidId }
+        let length = ids.count
+        guard length >= 1 else { throw EncodeError.InvalidId }
 
         var result = ""
-        var i = 0
-        let len = ids.count
-        while i < len {
-            let rest = len - i
+        for var i = 0; i < length; i += 2 {
+            let rest = length - i
             if rest == 1 {
                 result += try encodeSubDelta1(ids[i])
             } else {
                 result += try encodeSubDelta2(ids[i], ids[i + 1])
             }
-            i += 2
         }
+        
         return result
     }
 
@@ -86,15 +85,17 @@ public class Encoder {
                 default: throw EncodeError.InvalidCode
             }
         }
+        
         return ids
     }
 
     // デルタID列をエンコードする
     public static func encode(ids: [Int]) throws -> String {
-        guard ids.count >= 1 else { throw EncodeError.InvalidId }
+        let length = ids.count
+        guard length >= 1 else { throw EncodeError.InvalidId }
         var code = try encodeWorldDelta(ids[0])
-        if ids.count >= 2 {
-            code += try encodeSubDelta(Array(ids.suffix(ids.count - 1)))
+        if length >= 2 {
+            code += try encodeSubDelta(Array(ids.suffix(length - 1)))
         }
         return code
     }
