@@ -80,12 +80,12 @@ public class Encoder {
     }
 
     // デルタID列をエンコードする
-    public static func encode(ids: [Int]) -> String? {
-        guard ids.count >= 1 else { return nil }
+    public static func encode(ids: [Int]) throws -> String {
+        guard ids.count >= 1 else { throw EncodeError.InvalidId }
         var code = ""
-        code += try! encodeWorldDelta(ids[0])
+        code += try encodeWorldDelta(ids[0])
         if ids.count >= 2 {
-            code += try! encodeSubDelta(Array(ids.suffix(ids.count - 1)))
+            code += try encodeSubDelta(Array(ids.suffix(ids.count - 1)))
         }
         return code
     }

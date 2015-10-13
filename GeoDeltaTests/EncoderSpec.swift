@@ -113,17 +113,17 @@ class EncoderSpec : QuickSpec {
 
         describe(".encode") {
             it("デルタID列をエンコードする") {
-                expect(Encoder.encode([0         ])).to(equal("Z"))
-                expect(Encoder.encode([0, 1      ])).to(equal("ZM"))
-                expect(Encoder.encode([0, 1, 2   ])).to(equal("Z8"))
-                expect(Encoder.encode([0, 1, 2, 3])).to(equal("Z8P"))
-                expect(Encoder.encode([7         ])).to(equal("R"))
-                expect(Encoder.encode([7, 3      ])).to(equal("RP"))
-                expect(Encoder.encode([7, 3, 2   ])).to(equal("RH"))
-                expect(Encoder.encode([7, 3, 2, 1])).to(equal("RHM"))
+                expect(try! Encoder.encode([0         ])).to(equal("Z"))
+                expect(try! Encoder.encode([0, 1      ])).to(equal("ZM"))
+                expect(try! Encoder.encode([0, 1, 2   ])).to(equal("Z8"))
+                expect(try! Encoder.encode([0, 1, 2, 3])).to(equal("Z8P"))
+                expect(try! Encoder.encode([7         ])).to(equal("R"))
+                expect(try! Encoder.encode([7, 3      ])).to(equal("RP"))
+                expect(try! Encoder.encode([7, 3, 2   ])).to(equal("RH"))
+                expect(try! Encoder.encode([7, 3, 2, 1])).to(equal("RHM"))
             }
             it("異常値の場合、nilを返す") {
-                expect(Encoder.encode([])).to(beNil())
+                expect { try Encoder.encode([]) }.to(throwError())
             }
         }
 
