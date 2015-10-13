@@ -71,6 +71,12 @@ class EncoderSpec : QuickSpec {
             }
             it("異常値の場合、エラーをスローする") {
                 expect { try Encoder.encodeSubDelta([]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([-1]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([ 4]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([-1,  0]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([ 4,  0]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([ 0, -1]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([ 0,  4]) }.to(throwError())
             }
         }
 

@@ -26,6 +26,20 @@ public class Encoder {
         return id
     }
 
+    private static func encodeSubDelta1(id: Int) throws -> String {
+        guard id >= 0 else { throw EncodeError.InvalidId }
+        guard id <= 3 else { throw EncodeError.InvalidId }
+        return SUB_DELTA_TABLE1[id]
+    }
+    
+    private static func encodeSubDelta2(id1: Int, _ id2: Int) throws -> String {
+        guard id1 >= 0 else { throw EncodeError.InvalidId }
+        guard id1 <= 3 else { throw EncodeError.InvalidId }
+        guard id2 >= 0 else { throw EncodeError.InvalidId }
+        guard id2 <= 3 else { throw EncodeError.InvalidId }
+        return SUB_DELTA_TABLE2[id1][id2]
+    }
+    
     // サブデルタID列をエンコードする
     public static func encodeSubDelta(ids: [Int]) throws -> String {
         guard ids.count >= 1 else { throw EncodeError.InvalidId }
@@ -36,9 +50,9 @@ public class Encoder {
         while i < len {
             let rest = len - i
             if rest == 1 {
-                result += SUB_DELTA_TABLE1[ids[i]]
+                result += try encodeSubDelta1(ids[i])
             } else {
-                result += SUB_DELTA_TABLE2[ids[i]][ids[i + 1]]
+                result += try encodeSubDelta2(ids[i], ids[i + 1])
             }
             i += 2
         }
