@@ -34,10 +34,22 @@ class EncoderSpec : QuickSpec {
                 expect(try! Encoder.decodeWorldDelta("R")).to(equal(7))
             }
             it("異常値の場合、エラーをスローする") {
-                expect { try Encoder.decodeWorldDelta("?") }.to(throwError())
+                expect { try Encoder.decodeWorldDelta("z") }.to(throwError())
+                expect { try Encoder.decodeWorldDelta("A") }.to(throwError())
             }
         }
 
+        describe("encode and decode world delta") {
+            it("") {
+                for var id = 0; id <= 7; id++ {
+                    let encoded1 = try! Encoder.encodeWorldDelta(id)
+                    let decoded1 = try! Encoder.decodeWorldDelta(encoded1)
+                    let encoded2 = try! Encoder.encodeWorldDelta(decoded1)
+                    expect(encoded2).to(equal(encoded1))
+                }
+            }
+        }
+        
         describe(".encodeSubDelta") {
             it("サブデルタID列をエンコードする") {
                 expect(try! Encoder.encodeSubDelta([0, 0])).to(equal("2"))
@@ -71,6 +83,12 @@ class EncoderSpec : QuickSpec {
             }
             it("異常値の場合、エラーをスローする") {
                 expect { try Encoder.encodeSubDelta([]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([-1]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([ 4]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([-1,  0]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([ 4,  0]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([ 0, -1]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([ 0,  4]) }.to(throwError())
             }
         }
 
@@ -107,7 +125,31 @@ class EncoderSpec : QuickSpec {
             }
             it("異常値の場合、エラーをスローする") {
                 expect { try Encoder.decodeSubDelta("") }.to(throwError())
-                expect { try Encoder.decodeSubDelta("?") }.to(throwError())
+                expect { try Encoder.decodeSubDelta("1") }.to(throwError())
+                expect { try Encoder.decodeSubDelta("Z") }.to(throwError())
+            }
+        }
+
+        describe("encode and decode sub delta") {
+            it("level2") {
+                for var id1 = 0; id1 <= 3; id1++ {
+                    let ids = [id1]
+                    let encoded1 = try! Encoder.encodeSubDelta(ids)
+                    let decoded1 = try! Encoder.decodeSubDelta(encoded1)
+                    let encoded2 = try! Encoder.encodeSubDelta(decoded1)
+                    expect(encoded2).to(equal(encoded1))
+                }
+            }
+            it("level3") {
+                for var id1 = 0; id1 <= 3; id1++ {
+                    for var id2 = 0; id2 <= 3; id2++ {
+                        let ids = [id1, id2]
+                        let encoded1 = try! Encoder.encodeSubDelta(ids)
+                        let decoded1 = try! Encoder.decodeSubDelta(encoded1)
+                        let encoded2 = try! Encoder.encodeSubDelta(decoded1)
+                        expect(encoded2).to(equal(encoded1))
+                    }
+                }
             }
         }
 
@@ -142,112 +184,11 @@ class EncoderSpec : QuickSpec {
                 expect { try Encoder.decode("") }.to(throwError())
             }
         }
-
-        /*
-        describe("") {
-            it("") {
-            }
-        }
-        */
     }
 }
 
 /*
 describe("encoder", function() {
-
-
-// TODO:
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeWorldDelta__invalidArg1()
-//    {
-//        geodelta.encoder.decodeWorldDelta("z");
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeWorldDelta__invalidArg2()
-//    {
-//        geodelta.encoder.decodeWorldDelta("A");
-//    }
-//    @Test
-//    public void allEncodeAndDecodeWorldDelta()
-//    {
-//        for ( int id = 0; id <= 7; id++ )
-//        {
-//            final char encoded1 = geodelta.encoder.encodeWorldDelta((byte)id);
-//            final byte decoded1 = geodelta.encoder.decodeWorldDelta(encoded1);
-//            final char encoded2 = geodelta.encoder.encodeWorldDelta(decoded1);
-//            assertEquals(encoded1, encoded2);
-//        }
-//    }
-
-//    @Test(expected = IllegalArgumentException.class)
-//    public void encodeSubDelta__invalidArg1()
-//    {
-//        geodelta.encoder.encodeSubDelta(null);
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void encodeSubDelta__invalidArg2()
-//    {
-//        geodelta.encoder.encodeSubDelta(new byte[0]);
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void encodeSubDelta__invalidArg3()
-//    {
-//        geodelta.encoder.encodeSubDelta(new byte[] {-1});
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void encodeSubDelta__invalidArg4()
-//    {
-//        geodelta.encoder.encodeSubDelta(new byte[] {4});
-//    }
-
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeSubDelta__invalidArg1()
-//    {
-//        geodelta.encoder.decodeSubDelta(null);
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeSubDelta__invalidArg2()
-//    {
-//        geodelta.encoder.decodeSubDelta("");
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeSubDelta__invalidArg3()
-//    {
-//        geodelta.encoder.decodeSubDelta("1");
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeSubDelta__invalidArg4()
-//    {
-//        geodelta.encoder.decodeSubDelta("Z");
-//    }
-//    @Test
-//    public void allEncodeAndDecodeSubDelta__level2()
-//    {
-//        for ( int id1 = 0; id1 <= 3; id1++ )
-//        {
-//            final byte[] ids = {(byte)id1};
-//            final String encoded1 = geodelta.encoder.encodeSubDelta(ids);
-//            final byte[] decoded1 = geodelta.encoder.decodeSubDelta(encoded1);
-//            final String encoded2 = geodelta.encoder.encodeSubDelta(decoded1);
-//            assertEquals(encoded1, encoded2);
-//        }
-//    }
-//    @Test
-//    public void allEncodeAndDecodeSubDelta__level3()
-//    {
-//        for ( int id1 = 0; id1 <= 3; id1++ )
-//        {
-//            for ( int id2 = 0; id2 <= 3; id2++ )
-//            {
-//                final byte[] ids = {(byte)id1, (byte)id2};
-//                final String encoded1 = geodelta.encoder.encodeSubDelta(ids);
-//                final byte[] decoded1 = geodelta.encoder.decodeSubDelta(encoded1);
-//                final String encoded2 = geodelta.encoder.encodeSubDelta(decoded1);
-//                assertEquals(encoded1, encoded2);
-//            }
-//        }
-//    }
-
 //    @Test
 //    public void randomEncodeAndDecode()
 //    {
