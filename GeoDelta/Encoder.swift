@@ -46,9 +46,9 @@ public class Encoder {
     }
 
     // サブデルタコードをデコードする
-    public static func decodeSubDelta(code: String) -> [Int]? {
+    public static func decodeSubDelta(code: String) throws -> [Int] {
         let chars = code.characters
-        guard chars.count >= 1 else { return nil }
+        guard chars.count >= 1 else { throw EncodeError.InvalidCode }
 
         var ids:[Int] = []
         for ch in chars {
@@ -73,7 +73,7 @@ public class Encoder {
             case "M": ids.append(1)
             case "N": ids.append(2)
             case "P": ids.append(3)
-            default: return nil
+            default: throw EncodeError.InvalidCode
             }
         }
         return ids
@@ -102,8 +102,8 @@ public class Encoder {
             return [w]
         } else {
             let w = try! decodeWorldDelta((code as NSString).substringToIndex(1))
-            let s = decodeSubDelta((code as NSString).substringFromIndex(1))
-            return [w] + s!
+            let s = try! decodeSubDelta((code as NSString).substringFromIndex(1))
+            return [w] + s
         }
     }
 }

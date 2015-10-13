@@ -76,38 +76,38 @@ class EncoderSpec : QuickSpec {
 
         describe(".decodeSubDelta") {
             it("サブデルタコードをデコードする") {
-                expect(Encoder.decodeSubDelta("2")).to(equal([0, 0]))
-                expect(Encoder.decodeSubDelta("3")).to(equal([0, 1]))
-                expect(Encoder.decodeSubDelta("4")).to(equal([0, 2]))
-                expect(Encoder.decodeSubDelta("5")).to(equal([0, 3]))
-                expect(Encoder.decodeSubDelta("6")).to(equal([1, 0]))
-                expect(Encoder.decodeSubDelta("7")).to(equal([1, 1]))
-                expect(Encoder.decodeSubDelta("8")).to(equal([1, 2]))
-                expect(Encoder.decodeSubDelta("A")).to(equal([1, 3]))
-                expect(Encoder.decodeSubDelta("B")).to(equal([2, 0]))
-                expect(Encoder.decodeSubDelta("C")).to(equal([2, 1]))
-                expect(Encoder.decodeSubDelta("D")).to(equal([2, 2]))
-                expect(Encoder.decodeSubDelta("E")).to(equal([2, 3]))
-                expect(Encoder.decodeSubDelta("F")).to(equal([3, 0]))
-                expect(Encoder.decodeSubDelta("G")).to(equal([3, 1]))
-                expect(Encoder.decodeSubDelta("H")).to(equal([3, 2]))
-                expect(Encoder.decodeSubDelta("J")).to(equal([3, 3]))
+                expect(try! Encoder.decodeSubDelta("2")).to(equal([0, 0]))
+                expect(try! Encoder.decodeSubDelta("3")).to(equal([0, 1]))
+                expect(try! Encoder.decodeSubDelta("4")).to(equal([0, 2]))
+                expect(try! Encoder.decodeSubDelta("5")).to(equal([0, 3]))
+                expect(try! Encoder.decodeSubDelta("6")).to(equal([1, 0]))
+                expect(try! Encoder.decodeSubDelta("7")).to(equal([1, 1]))
+                expect(try! Encoder.decodeSubDelta("8")).to(equal([1, 2]))
+                expect(try! Encoder.decodeSubDelta("A")).to(equal([1, 3]))
+                expect(try! Encoder.decodeSubDelta("B")).to(equal([2, 0]))
+                expect(try! Encoder.decodeSubDelta("C")).to(equal([2, 1]))
+                expect(try! Encoder.decodeSubDelta("D")).to(equal([2, 2]))
+                expect(try! Encoder.decodeSubDelta("E")).to(equal([2, 3]))
+                expect(try! Encoder.decodeSubDelta("F")).to(equal([3, 0]))
+                expect(try! Encoder.decodeSubDelta("G")).to(equal([3, 1]))
+                expect(try! Encoder.decodeSubDelta("H")).to(equal([3, 2]))
+                expect(try! Encoder.decodeSubDelta("J")).to(equal([3, 3]))
             }
             it("サブデルタコードをデコードする") {
-                expect(Encoder.decodeSubDelta("K")).to(equal([0]))
-                expect(Encoder.decodeSubDelta("M")).to(equal([1]))
-                expect(Encoder.decodeSubDelta("N")).to(equal([2]))
-                expect(Encoder.decodeSubDelta("P")).to(equal([3]))
+                expect(try! Encoder.decodeSubDelta("K")).to(equal([0]))
+                expect(try! Encoder.decodeSubDelta("M")).to(equal([1]))
+                expect(try! Encoder.decodeSubDelta("N")).to(equal([2]))
+                expect(try! Encoder.decodeSubDelta("P")).to(equal([3]))
             }
             it("サブデルタコードをデコードする") {
-                expect(Encoder.decodeSubDelta("2K")).to(equal([0, 0, 0   ]))
-                expect(Encoder.decodeSubDelta("22")).to(equal([0, 0, 0, 0]))
-                expect(Encoder.decodeSubDelta("3N")).to(equal([0, 1, 2   ]))
-                expect(Encoder.decodeSubDelta("3E")).to(equal([0, 1, 2, 3]))
+                expect(try! Encoder.decodeSubDelta("2K")).to(equal([0, 0, 0   ]))
+                expect(try! Encoder.decodeSubDelta("22")).to(equal([0, 0, 0, 0]))
+                expect(try! Encoder.decodeSubDelta("3N")).to(equal([0, 1, 2   ]))
+                expect(try! Encoder.decodeSubDelta("3E")).to(equal([0, 1, 2, 3]))
             }
-            it("異常値の場合、nilを返す") {
-                expect(Encoder.decodeSubDelta("")).to(beNil())
-                expect(Encoder.decodeSubDelta("?")).to(beNil())
+            it("異常値の場合、エラーをスローする") {
+                expect { try Encoder.decodeSubDelta("") }.to(throwError())
+                expect { try Encoder.decodeSubDelta("?") }.to(throwError())
             }
         }
 
