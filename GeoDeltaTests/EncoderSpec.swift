@@ -18,6 +18,19 @@ class EncoderSpec : QuickSpec {
             }
         }
 
+        describe(".decodeWorldDelta") {
+            it("ワールドデルタコードをデコードする") {
+                expect(Encoder.decodeWorldDelta("Z")).to(equal(0))
+                expect(Encoder.decodeWorldDelta("Y")).to(equal(1))
+                expect(Encoder.decodeWorldDelta("X")).to(equal(2))
+                expect(Encoder.decodeWorldDelta("W")).to(equal(3))
+                expect(Encoder.decodeWorldDelta("V")).to(equal(4))
+                expect(Encoder.decodeWorldDelta("T")).to(equal(5))
+                expect(Encoder.decodeWorldDelta("S")).to(equal(6))
+                expect(Encoder.decodeWorldDelta("R")).to(equal(7))
+            }
+        }
+
         /*
         describe("") {
             it("") {
@@ -57,19 +70,6 @@ describe("encoder", function() {
 //  }
 //  fail("exception not raised");
 //}
-
-  describe(".decodeWorldDelta", function() {
-    it("ワールドデルタコードをデコードする", function() {
-      assert.equal(0, encoder.decodeWorldDelta("Z"));
-      assert.equal(1, encoder.decodeWorldDelta("Y"));
-      assert.equal(2, encoder.decodeWorldDelta("X"));
-      assert.equal(3, encoder.decodeWorldDelta("W"));
-      assert.equal(4, encoder.decodeWorldDelta("V"));
-      assert.equal(5, encoder.decodeWorldDelta("T"));
-      assert.equal(6, encoder.decodeWorldDelta("S"));
-      assert.equal(7, encoder.decodeWorldDelta("R"));
-    });
-  });
 
 // TODO:
 //    @Test(expected = IllegalArgumentException.class)

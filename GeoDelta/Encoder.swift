@@ -10,17 +10,20 @@ public class Encoder {
         //    }
         return WORLD_DELTA_TABLE[id]
     }
+    
+    // ワールドデルタコードをデコードする
+    public static func decodeWorldDelta(code: String) -> Int? {
+        if let index = WORLD_DELTA_TABLE.indexOf(code) {
+            return index
+        } else {
+            return nil
+        }
+    }
 }
 
 /*
 var SUB_DELTA_TABLE1  = ["K", "M", "N", "P"];
 var SUB_DELTA_TABLE2  = [["2", "3", "4", "5"], ["6", "7", "8", "A"], ["B", "C", "D", "E"], ["F", "G", "H", "J"]];
-
-// ワールドデルタコードをデコードする
-encoder.decodeWorldDelta = function(code) {
-  var index = WORLD_DELTA_TABLE.indexOf(code);
-  return (index < 0 ? null : index);
-};
 
 // サブデルタID列をエンコードする
 var _encodeSubDelta = function(ids, start) {
