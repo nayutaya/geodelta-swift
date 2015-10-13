@@ -91,18 +91,15 @@ public class Encoder {
     }
     
     // GeoDeltaコードをデコードする
-    public static func decode(code: String) -> [Int]? {
+    public static func decode(code: String) throws -> [Int] {
         let chars = code.characters
-        guard chars.count >= 1 else { return nil }
-        //    if ( code == null || code.length == 0 ) {
-        //    // TODO: throw new IllegalArgumentException();
-        //    return null;
+        guard chars.count >= 1 else { throw EncodeError.InvalidCode }
         if code.characters.count == 1 {
-            let w = try! decodeWorldDelta((code as NSString).substringToIndex(1))
+            let w = try decodeWorldDelta((code as NSString).substringToIndex(1))
             return [w]
         } else {
-            let w = try! decodeWorldDelta((code as NSString).substringToIndex(1))
-            let s = try! decodeSubDelta((code as NSString).substringFromIndex(1))
+            let w = try decodeWorldDelta((code as NSString).substringToIndex(1))
+            let s = try decodeSubDelta((code as NSString).substringFromIndex(1))
             return [w] + s
         }
     }

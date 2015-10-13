@@ -129,17 +129,17 @@ class EncoderSpec : QuickSpec {
 
         describe(".decode") {
             it("GeoDeltaコードをデコードする") {
-                expect(Encoder.decode("Z"  )).to(equal([0         ]))
-                expect(Encoder.decode("ZM" )).to(equal([0, 1      ]))
-                expect(Encoder.decode("Z8" )).to(equal([0, 1, 2   ]))
-                expect(Encoder.decode("Z8P")).to(equal([0, 1, 2, 3]))
-                expect(Encoder.decode("R"  )).to(equal([7         ]))
-                expect(Encoder.decode("RP" )).to(equal([7, 3      ]))
-                expect(Encoder.decode("RH" )).to(equal([7, 3, 2   ]))
-                expect(Encoder.decode("RHM")).to(equal([7, 3, 2, 1]))
+                expect(try! Encoder.decode("Z"  )).to(equal([0         ]))
+                expect(try! Encoder.decode("ZM" )).to(equal([0, 1      ]))
+                expect(try! Encoder.decode("Z8" )).to(equal([0, 1, 2   ]))
+                expect(try! Encoder.decode("Z8P")).to(equal([0, 1, 2, 3]))
+                expect(try! Encoder.decode("R"  )).to(equal([7         ]))
+                expect(try! Encoder.decode("RP" )).to(equal([7, 3      ]))
+                expect(try! Encoder.decode("RH" )).to(equal([7, 3, 2   ]))
+                expect(try! Encoder.decode("RHM")).to(equal([7, 3, 2, 1]))
             }
             it("異常値の場合、nilを返す") {
-                expect(Encoder.decode("")).to(beNil())
+                expect { try Encoder.decode("") }.to(throwError())
             }
         }
 
