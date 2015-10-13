@@ -16,6 +16,10 @@ class EncoderSpec : QuickSpec {
                 expect(Encoder.encodeWorldDelta(6)).to(equal("S"))
                 expect(Encoder.encodeWorldDelta(7)).to(equal("R"))
             }
+            it("異常値についてはnilを返す") {
+                expect(Encoder.encodeWorldDelta(-1)).to(beNil())
+                expect(Encoder.encodeWorldDelta(8)).to(beNil())
+            }
         }
 
         describe(".decodeWorldDelta") {
@@ -135,33 +139,6 @@ class EncoderSpec : QuickSpec {
 /*
 describe("encoder", function() {
 
-//TODO:
-//function test_encodeWorldDelta__invalidArg1()
-//{
-//  try
-//  {
-//    geodelta.encoder.encodeWorldDelta(-1);
-//  }
-//  catch ( e )
-//  {
-//    return;
-//  }
-//  fail("exception not raised");
-//}
-
-// TODO:
-//function test_encodeWorldDelta__invalidArg2()
-//{
-//  try
-//  {
-//    geodelta.encoder.encodeWorldDelta(8);
-//  }
-//  catch ( e )
-//  {
-//    return;
-//  }
-//  fail("exception not raised");
-//}
 
 // TODO:
 //    @Test(expected = IllegalArgumentException.class)

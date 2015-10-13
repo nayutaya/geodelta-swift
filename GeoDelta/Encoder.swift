@@ -7,11 +7,10 @@ public class Encoder {
     static let SUB_DELTA_TABLE2  = [["2", "3", "4", "5"], ["6", "7", "8", "A"], ["B", "C", "D", "E"], ["F", "G", "H", "J"]]
 
     // ワールドデルタIDをエンコードする
-    public static func encodeWorldDelta(id: Int) -> String {
-        // TODO:
-        //    if ( id < 0 || id > 7 ) {
-        //    throw "invalid argument (id)";
-        //    }
+    public static func encodeWorldDelta(id: Int) -> String? {
+        if id < 0 || id > 7 {
+            return nil
+        }
         return WORLD_DELTA_TABLE[id]
     }
 
@@ -90,7 +89,7 @@ public class Encoder {
         //    return null;
         //    }
         var code = ""
-        code += encodeWorldDelta(ids[0])
+        code += encodeWorldDelta(ids[0])!
         if ids.count >= 2 {
             code += encodeSubDelta(Array(ids.suffix(ids.count - 1)))
         }
