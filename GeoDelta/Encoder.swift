@@ -8,6 +8,7 @@ public class Encoder {
 
     enum EncodeError : ErrorType {
         case InvalidId
+        case InvalidCode
     }
     
     // ワールドデルタIDをエンコードする
@@ -18,12 +19,11 @@ public class Encoder {
     }
 
     // ワールドデルタコードをデコードする
-    public static func decodeWorldDelta(code: String) -> Int? {
-        if let index = WORLD_DELTA_TABLE.indexOf(code) {
-            return index
-        } else {
-            return nil
+    public static func decodeWorldDelta(code: String) throws -> Int {
+        guard let id = WORLD_DELTA_TABLE.indexOf(code) else {
+            throw EncodeError.InvalidCode
         }
+        return id
     }
 
     // サブデルタID列をエンコードする
@@ -98,12 +98,12 @@ public class Encoder {
         //    // TODO: throw new IllegalArgumentException();
         //    return null;
         if code.characters.count == 1 {
-            let w = decodeWorldDelta((code as NSString).substringToIndex(1))
-            return [w!]
+            let w = try! decodeWorldDelta((code as NSString).substringToIndex(1))
+            return [w]
         } else {
-            let w = decodeWorldDelta((code as NSString).substringToIndex(1))
+            let w = try! decodeWorldDelta((code as NSString).substringToIndex(1))
             let s = decodeSubDelta((code as NSString).substringFromIndex(1))
-            return [w!] + s!
+            return [w] + s!
         }
     }
 }

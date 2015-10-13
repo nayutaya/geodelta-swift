@@ -24,17 +24,17 @@ class EncoderSpec : QuickSpec {
 
         describe(".decodeWorldDelta") {
             it("ワールドデルタコードをデコードする") {
-                expect(Encoder.decodeWorldDelta("Z")).to(equal(0))
-                expect(Encoder.decodeWorldDelta("Y")).to(equal(1))
-                expect(Encoder.decodeWorldDelta("X")).to(equal(2))
-                expect(Encoder.decodeWorldDelta("W")).to(equal(3))
-                expect(Encoder.decodeWorldDelta("V")).to(equal(4))
-                expect(Encoder.decodeWorldDelta("T")).to(equal(5))
-                expect(Encoder.decodeWorldDelta("S")).to(equal(6))
-                expect(Encoder.decodeWorldDelta("R")).to(equal(7))
+                expect(try! Encoder.decodeWorldDelta("Z")).to(equal(0))
+                expect(try! Encoder.decodeWorldDelta("Y")).to(equal(1))
+                expect(try! Encoder.decodeWorldDelta("X")).to(equal(2))
+                expect(try! Encoder.decodeWorldDelta("W")).to(equal(3))
+                expect(try! Encoder.decodeWorldDelta("V")).to(equal(4))
+                expect(try! Encoder.decodeWorldDelta("T")).to(equal(5))
+                expect(try! Encoder.decodeWorldDelta("S")).to(equal(6))
+                expect(try! Encoder.decodeWorldDelta("R")).to(equal(7))
             }
-            it("異常値の場合、nilを返す") {
-                expect(Encoder.decodeWorldDelta("?")).to(beNil())
+            it("異常値の場合、エラーをスローする") {
+                expect { try Encoder.decodeWorldDelta("?") }.to(throwError())
             }
         }
 
