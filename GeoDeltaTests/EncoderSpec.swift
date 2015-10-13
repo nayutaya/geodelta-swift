@@ -31,6 +31,39 @@ class EncoderSpec : QuickSpec {
             }
         }
 
+        describe(".encodeSubDelta") {
+            it("サブデルタID列をエンコードする") {
+                expect(Encoder.encodeSubDelta([0, 0])).to(equal("2"))
+                expect(Encoder.encodeSubDelta([0, 1])).to(equal("3"))
+                expect(Encoder.encodeSubDelta([0, 2])).to(equal("4"))
+                expect(Encoder.encodeSubDelta([0, 3])).to(equal("5"))
+                expect(Encoder.encodeSubDelta([1, 0])).to(equal("6"))
+                expect(Encoder.encodeSubDelta([1, 1])).to(equal("7"))
+                expect(Encoder.encodeSubDelta([1, 2])).to(equal("8"))
+                expect(Encoder.encodeSubDelta([1, 3])).to(equal("A"))
+                expect(Encoder.encodeSubDelta([2, 0])).to(equal("B"))
+                expect(Encoder.encodeSubDelta([2, 1])).to(equal("C"))
+                expect(Encoder.encodeSubDelta([2, 2])).to(equal("D"))
+                expect(Encoder.encodeSubDelta([2, 3])).to(equal("E"))
+                expect(Encoder.encodeSubDelta([3, 0])).to(equal("F"))
+                expect(Encoder.encodeSubDelta([3, 1])).to(equal("G"))
+                expect(Encoder.encodeSubDelta([3, 2])).to(equal("H"))
+                expect(Encoder.encodeSubDelta([3, 3])).to(equal("J"))
+            }
+            it("サブデルタID列をエンコードする") {
+                expect(Encoder.encodeSubDelta([0])).to(equal("K"))
+                expect(Encoder.encodeSubDelta([1])).to(equal("M"))
+                expect(Encoder.encodeSubDelta([2])).to(equal("N"))
+                expect(Encoder.encodeSubDelta([3])).to(equal("P"))
+            }
+            it("サブデルタID列をエンコードする") {
+                expect(Encoder.encodeSubDelta([0, 0, 0   ])).to(equal("2K"))
+                expect(Encoder.encodeSubDelta([0, 0, 0, 0])).to(equal("22"))
+                expect(Encoder.encodeSubDelta([0, 1, 2   ])).to(equal("3N"))
+                expect(Encoder.encodeSubDelta([0, 1, 2, 3])).to(equal("3E"))
+            }
+        }
+
         /*
         describe("") {
             it("") {
@@ -93,39 +126,6 @@ describe("encoder", function() {
 //            assertEquals(encoded1, encoded2);
 //        }
 //    }
-
-  describe(".encodeSubDelta", function() {
-    it("サブデルタID列をエンコードする", function() {
-      assert.equal("2", encoder.encodeSubDelta([0, 0]));
-      assert.equal("3", encoder.encodeSubDelta([0, 1]));
-      assert.equal("4", encoder.encodeSubDelta([0, 2]));
-      assert.equal("5", encoder.encodeSubDelta([0, 3]));
-      assert.equal("6", encoder.encodeSubDelta([1, 0]));
-      assert.equal("7", encoder.encodeSubDelta([1, 1]));
-      assert.equal("8", encoder.encodeSubDelta([1, 2]));
-      assert.equal("A", encoder.encodeSubDelta([1, 3]));
-      assert.equal("B", encoder.encodeSubDelta([2, 0]));
-      assert.equal("C", encoder.encodeSubDelta([2, 1]));
-      assert.equal("D", encoder.encodeSubDelta([2, 2]));
-      assert.equal("E", encoder.encodeSubDelta([2, 3]));
-      assert.equal("F", encoder.encodeSubDelta([3, 0]));
-      assert.equal("G", encoder.encodeSubDelta([3, 1]));
-      assert.equal("H", encoder.encodeSubDelta([3, 2]));
-      assert.equal("J", encoder.encodeSubDelta([3, 3]));
-    });
-    it("サブデルタID列をエンコードする", function() {
-      assert.equal("K", encoder.encodeSubDelta([0]));
-      assert.equal("M", encoder.encodeSubDelta([1]));
-      assert.equal("N", encoder.encodeSubDelta([2]));
-      assert.equal("P", encoder.encodeSubDelta([3]));
-    });
-    it("サブデルタID列をエンコードする", function() {
-      assert.equal("2K", encoder.encodeSubDelta([0, 0, 0]));
-      assert.equal("22", encoder.encodeSubDelta([0, 0, 0, 0]));
-      assert.equal("3N", encoder.encodeSubDelta([0, 1, 2]));
-      assert.equal("3E", encoder.encodeSubDelta([0, 1, 2, 3]));
-    });
-  });
 
 //    @Test(expected = IllegalArgumentException.class)
 //    public void encodeSubDelta__invalidArg1()
