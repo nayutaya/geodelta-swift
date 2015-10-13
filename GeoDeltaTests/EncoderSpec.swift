@@ -64,6 +64,39 @@ class EncoderSpec : QuickSpec {
             }
         }
 
+        describe(".decodeSubDelta") {
+            it("サブデルタコードをデコードする") {
+                expect(Encoder.decodeSubDelta("2")).to(equal([0, 0]))
+                expect(Encoder.decodeSubDelta("3")).to(equal([0, 1]))
+                expect(Encoder.decodeSubDelta("4")).to(equal([0, 2]))
+                expect(Encoder.decodeSubDelta("5")).to(equal([0, 3]))
+                expect(Encoder.decodeSubDelta("6")).to(equal([1, 0]))
+                expect(Encoder.decodeSubDelta("7")).to(equal([1, 1]))
+                expect(Encoder.decodeSubDelta("8")).to(equal([1, 2]))
+                expect(Encoder.decodeSubDelta("A")).to(equal([1, 3]))
+                expect(Encoder.decodeSubDelta("B")).to(equal([2, 0]))
+                expect(Encoder.decodeSubDelta("C")).to(equal([2, 1]))
+                expect(Encoder.decodeSubDelta("D")).to(equal([2, 2]))
+                expect(Encoder.decodeSubDelta("E")).to(equal([2, 3]))
+                expect(Encoder.decodeSubDelta("F")).to(equal([3, 0]))
+                expect(Encoder.decodeSubDelta("G")).to(equal([3, 1]))
+                expect(Encoder.decodeSubDelta("H")).to(equal([3, 2]))
+                expect(Encoder.decodeSubDelta("J")).to(equal([3, 3]))
+            }
+            it("サブデルタコードをデコードする") {
+                expect(Encoder.decodeSubDelta("K")).to(equal([0]))
+                expect(Encoder.decodeSubDelta("M")).to(equal([1]))
+                expect(Encoder.decodeSubDelta("N")).to(equal([2]))
+                expect(Encoder.decodeSubDelta("P")).to(equal([3]))
+            }
+            it("サブデルタコードをデコードする") {
+                expect(Encoder.decodeSubDelta("2K")).to(equal([0, 0, 0   ]))
+                expect(Encoder.decodeSubDelta("22")).to(equal([0, 0, 0, 0]))
+                expect(Encoder.decodeSubDelta("3N")).to(equal([0, 1, 2   ]))
+                expect(Encoder.decodeSubDelta("3E")).to(equal([0, 1, 2, 3]))
+            }
+        }
+
         /*
         describe("") {
             it("") {
@@ -147,42 +180,6 @@ describe("encoder", function() {
 //    {
 //        geodelta.encoder.encodeSubDelta(new byte[] {4});
 //    }
-
-
-  describe(".decodeSubDelta", function() {
-    var assertArrayEquals = function(expected, actual) { expect(actual).to.eql(expected); };
-    it("サブデルタコードをデコードする", function() {
-      assertArrayEquals([0, 0], encoder.decodeSubDelta("2"));
-      assertArrayEquals([0, 1], encoder.decodeSubDelta("3"));
-      assertArrayEquals([0, 2], encoder.decodeSubDelta("4"));
-      assertArrayEquals([0, 3], encoder.decodeSubDelta("5"));
-      assertArrayEquals([1, 0], encoder.decodeSubDelta("6"));
-      assertArrayEquals([1, 1], encoder.decodeSubDelta("7"));
-      assertArrayEquals([1, 2], encoder.decodeSubDelta("8"));
-      assertArrayEquals([1, 3], encoder.decodeSubDelta("A"));
-      assertArrayEquals([2, 0], encoder.decodeSubDelta("B"));
-      assertArrayEquals([2, 1], encoder.decodeSubDelta("C"));
-      assertArrayEquals([2, 2], encoder.decodeSubDelta("D"));
-      assertArrayEquals([2, 3], encoder.decodeSubDelta("E"));
-      assertArrayEquals([3, 0], encoder.decodeSubDelta("F"));
-      assertArrayEquals([3, 1], encoder.decodeSubDelta("G"));
-      assertArrayEquals([3, 2], encoder.decodeSubDelta("H"));
-      assertArrayEquals([3, 3], encoder.decodeSubDelta("J"));
-    });
-    it("サブデルタコードをデコードする", function() {
-      assertArrayEquals([0], encoder.decodeSubDelta("K"));
-      assertArrayEquals([1], encoder.decodeSubDelta("M"));
-      assertArrayEquals([2], encoder.decodeSubDelta("N"));
-      assertArrayEquals([3], encoder.decodeSubDelta("P"));
-    });
-    it("サブデルタコードをデコードする", function() {
-      assertArrayEquals([0, 0, 0],    encoder.decodeSubDelta("2K"));
-      assertArrayEquals([0, 0, 0, 0], encoder.decodeSubDelta("22"));
-      assertArrayEquals([0, 1, 2],    encoder.decodeSubDelta("3N"));
-      assertArrayEquals([0, 1, 2, 3], encoder.decodeSubDelta("3E"));
-    });
-  });
-
 
 //    @Test(expected = IllegalArgumentException.class)
 //    public void decodeSubDelta__invalidArg1()

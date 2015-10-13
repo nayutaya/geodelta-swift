@@ -1,4 +1,6 @@
 
+import Foundation
+
 public class Encoder {
     static let WORLD_DELTA_TABLE = ["Z", "Y", "X", "W", "V", "T", "S", "R"]
     static let SUB_DELTA_TABLE1  = ["K", "M", "N", "P"]
@@ -12,7 +14,7 @@ public class Encoder {
         //    }
         return WORLD_DELTA_TABLE[id]
     }
-    
+
     // ワールドデルタコードをデコードする
     public static func decodeWorldDelta(code: String) -> Int? {
         if let index = WORLD_DELTA_TABLE.indexOf(code) {
@@ -21,7 +23,7 @@ public class Encoder {
             return nil
         }
     }
-    
+
     // サブデルタID列をエンコードする
     public static func encodeSubDelta(ids: [Int]) -> String {
         // TODO:
@@ -42,48 +44,47 @@ public class Encoder {
         }
         return result
     }
+
+    // サブデルタコードをデコードする
+    public static func decodeSubDelta(code: String) -> [Int] {
+        // TODO:
+        //    if ( code == null || code == "" ) {
+        //    // TODO: throw new IllegalArgumentException();
+        //    return null;
+        //    }
+        var ids:[Int] = []
+        for ch in code.characters {
+            switch ( ch ) {
+            case "2": ids.append(0); ids.append(0)
+            case "3": ids.append(0); ids.append(1)
+            case "4": ids.append(0); ids.append(2)
+            case "5": ids.append(0); ids.append(3)
+            case "6": ids.append(1); ids.append(0)
+            case "7": ids.append(1); ids.append(1)
+            case "8": ids.append(1); ids.append(2)
+            case "A": ids.append(1); ids.append(3)
+            case "B": ids.append(2); ids.append(0)
+            case "C": ids.append(2); ids.append(1)
+            case "D": ids.append(2); ids.append(2)
+            case "E": ids.append(2); ids.append(3)
+            case "F": ids.append(3); ids.append(0)
+            case "G": ids.append(3); ids.append(1)
+            case "H": ids.append(3); ids.append(2)
+            case "J": ids.append(3); ids.append(3)
+            case "K": ids.append(0)
+            case "M": ids.append(1)
+            case "N": ids.append(2)
+            case "P": ids.append(3)
+            default:
+                break;
+                // TODO: throw new IllegalArgumentException();
+            }
+        }
+        return ids
+    }
 }
 
 /*
-// サブデルタコードをデコードする
-encoder.decodeSubDelta = function(code) {
-  if ( code == null || code == "" ) {
-    // TODO: throw new IllegalArgumentException();
-    return null;
-  }
-
-  var ids = [];
-  for ( var i = 0, len = code.length; i < len; i++ ) {
-    var ch = code.charAt(i);
-
-    switch ( ch )
-    {
-      case "2": ids.push(0); ids.push(0); break;
-      case "3": ids.push(0); ids.push(1); break;
-      case "4": ids.push(0); ids.push(2); break;
-      case "5": ids.push(0); ids.push(3); break;
-      case "6": ids.push(1); ids.push(0); break;
-      case "7": ids.push(1); ids.push(1); break;
-      case "8": ids.push(1); ids.push(2); break;
-      case "A": ids.push(1); ids.push(3); break;
-      case "B": ids.push(2); ids.push(0); break;
-      case "C": ids.push(2); ids.push(1); break;
-      case "D": ids.push(2); ids.push(2); break;
-      case "E": ids.push(2); ids.push(3); break;
-      case "F": ids.push(3); ids.push(0); break;
-      case "G": ids.push(3); ids.push(1); break;
-      case "H": ids.push(3); ids.push(2); break;
-      case "J": ids.push(3); ids.push(3); break;
-      case "K": ids.push(0); break;
-      case "M": ids.push(1); break;
-      case "N": ids.push(2); break;
-      case "P": ids.push(3); break;
-      default: return null; // TODO: throw new IllegalArgumentException();
-    }
-  }
-  return ids;
-};
-
 // デルタID列をエンコードする
 encoder.encode = function(ids) {
   if ( ids == null || ids.length == 0 ) {
