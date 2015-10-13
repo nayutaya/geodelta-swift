@@ -34,10 +34,22 @@ class EncoderSpec : QuickSpec {
                 expect(try! Encoder.decodeWorldDelta("R")).to(equal(7))
             }
             it("異常値の場合、エラーをスローする") {
-                expect { try Encoder.decodeWorldDelta("?") }.to(throwError())
+                expect { try Encoder.decodeWorldDelta("z") }.to(throwError())
+                expect { try Encoder.decodeWorldDelta("A") }.to(throwError())
             }
         }
 
+        describe("encode and decode world delta") {
+            it("") {
+                for var id = 0; id <= 7; id++ {
+                    let encoded1 = try! Encoder.encodeWorldDelta(id)
+                    let decoded1 = try! Encoder.decodeWorldDelta(encoded1)
+                    let encoded2 = try! Encoder.encodeWorldDelta(decoded1)
+                    expect(encoded2).to(equal(encoded1))
+                }
+            }
+        }
+        
         describe(".encodeSubDelta") {
             it("サブデルタID列をエンコードする") {
                 expect(try! Encoder.encodeSubDelta([0, 0])).to(equal("2"))
@@ -160,31 +172,6 @@ class EncoderSpec : QuickSpec {
 
 /*
 describe("encoder", function() {
-
-
-// TODO:
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeWorldDelta__invalidArg1()
-//    {
-//        geodelta.encoder.decodeWorldDelta("z");
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeWorldDelta__invalidArg2()
-//    {
-//        geodelta.encoder.decodeWorldDelta("A");
-//    }
-//    @Test
-//    public void allEncodeAndDecodeWorldDelta()
-//    {
-//        for ( int id = 0; id <= 7; id++ )
-//        {
-//            final char encoded1 = geodelta.encoder.encodeWorldDelta((byte)id);
-//            final byte decoded1 = geodelta.encoder.decodeWorldDelta(encoded1);
-//            final char encoded2 = geodelta.encoder.encodeWorldDelta(decoded1);
-//            assertEquals(encoded1, encoded2);
-//        }
-//    }
-
 //    @Test(expected = IllegalArgumentException.class)
 //    public void encodeSubDelta__invalidArg1()
 //    {
