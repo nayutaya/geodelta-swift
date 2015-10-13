@@ -1,23 +1,20 @@
 
 public class Encoder {
-    
+    static let WORLD_DELTA_TABLE = ["Z", "Y", "X", "W", "V", "T", "S", "R"]
+
+    // ワールドデルタIDをエンコードする
+    public static func encodeWorldDelta(id: Int) -> String {
+        // TODO:
+        //    if ( id < 0 || id > 7 ) {
+        //    throw "invalid argument (id)";
+        //    }
+        return WORLD_DELTA_TABLE[id]
+    }
 }
 
 /*
-// デルタID列とGeoDeltaコードを相互変換するモジュール
-var encoder = {};
-
-var WORLD_DELTA_TABLE = ["Z", "Y", "X", "W", "V", "T", "S", "R"];
 var SUB_DELTA_TABLE1  = ["K", "M", "N", "P"];
 var SUB_DELTA_TABLE2  = [["2", "3", "4", "5"], ["6", "7", "8", "A"], ["B", "C", "D", "E"], ["F", "G", "H", "J"]];
-
-// ワールドデルタIDをエンコードする
-encoder.encodeWorldDelta = function(id) {
-  if ( id < 0 || id > 7 ) {
-    throw "invalid argument (id)";
-  }
-  return WORLD_DELTA_TABLE[id];
-};
 
 // ワールドデルタコードをデコードする
 encoder.decodeWorldDelta = function(code) {

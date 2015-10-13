@@ -4,27 +4,31 @@ import Nimble
 @testable import GeoDelta
 
 class EncoderSpec : QuickSpec {
-    
+    override func spec() {
+        describe(".encodeWorldDelta") {
+            it("ワールドデルタIDをエンコードする") {
+                expect(Encoder.encodeWorldDelta(0)).to(equal("Z"))
+                expect(Encoder.encodeWorldDelta(1)).to(equal("Y"))
+                expect(Encoder.encodeWorldDelta(2)).to(equal("X"))
+                expect(Encoder.encodeWorldDelta(3)).to(equal("W"))
+                expect(Encoder.encodeWorldDelta(4)).to(equal("V"))
+                expect(Encoder.encodeWorldDelta(5)).to(equal("T"))
+                expect(Encoder.encodeWorldDelta(6)).to(equal("S"))
+                expect(Encoder.encodeWorldDelta(7)).to(equal("R"))
+            }
+        }
+
+        /*
+        describe("") {
+            it("") {
+            }
+        }
+        */
+    }
 }
 
 /*
-var assert = require("assert");
-var expect = require("expect.js");
-var encoder = require("../lib/encoder.js");
-
 describe("encoder", function() {
-  describe(".encodeWorldDelta", function() {
-    it("ワールドデルタIDをエンコードする", function() {
-      assert.equal("Z", encoder.encodeWorldDelta(0));
-      assert.equal("Y", encoder.encodeWorldDelta(1));
-      assert.equal("X", encoder.encodeWorldDelta(2));
-      assert.equal("W", encoder.encodeWorldDelta(3));
-      assert.equal("V", encoder.encodeWorldDelta(4));
-      assert.equal("T", encoder.encodeWorldDelta(5));
-      assert.equal("S", encoder.encodeWorldDelta(6));
-      assert.equal("R", encoder.encodeWorldDelta(7));
-    });
-  });
 
 //TODO:
 //function test_encodeWorldDelta__invalidArg1()
