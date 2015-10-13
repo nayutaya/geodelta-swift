@@ -97,6 +97,19 @@ class EncoderSpec : QuickSpec {
             }
         }
 
+        describe(".encode") {
+            it("デルタID列をエンコードする") {
+                expect(Encoder.encode([0         ])).to(equal("Z"))
+                expect(Encoder.encode([0, 1      ])).to(equal("ZM"))
+                expect(Encoder.encode([0, 1, 2   ])).to(equal("Z8"))
+                expect(Encoder.encode([0, 1, 2, 3])).to(equal("Z8P"))
+                expect(Encoder.encode([7         ])).to(equal("R"))
+                expect(Encoder.encode([7, 3      ])).to(equal("RP"))
+                expect(Encoder.encode([7, 3, 2   ])).to(equal("RH"))
+                expect(Encoder.encode([7, 3, 2, 1])).to(equal("RHM"))
+            }
+        }
+
         /*
         describe("") {
             it("") {
@@ -228,21 +241,6 @@ describe("encoder", function() {
 //            }
 //        }
 //    }
-
-
-  describe(".encode", function() {
-    it("デルタID列をエンコードする", function() {
-      assert.equal("Z",   encoder.encode([0]));
-      assert.equal("ZM",  encoder.encode([0, 1]));
-      assert.equal("Z8",  encoder.encode([0, 1, 2]));
-      assert.equal("Z8P", encoder.encode([0, 1, 2, 3]));
-      assert.equal("R",   encoder.encode([7]));
-      assert.equal("RP",  encoder.encode([7, 3]));
-      assert.equal("RH",  encoder.encode([7, 3, 2]));
-      assert.equal("RHM", encoder.encode([7, 3, 2, 1]));
-    });
-  });
-
 
 //    @Test(expected = IllegalArgumentException.class)
 //    public void encode__invalidArg1()

@@ -82,21 +82,23 @@ public class Encoder {
         }
         return ids
     }
+
+    // デルタID列をエンコードする
+    public static func encode(ids: [Int]) -> String {
+        //    if ( ids == null || ids.length == 0 ) {
+        //    // TODO: throw new IllegalArgumentException();
+        //    return null;
+        //    }
+        var code = ""
+        code += encodeWorldDelta(ids[0])
+        if ids.count >= 2 {
+            code += encodeSubDelta(Array(ids.suffix(ids.count - 1)))
+        }
+        return code
+    }
 }
 
 /*
-// デルタID列をエンコードする
-encoder.encode = function(ids) {
-  if ( ids == null || ids.length == 0 ) {
-    // TODO: throw new IllegalArgumentException();
-    return null;
-  }
-
-  var code = "";
-  code += encoder.encodeWorldDelta(ids[0]);
-  code += _encodeSubDelta(ids, 1);
-  return code;
-};
 
 // GeoDeltaコードをデコードする
 encoder.decode = function(code) {
