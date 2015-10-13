@@ -8,9 +8,8 @@ public class Encoder {
 
     // ワールドデルタIDをエンコードする
     public static func encodeWorldDelta(id: Int) -> String? {
-        if id < 0 || id > 7 {
-            return nil
-        }
+        guard id >= 0 else { return nil }
+        guard id <= 7 else { return nil }
         return WORLD_DELTA_TABLE[id]
     }
 
