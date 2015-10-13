@@ -14,11 +14,11 @@ public class Encoder {
     }
 
     // ワールドデルタコードをデコードする
-    public static func decodeWorldDelta(code: String) -> Int {
+    public static func decodeWorldDelta(code: String) -> Int? {
         if let index = WORLD_DELTA_TABLE.indexOf(code) {
             return index
         } else {
-            return -1 // TODO: exception
+            return nil
         }
     }
 
@@ -102,11 +102,11 @@ public class Encoder {
         //    return null;
         if code.characters.count == 1 {
             let w = decodeWorldDelta((code as NSString).substringToIndex(1))
-            return [w]
+            return [w!]
         } else {
             let w = decodeWorldDelta((code as NSString).substringToIndex(1))
             let s = decodeSubDelta((code as NSString).substringFromIndex(1))
-            return [w] + s
+            return [w!] + s
         }
     }
 }

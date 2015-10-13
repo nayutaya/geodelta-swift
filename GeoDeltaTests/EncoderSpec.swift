@@ -33,6 +33,9 @@ class EncoderSpec : QuickSpec {
                 expect(Encoder.decodeWorldDelta("S")).to(equal(6))
                 expect(Encoder.decodeWorldDelta("R")).to(equal(7))
             }
+            it("異常値についてはnilを返す") {
+                expect(Encoder.decodeWorldDelta("?")).to(beNil())
+            }
         }
 
         describe(".encodeSubDelta") {
