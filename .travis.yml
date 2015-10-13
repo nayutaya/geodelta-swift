@@ -5,4 +5,4 @@ xcode_scheme: GeoDelta
 before_install:
   - brew update
   - brew install carthage
-  - CODE_SIGN_REQUIRED=NO carthage bootstrap --verbose
+  - carthage bootstrap --verbose
