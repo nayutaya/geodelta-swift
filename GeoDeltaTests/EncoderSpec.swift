@@ -125,7 +125,8 @@ class EncoderSpec : QuickSpec {
             }
             it("異常値の場合、エラーをスローする") {
                 expect { try Encoder.decodeSubDelta("") }.to(throwError())
-                expect { try Encoder.decodeSubDelta("?") }.to(throwError())
+                expect { try Encoder.decodeSubDelta("1") }.to(throwError())
+                expect { try Encoder.decodeSubDelta("Z") }.to(throwError())
             }
         }
 
@@ -172,47 +173,6 @@ class EncoderSpec : QuickSpec {
 
 /*
 describe("encoder", function() {
-//    @Test(expected = IllegalArgumentException.class)
-//    public void encodeSubDelta__invalidArg1()
-//    {
-//        geodelta.encoder.encodeSubDelta(null);
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void encodeSubDelta__invalidArg2()
-//    {
-//        geodelta.encoder.encodeSubDelta(new byte[0]);
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void encodeSubDelta__invalidArg3()
-//    {
-//        geodelta.encoder.encodeSubDelta(new byte[] {-1});
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void encodeSubDelta__invalidArg4()
-//    {
-//        geodelta.encoder.encodeSubDelta(new byte[] {4});
-//    }
-
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeSubDelta__invalidArg1()
-//    {
-//        geodelta.encoder.decodeSubDelta(null);
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeSubDelta__invalidArg2()
-//    {
-//        geodelta.encoder.decodeSubDelta("");
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeSubDelta__invalidArg3()
-//    {
-//        geodelta.encoder.decodeSubDelta("1");
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decodeSubDelta__invalidArg4()
-//    {
-//        geodelta.encoder.decodeSubDelta("Z");
-//    }
 //    @Test
 //    public void allEncodeAndDecodeSubDelta__level2()
 //    {
