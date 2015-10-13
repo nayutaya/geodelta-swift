@@ -76,11 +76,8 @@ public class Encoder {
     }
 
     // デルタID列をエンコードする
-    public static func encode(ids: [Int]) -> String {
-        //    if ( ids == null || ids.length == 0 ) {
-        //    // TODO: throw new IllegalArgumentException();
-        //    return null;
-        //    }
+    public static func encode(ids: [Int]) -> String? {
+        guard ids.count >= 1 else { return nil }
         var code = ""
         code += encodeWorldDelta(ids[0])!
         if ids.count >= 2 {
