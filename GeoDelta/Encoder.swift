@@ -96,8 +96,7 @@ public class Encoder {
     // デルタID列をエンコードする
     public static func encode(ids: [Int]) throws -> String {
         guard ids.count >= 1 else { throw EncodeError.InvalidId }
-        var code = ""
-        code += try encodeWorldDelta(ids[0])
+        var code = try encodeWorldDelta(ids[0])
         if ids.count >= 2 {
             code += try encodeSubDelta(Array(ids.suffix(ids.count - 1)))
         }
@@ -108,13 +107,10 @@ public class Encoder {
     public static func decode(code: String) throws -> [Int] {
         let chars = code.characters
         guard chars.count >= 1 else { throw EncodeError.InvalidCode }
-        if code.characters.count == 1 {
-            let w = try decodeWorldDelta((code as NSString).substringToIndex(1))
-            return [w]
-        } else {
-            let w = try decodeWorldDelta((code as NSString).substringToIndex(1))
-            let s = try decodeSubDelta((code as NSString).substringFromIndex(1))
-            return [w] + s
+        var ids = [try decodeWorldDelta((code as NSString).substringToIndex(1))]
+        if chars.count >= 2 {
+            ids += try decodeSubDelta((code as NSString).substringFromIndex(1))
         }
+        return ids
     }
 }
