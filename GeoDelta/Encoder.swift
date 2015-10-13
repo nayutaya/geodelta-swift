@@ -13,8 +13,7 @@ public class Encoder {
 
     // ワールドデルタIDをエンコードする
     public static func encodeWorldDelta(id: Int) throws -> String {
-        guard id >= 0 else { throw EncodeError.InvalidId }
-        guard id <= 7 else { throw EncodeError.InvalidId }
+        guard id >= 0 && id <= 7 else { throw EncodeError.InvalidId }
         return WORLD_DELTA_TABLE[id]
     }
 
@@ -27,16 +26,13 @@ public class Encoder {
     }
 
     private static func encodeSubDelta1(id: Int) throws -> String {
-        guard id >= 0 else { throw EncodeError.InvalidId }
-        guard id <= 3 else { throw EncodeError.InvalidId }
+        guard id >= 0 && id <= 3 else { throw EncodeError.InvalidId }
         return SUB_DELTA_TABLE1[id]
     }
 
     private static func encodeSubDelta2(id1: Int, _ id2: Int) throws -> String {
-        guard id1 >= 0 else { throw EncodeError.InvalidId }
-        guard id1 <= 3 else { throw EncodeError.InvalidId }
-        guard id2 >= 0 else { throw EncodeError.InvalidId }
-        guard id2 <= 3 else { throw EncodeError.InvalidId }
+        guard id1 >= 0 && id1 <= 3 else { throw EncodeError.InvalidId }
+        guard id2 >= 0 && id2 <= 3 else { throw EncodeError.InvalidId }
         return SUB_DELTA_TABLE2[id1][id2]
     }
 
