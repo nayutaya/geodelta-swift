@@ -2,11 +2,11 @@
 import Foundation
 
 public class Encoder {
-    static let WORLD_DELTA_TABLE = ["Z", "Y", "X", "W", "V", "T", "S", "R"]
-    static let SUB_DELTA_TABLE1  = ["K", "M", "N", "P"]
-    static let SUB_DELTA_TABLE2  = [["2", "3", "4", "5"], ["6", "7", "8", "A"], ["B", "C", "D", "E"], ["F", "G", "H", "J"]]
+    private static let WORLD_DELTA_TABLE = ["Z", "Y", "X", "W", "V", "T", "S", "R"]
+    private static let SUB_DELTA_TABLE1  = ["K", "M", "N", "P"]
+    private static let SUB_DELTA_TABLE2  = [["2", "3", "4", "5"], ["6", "7", "8", "A"], ["B", "C", "D", "E"], ["F", "G", "H", "J"]]
 
-    enum EncodeError : ErrorType {
+    public enum EncodeError : ErrorType {
         case InvalidArguments
     }
 
