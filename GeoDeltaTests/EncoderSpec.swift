@@ -130,6 +130,29 @@ class EncoderSpec : QuickSpec {
             }
         }
 
+        describe("encode and decode sub delta") {
+            it("level2") {
+                for var id1 = 0; id1 <= 3; id1++ {
+                    let ids = [id1]
+                    let encoded1 = try! Encoder.encodeSubDelta(ids)
+                    let decoded1 = try! Encoder.decodeSubDelta(encoded1)
+                    let encoded2 = try! Encoder.encodeSubDelta(decoded1)
+                    expect(encoded2).to(equal(encoded1))
+                }
+            }
+            it("level3") {
+                for var id1 = 0; id1 <= 3; id1++ {
+                    for var id2 = 0; id2 <= 3; id2++ {
+                        let ids = [id1, id2]
+                        let encoded1 = try! Encoder.encodeSubDelta(ids)
+                        let decoded1 = try! Encoder.decodeSubDelta(encoded1)
+                        let encoded2 = try! Encoder.encodeSubDelta(decoded1)
+                        expect(encoded2).to(equal(encoded1))
+                    }
+                }
+            }
+        }
+
         describe(".encode") {
             it("デルタID列をエンコードする") {
                 expect(try! Encoder.encode([0         ])).to(equal("Z"))
@@ -161,46 +184,11 @@ class EncoderSpec : QuickSpec {
                 expect { try Encoder.decode("") }.to(throwError())
             }
         }
-
-        /*
-        describe("") {
-            it("") {
-            }
-        }
-        */
     }
 }
 
 /*
 describe("encoder", function() {
-//    @Test
-//    public void allEncodeAndDecodeSubDelta__level2()
-//    {
-//        for ( int id1 = 0; id1 <= 3; id1++ )
-//        {
-//            final byte[] ids = {(byte)id1};
-//            final String encoded1 = geodelta.encoder.encodeSubDelta(ids);
-//            final byte[] decoded1 = geodelta.encoder.decodeSubDelta(encoded1);
-//            final String encoded2 = geodelta.encoder.encodeSubDelta(decoded1);
-//            assertEquals(encoded1, encoded2);
-//        }
-//    }
-//    @Test
-//    public void allEncodeAndDecodeSubDelta__level3()
-//    {
-//        for ( int id1 = 0; id1 <= 3; id1++ )
-//        {
-//            for ( int id2 = 0; id2 <= 3; id2++ )
-//            {
-//                final byte[] ids = {(byte)id1, (byte)id2};
-//                final String encoded1 = geodelta.encoder.encodeSubDelta(ids);
-//                final byte[] decoded1 = geodelta.encoder.decodeSubDelta(encoded1);
-//                final String encoded2 = geodelta.encoder.encodeSubDelta(decoded1);
-//                assertEquals(encoded1, encoded2);
-//            }
-//        }
-//    }
-
 //    @Test
 //    public void randomEncodeAndDecode()
 //    {
