@@ -138,6 +138,9 @@ class EncoderSpec : QuickSpec {
                 expect(Encoder.decode("RH" )).to(equal([7, 3, 2   ]))
                 expect(Encoder.decode("RHM")).to(equal([7, 3, 2, 1]))
             }
+            it("異常値の場合、nilを返す") {
+                expect(Encoder.decode("")).to(beNil())
+            }
         }
 
         /*
@@ -245,16 +248,6 @@ describe("encoder", function() {
 //        }
 //    }
 
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decode__invalidArg1()
-//    {
-//        geodelta.encoder.decode(null);
-//    }
-//    @Test(expected = IllegalArgumentException.class)
-//    public void decode__invalidArg2()
-//    {
-//        geodelta.encoder.decode("");
-//    }
 //    @Test
 //    public void randomEncodeAndDecode()
 //    {

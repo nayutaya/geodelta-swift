@@ -87,7 +87,9 @@ public class Encoder {
     }
     
     // GeoDeltaコードをデコードする
-    public static func decode(code: String) -> [Int] {
+    public static func decode(code: String) -> [Int]? {
+        let chars = code.characters
+        guard chars.count >= 1 else { return nil }
         //    if ( code == null || code.length == 0 ) {
         //    // TODO: throw new IllegalArgumentException();
         //    return null;
