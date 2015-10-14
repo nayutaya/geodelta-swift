@@ -5,69 +5,56 @@ import Nimble
 
 class DeltaGeometrySpec : QuickSpec {
     override func spec() {
-        describe("") {
-            it("") {
+        describe(".getWorldDeltaId") {
+            it("座標をワールドデルタIDに変換する") {
+                expect(DeltaGeometry.getWorldDeltaId( -6.0, +12.0)).to(equal(2))
+                expect(DeltaGeometry.getWorldDeltaId( -6.0,  +6.0)).to(equal(3))
+                expect(DeltaGeometry.getWorldDeltaId( -6.0,   0.0)).to(equal(3))
+                expect(DeltaGeometry.getWorldDeltaId( -3.0,  +6.0)).to(equal(3))
+                expect(DeltaGeometry.getWorldDeltaId(  0.0, +12.0)).to(equal(0))
+                expect(DeltaGeometry.getWorldDeltaId(  0.0,  +6.0)).to(equal(0))
+                expect(DeltaGeometry.getWorldDeltaId(  0.0,   0.0)).to(equal(0))
+                expect(DeltaGeometry.getWorldDeltaId( +3.0,  +6.0)).to(equal(0))
+                expect(DeltaGeometry.getWorldDeltaId( +6.0, +12.0)).to(equal(0))
+                expect(DeltaGeometry.getWorldDeltaId( +6.0,  +6.0)).to(equal(1))
+                expect(DeltaGeometry.getWorldDeltaId( +6.0,   0.0)).to(equal(1))
+                expect(DeltaGeometry.getWorldDeltaId( +9.0,  +6.0)).to(equal(1))
+                expect(DeltaGeometry.getWorldDeltaId(+12.0,   0.0)).to(equal(1))
+                expect(DeltaGeometry.getWorldDeltaId(+12.0, +12.0)).to(equal(2))
+                expect(DeltaGeometry.getWorldDeltaId(+12.0,  +6.0)).to(equal(2))
+                expect(DeltaGeometry.getWorldDeltaId(+15.0,  +6.0)).to(equal(2))
+                expect(DeltaGeometry.getWorldDeltaId(+18.0, +12.0)).to(equal(2))
+                expect(DeltaGeometry.getWorldDeltaId(+18.0,  +6.0)).to(equal(3))
+                expect(DeltaGeometry.getWorldDeltaId(+18.0,   0.0)).to(equal(3))
+                expect(DeltaGeometry.getWorldDeltaId(+21.0,  +6.0)).to(equal(3))
+                expect(DeltaGeometry.getWorldDeltaId(+24.0, +12.0)).to(equal(0))
+                expect(DeltaGeometry.getWorldDeltaId(+24.0,  +6.0)).to(equal(0))
+                expect(DeltaGeometry.getWorldDeltaId(+24.0,   0.0)).to(equal(0))
+
+                expect(DeltaGeometry.getWorldDeltaId( -6.0, -12.0)).to(equal(6))
+                expect(DeltaGeometry.getWorldDeltaId( -6.0,  -6.0)).to(equal(7))
+                expect(DeltaGeometry.getWorldDeltaId( -3.0,  -6.0)).to(equal(7))
+                expect(DeltaGeometry.getWorldDeltaId(  0.0,  -6.0)).to(equal(4))
+                expect(DeltaGeometry.getWorldDeltaId(  0.0, -12.0)).to(equal(4))
+                expect(DeltaGeometry.getWorldDeltaId( +3.0,  -6.0)).to(equal(4))
+                expect(DeltaGeometry.getWorldDeltaId( +6.0, -12.0)).to(equal(4))
+                expect(DeltaGeometry.getWorldDeltaId( +6.0,  -6.0)).to(equal(5))
+                expect(DeltaGeometry.getWorldDeltaId( +9.0,  -6.0)).to(equal(5))
+                expect(DeltaGeometry.getWorldDeltaId(+12.0,  -6.0)).to(equal(6))
+                expect(DeltaGeometry.getWorldDeltaId(+12.0, -12.0)).to(equal(6))
+                expect(DeltaGeometry.getWorldDeltaId(+15.0,  -6.0)).to(equal(6))
+                expect(DeltaGeometry.getWorldDeltaId(+18.0, -12.0)).to(equal(6))
+                expect(DeltaGeometry.getWorldDeltaId(+18.0,  -6.0)).to(equal(7))
+                expect(DeltaGeometry.getWorldDeltaId(+21.0,  -6.0)).to(equal(7))
+                expect(DeltaGeometry.getWorldDeltaId(+24.0,  -6.0)).to(equal(4))
+                expect(DeltaGeometry.getWorldDeltaId(+24.0, -12.0)).to(equal(4))
             }
         }
     }
 }
 
 /*
-var expect = require("expect.js");
-var delta_geometry = require("../lib/delta_geometry.js");
-
 describe("delta_geometry", function() {
-  var assertEquals = function(expected, actual) { expect(actual).to.eql(expected); };
-  // TODO: 許容誤差を考慮する。
-  var assertArrayEquals = function(expected, actual, delta) { expect(actual).to.eql(expected); };
-  // TODO: 許容誤差を考慮する。
-  var assertArrayArrayEquals = function(expected, actual, delta) { expect(actual).to.eql(expected); };
-
-  describe(".getWorldDeltaId", function() {
-    it("座標をワールドデルタIDに変換する", function() {
-      assertEquals(2, delta_geometry.getWorldDeltaId( -6.0, +12.0));
-      assertEquals(3, delta_geometry.getWorldDeltaId( -6.0,  +6.0));
-      assertEquals(3, delta_geometry.getWorldDeltaId( -6.0,   0.0));
-      assertEquals(3, delta_geometry.getWorldDeltaId( -3.0,  +6.0));
-      assertEquals(0, delta_geometry.getWorldDeltaId(  0.0, +12.0));
-      assertEquals(0, delta_geometry.getWorldDeltaId(  0.0,  +6.0));
-      assertEquals(0, delta_geometry.getWorldDeltaId(  0.0,   0.0));
-      assertEquals(0, delta_geometry.getWorldDeltaId( +3.0,  +6.0));
-      assertEquals(0, delta_geometry.getWorldDeltaId( +6.0, +12.0));
-      assertEquals(1, delta_geometry.getWorldDeltaId( +6.0,  +6.0));
-      assertEquals(1, delta_geometry.getWorldDeltaId( +6.0,   0.0));
-      assertEquals(1, delta_geometry.getWorldDeltaId( +9.0,  +6.0));
-      assertEquals(1, delta_geometry.getWorldDeltaId(+12.0,   0.0));
-      assertEquals(2, delta_geometry.getWorldDeltaId(+12.0, +12.0));
-      assertEquals(2, delta_geometry.getWorldDeltaId(+12.0,  +6.0));
-      assertEquals(2, delta_geometry.getWorldDeltaId(+15.0,  +6.0));
-      assertEquals(2, delta_geometry.getWorldDeltaId(+18.0, +12.0));
-      assertEquals(3, delta_geometry.getWorldDeltaId(+18.0,  +6.0));
-      assertEquals(3, delta_geometry.getWorldDeltaId(+18.0,   0.0));
-      assertEquals(3, delta_geometry.getWorldDeltaId(+21.0,  +6.0));
-      assertEquals(0, delta_geometry.getWorldDeltaId(+24.0, +12.0));
-      assertEquals(0, delta_geometry.getWorldDeltaId(+24.0,  +6.0));
-      assertEquals(0, delta_geometry.getWorldDeltaId(+24.0,   0.0));
-
-      assertEquals(6, delta_geometry.getWorldDeltaId( -6.0, -12.0));
-      assertEquals(7, delta_geometry.getWorldDeltaId( -6.0,  -6.0));
-      assertEquals(7, delta_geometry.getWorldDeltaId( -3.0,  -6.0));
-      assertEquals(4, delta_geometry.getWorldDeltaId(  0.0,  -6.0));
-      assertEquals(4, delta_geometry.getWorldDeltaId(  0.0, -12.0));
-      assertEquals(4, delta_geometry.getWorldDeltaId( +3.0,  -6.0));
-      assertEquals(4, delta_geometry.getWorldDeltaId( +6.0, -12.0));
-      assertEquals(5, delta_geometry.getWorldDeltaId( +6.0,  -6.0));
-      assertEquals(5, delta_geometry.getWorldDeltaId( +9.0,  -6.0));
-      assertEquals(6, delta_geometry.getWorldDeltaId(+12.0,  -6.0));
-      assertEquals(6, delta_geometry.getWorldDeltaId(+12.0, -12.0));
-      assertEquals(6, delta_geometry.getWorldDeltaId(+15.0,  -6.0));
-      assertEquals(6, delta_geometry.getWorldDeltaId(+18.0, -12.0));
-      assertEquals(7, delta_geometry.getWorldDeltaId(+18.0,  -6.0));
-      assertEquals(7, delta_geometry.getWorldDeltaId(+21.0,  -6.0));
-      assertEquals(4, delta_geometry.getWorldDeltaId(+24.0,  -6.0));
-      assertEquals(4, delta_geometry.getWorldDeltaId(+24.0, -12.0));
-    });
-  });
 
   describe(".getUpperDeltaId", function() {
     it("座標を上向きのサブデルタIDに変換する", function() {
