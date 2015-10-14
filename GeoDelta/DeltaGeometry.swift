@@ -134,49 +134,41 @@ public class DeltaGeometry {
     public static func getSubDeltaDistance(parentIsUpper: Bool, _ id: UInt8) -> (x: Double, y: Double) {
         return (parentIsUpper ? getUpperSubDeltaDistance(id) : getLowerSubDeltaDistance(id))
     }
+
+    // FIXME: メソッド名を「getDeltaCenter」に変更する
+    // デルタID列から中心座標を取得する
+    public static func getCenter(ids: [UInt8]) -> (x: Double, y: Double) {
+        var xs: [Double] = []
+        var ys: [Double] = []
+        var xy: (x: Double, y: Double) = (0, 0)
+        var upper = false
+
+        let length = ids.count
+        for var i = 0; i < length; i++ {
+            if i == 0 {
+                xy = getWorldDeltaCenter(ids[0])
+                upper = isUpperWorldDelta(ids[0])
+                xs.append(xy.x)
+                ys.append(xy.y)
+            } else {
+                xy = getSubDeltaDistance(upper, ids[i])
+                upper = isUpperSubDelta(upper, ids[i])
+                xs.append(xy.x / pow(Double(2), Double(i - 1)))
+                ys.append(xy.y / pow(Double(2), Double(i - 1)))
+            }
+        }
+
+        xs.sortInPlace()
+        ys.sortInPlace()
+
+        let x = xs.reduce(0.0) { (a: Double, b: Double) -> Double in a + b }
+        let y = ys.reduce(0.0) { (a: Double, b: Double) -> Double in a + b }
+        
+        return ((x > 12.0 ? x - 24.0 : x), y)
+    }
 }
 
 /*
-
-// FIXME: メソッド名を「getDeltaCenter」に変更する
-// デルタID列から中心座標を取得する
-delta_geometry.getCenter = function(ids) {
-  var xs = [];
-  var ys = [];
-  var xy = undefined;
-  var upper = false;
-
-  for ( var i = 0, len = ids.length; i < len; i++ )
-  {
-    if ( i == 0 ) {
-      xy = this.getWorldDeltaCenter(ids[0]);
-      upper = this.isUpperWorldDelta(ids[0]);
-      xs.push(xy[0]);
-      ys.push(xy[1]);
-    } else {
-      xy = this.getSubDeltaDistance(upper, ids[i]);
-      upper = this.isUpperSubDelta(upper, ids[i]);
-      xs.push(xy[0] / Math.pow(2, (i - 1)));
-      ys.push(xy[1] / Math.pow(2, (i - 1)));
-    }
-  }
-
-  var sort = function(array) { array.sort(function(a, b) { return a - b;}); };
-  var sum = function(array) {
-    var total = 0.0;
-    for ( var i = 0, len = array.length; i < len; i++ ) {
-      total += array[i];
-    }
-    return total;
-  };
-
-  sort(xs);
-  sort(ys);
-
-  var x = sum(xs);
-  var y = sum(ys);
-  return [(x > 12.0 ? x - 24.0 : x), y];
-};
 
 // FIXME: メソッド名を「getDeltaCoordinates」に変更する
 // FIXME: 返り値を一次元配列に変更する

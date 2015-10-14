@@ -298,50 +298,79 @@ class DeltaGeometrySpec : QuickSpec {
                 expect(DeltaGeometry.getSubDeltaDistance(false, 2).y).to(beCloseTo(+2.0, within: 1e-15))
             }
         }
+
+        describe(".getCenter") {
+            it("デルタID列から中心座標を取得する（レベル1）") {
+                expect(DeltaGeometry.getCenter([0]).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0]).y).to(beCloseTo(+8.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1]).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1]).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([4]).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([4]).y).to(beCloseTo(-8.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5]).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5]).y).to(beCloseTo(-4.0, within: 1e-15))
+            }
+            it("デルタID列から中心座標を取得する（レベル2）") {
+                expect(DeltaGeometry.getCenter([0, 0]).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 0]).y).to(beCloseTo(+8.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 1]).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 1]).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 2]).x).to(beCloseTo(-3.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 2]).y).to(beCloseTo(+10.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 3]).x).to(beCloseTo(+3.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 3]).y).to(beCloseTo(+10.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1, 0]).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1, 0]).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1, 1]).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1, 1]).y).to(beCloseTo(+8.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1, 2]).x).to(beCloseTo(+9.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1, 2]).y).to(beCloseTo(+2.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1, 3]).x).to(beCloseTo(+3.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([1, 3]).y).to(beCloseTo(+2.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([2, 2]).x).to(beCloseTo(+9.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([2, 2]).y).to(beCloseTo(+10.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([3, 3]).x).to(beCloseTo(-9.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([3, 3]).y).to(beCloseTo(+2.0, within: 1e-15))
+
+                expect(DeltaGeometry.getCenter([4, 0]).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([4, 0]).y).to(beCloseTo(-8.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([4, 1]).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([4, 1]).y).to(beCloseTo(-4.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([4, 2]).x).to(beCloseTo(+3.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([4, 2]).y).to(beCloseTo(-10.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([4, 3]).x).to(beCloseTo(-3.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([4, 3]).y).to(beCloseTo(-10.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5, 0]).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5, 0]).y).to(beCloseTo(-4.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5, 1]).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5, 1]).y).to(beCloseTo(-8.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5, 2]).x).to(beCloseTo(+3.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5, 2]).y).to(beCloseTo(-2.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5, 3]).x).to(beCloseTo(+9.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([5, 3]).y).to(beCloseTo(-2.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([6, 2]).x).to(beCloseTo(-9.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([6, 2]).y).to(beCloseTo(-10.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([7, 3]).x).to(beCloseTo(-3.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([7, 3]).y).to(beCloseTo(-2.0, within: 1e-15))
+            }
+            it("デルタID列から中心座標を取得する（レベル3）") {
+                expect(DeltaGeometry.getCenter([0, 0, 0]).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 0, 0]).y).to(beCloseTo(+8.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 0, 1]).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 0, 1]).y).to(beCloseTo(+10.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 1, 2]).x).to(beCloseTo(-1.5, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 1, 2]).y).to(beCloseTo(+5.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 2, 3]).x).to(beCloseTo(-1.5, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 2, 3]).y).to(beCloseTo(+11.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 3, 0]).x).to(beCloseTo(+3.0, within: 1e-15))
+                expect(DeltaGeometry.getCenter([0, 3, 0]).y).to(beCloseTo(+10.0, within: 1e-15))
+            }
+        }
     }
 }
 
 /*
 describe("delta_geometry", function() {
-
-  describe(".getCenter", function() {
-    it("デルタID列から中心座標を取得する（レベル1）", function() {
-      assertArrayEquals([+0.0, +8.0], delta_geometry.getCenter([0]), 1e-15);
-      assertArrayEquals([+6.0, +4.0], delta_geometry.getCenter([1]), 1e-15);
-      assertArrayEquals([+0.0, -8.0], delta_geometry.getCenter([4]), 1e-15);
-      assertArrayEquals([+6.0, -4.0], delta_geometry.getCenter([5]), 1e-15);
-    });
-    it("デルタID列から中心座標を取得する（レベル2）", function() {
-      assertArrayEquals([+0.0,  +8.0], delta_geometry.getCenter([0, 0]), 1e-15);
-      assertArrayEquals([+0.0,  +4.0], delta_geometry.getCenter([0, 1]), 1e-15);
-      assertArrayEquals([-3.0, +10.0], delta_geometry.getCenter([0, 2]), 1e-15);
-      assertArrayEquals([+3.0, +10.0], delta_geometry.getCenter([0, 3]), 1e-15);
-      assertArrayEquals([+6.0,  +4.0], delta_geometry.getCenter([1, 0]), 1e-15);
-      assertArrayEquals([+6.0,  +8.0], delta_geometry.getCenter([1, 1]), 1e-15);
-      assertArrayEquals([+9.0,  +2.0], delta_geometry.getCenter([1, 2]), 1e-15);
-      assertArrayEquals([+3.0,  +2.0], delta_geometry.getCenter([1, 3]), 1e-15);
-      assertArrayEquals([+9.0, +10.0], delta_geometry.getCenter([2, 2]), 1e-15);
-      assertArrayEquals([-9.0,  +2.0], delta_geometry.getCenter([3, 3]), 1e-15);
-
-      assertArrayEquals([+0.0,  -8.0], delta_geometry.getCenter([4, 0]), 1e-15);
-      assertArrayEquals([+0.0,  -4.0], delta_geometry.getCenter([4, 1]), 1e-15);
-      assertArrayEquals([+3.0, -10.0], delta_geometry.getCenter([4, 2]), 1e-15);
-      assertArrayEquals([-3.0, -10.0], delta_geometry.getCenter([4, 3]), 1e-15);
-      assertArrayEquals([+6.0,  -4.0], delta_geometry.getCenter([5, 0]), 1e-15);
-      assertArrayEquals([+6.0,  -8.0], delta_geometry.getCenter([5, 1]), 1e-15);
-      assertArrayEquals([+3.0,  -2.0], delta_geometry.getCenter([5, 2]), 1e-15);
-      assertArrayEquals([+9.0,  -2.0], delta_geometry.getCenter([5, 3]), 1e-15);
-      assertArrayEquals([-9.0, -10.0], delta_geometry.getCenter([6, 2]), 1e-15);
-      assertArrayEquals([-3.0,  -2.0], delta_geometry.getCenter([7, 3]), 1e-15);
-    });
-    it("デルタID列から中心座標を取得する（レベル3）", function() {
-      assertArrayEquals([+0.0,  +8.0], delta_geometry.getCenter([0, 0, 0]), 1e-15);
-      assertArrayEquals([+0.0, +10.0], delta_geometry.getCenter([0, 0, 1]), 1e-15);
-      assertArrayEquals([-1.5,  +5.0], delta_geometry.getCenter([0, 1, 2]), 1e-15);
-      assertArrayEquals([-1.5, +11.0], delta_geometry.getCenter([0, 2, 3]), 1e-15);
-      assertArrayEquals([+3.0, +10.0], delta_geometry.getCenter([0, 3, 0]), 1e-15);
-    });
-  });
 
   describe(".getCoordinates", function() {
     it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル1）", function() {
