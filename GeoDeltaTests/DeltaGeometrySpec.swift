@@ -541,9 +541,6 @@ class DeltaGeometrySpec : QuickSpec {
 }
 
 /*
-describe("delta_geometry", function() {
-
-/*
   function test_randomCenter()
   {
     final Random r = new Random();
@@ -560,13 +557,4 @@ describe("delta_geometry", function() {
       assertArrayEquals(xy2, xy3, 1E-15);
     }
   }
-*/
-
-/*
-  describe(".TODO", function() {
-    it("TODO", function() {
-    });
-  });
-*/
-});
 */
