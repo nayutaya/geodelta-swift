@@ -17,21 +17,17 @@ public class DeltaGeometry {
         else if yy <= -2.0 * (xx - 24.0) { return base + 3 }
         return base
     }
+    
+    // 座標を上向きのサブデルタIDに変換する
+    public static func getUpperDeltaId(x: Double, _ y: Double) -> UInt8 {
+        if      y < -2.0 * (x - 6.0) { return 3 }
+        else if y < +2.0 * (x - 6.0) { return 2 }
+        else if y > 6.0              { return 1 }
+        else                         { return 0 }
+    }
 }
 
 /*
-
-// 座標を上向きのサブデルタIDに変換する
-delta_geometry.getUpperDeltaId = function(x, y) {
-  if ( y < -2.0 * (x - 6.0) ) {
-    return 3;
-  } else if ( y < +2.0 * (x - 6.0) ) {
-    return 2;
-  } else if ( y > 6.0 ) {
-    return 1;
-  }
-  return 0;
-};
 
 // 座標を下向きのサブデルタIDに変換する
 delta_geometry.getLowerDeltaId = function(x, y) {
