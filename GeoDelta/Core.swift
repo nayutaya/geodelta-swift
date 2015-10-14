@@ -1,20 +1,13 @@
 
 public class Core {
+    // 緯度経度からデルタID列を取得する
+    public static func getDeltaIds(lat: Double, _ lng: Double, _ level: UInt8) -> [UInt8] {
+        let nxny = Projector.latLngToNxNy(lat: lat, lng: lng)
+        return DeltaGeometry.getDeltaIds(nxny.nx, nxny.ny, level)
+    }
 }
 
 /*
-var core = {};
-
-var projector = require("./projector.js");
-var delta_geometry = require("./delta_geometry.js");
-var encoder = require("./encoder.js");
-
-// 緯度経度からデルタID列を取得する
-core.getDeltaIds = function(lat, lng, level) {
-  var nxy = projector.latLngToNxy(lat, lng);
-  return delta_geometry.getDeltaIds(nxy.nx, nxy.ny, level);
-};
-
 // 緯度経度からGeoDeltaコードを取得する
 core.getDeltaCode = function(lat, lng, level) {
   var ids = this.getDeltaIds(lat, lng, level);

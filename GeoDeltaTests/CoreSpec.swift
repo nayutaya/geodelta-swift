@@ -5,40 +5,31 @@ import Nimble
 
 class CoreSpec : QuickSpec {
     override func spec() {
-        describe("") {
-            it("") {
+        describe(".getDeltaIds") {
+            it("緯度経度からデルタID列を取得する") {
+                expect(Core.getDeltaIds(+45.0,   +0.0, 1)).to(equal([0]))
+                expect(Core.getDeltaIds(+45.0,  +90.0, 1)).to(equal([1]))
+                expect(Core.getDeltaIds(+45.0, +180.0, 1)).to(equal([2]))
+                expect(Core.getDeltaIds(+45.0,  -90.0, 1)).to(equal([3]))
+                expect(Core.getDeltaIds(+45.0, -180.0, 1)).to(equal([2]))
+
+                expect(Core.getDeltaIds(-45.0,   +0.0, 1)).to(equal([4]))
+                expect(Core.getDeltaIds(-45.0,  +90.0, 1)).to(equal([5]))
+                expect(Core.getDeltaIds(-45.0, +180.0, 1)).to(equal([6]))
+                expect(Core.getDeltaIds(-45.0,  -90.0, 1)).to(equal([7]))
+                expect(Core.getDeltaIds(-45.0, -180.0, 1)).to(equal([6]))
+
+                expect(Core.getDeltaIds(+0.0, +0.0, 1)).to(equal([0         ]))
+                expect(Core.getDeltaIds(+0.0, +0.0, 2)).to(equal([0, 1      ]))
+                expect(Core.getDeltaIds(+0.0, +0.0, 3)).to(equal([0, 1, 1   ]))
+                expect(Core.getDeltaIds(+0.0, +0.0, 4)).to(equal([0, 1, 1, 1]))
             }
         }
     }
 }
 
 /*
-var core = require("../lib/core.js");
-var expect = require("expect.js");
-
 describe("delta_geometry", function() {
-  var assertEquals = function(expected, actual) { expect(actual).to.eql(expected); };
-
-  describe(".getDeltaIds", function() {
-    it("緯度経度からデルタID列を取得する", function() {
-      assertEquals([0], core.getDeltaIds(+45.0,   +0.0, 1));
-      assertEquals([1], core.getDeltaIds(+45.0,  +90.0, 1));
-      assertEquals([2], core.getDeltaIds(+45.0, +180.0, 1));
-      assertEquals([3], core.getDeltaIds(+45.0,  -90.0, 1));
-      assertEquals([2], core.getDeltaIds(+45.0, -180.0, 1));
-
-      assertEquals([4], core.getDeltaIds(-45.0,   +0.0, 1));
-      assertEquals([5], core.getDeltaIds(-45.0,  +90.0, 1));
-      assertEquals([6], core.getDeltaIds(-45.0, +180.0, 1));
-      assertEquals([7], core.getDeltaIds(-45.0,  -90.0, 1));
-      assertEquals([6], core.getDeltaIds(-45.0, -180.0, 1));
-
-      assertEquals([0],          core.getDeltaIds(+0.0, +0.0, 1));
-      assertEquals([0, 1],       core.getDeltaIds(+0.0, +0.0, 2));
-      assertEquals([0, 1, 1],    core.getDeltaIds(+0.0, +0.0, 3));
-      assertEquals([0, 1, 1, 1], core.getDeltaIds(+0.0, +0.0, 4));
-    });
-  });
 
   describe(".getDeltaCode", function() {
     it("緯度経度からGeoDeltaコードを取得する", function() {
