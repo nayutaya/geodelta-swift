@@ -46,46 +46,38 @@ class CoreSpec : QuickSpec {
                 expect(Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 4)).to(equal("Z7M"))
             }
         }
+
+        describe(".getCenterFromDeltaIds") {
+            it("デルタID列から中心座標を取得する") {
+                expect(Core.getCenterFromDeltaIds([0]).lat).to(beCloseTo( +71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([0]).lng).to(beCloseTo(  +0.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([1]).lat).to(beCloseTo( +46.024, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([1]).lng).to(beCloseTo( +90.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([2]).lat).to(beCloseTo( +71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([2]).lng).to(beCloseTo(180.000, within: 1e-3)) // TODO: Ruby版と符号が逆
+                expect(Core.getCenterFromDeltaIds([3]).lat).to(beCloseTo( +46.024, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([3]).lng).to(beCloseTo( -90.000, within: 1e-3))
+
+                expect(Core.getCenterFromDeltaIds([4]).lat).to(beCloseTo( -71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([4]).lng).to(beCloseTo(  +0.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([5]).lat).to(beCloseTo( -46.024, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([5]).lng).to(beCloseTo( +90.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([6]).lat).to(beCloseTo( -71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([6]).lng).to(beCloseTo(180.000, within: 1e-3)) // TODO: Ruby版と符号が逆
+                expect(Core.getCenterFromDeltaIds([7]).lat).to(beCloseTo( -46.024, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([7]).lng).to(beCloseTo( -90.000, within: 1e-3))
+                
+                expect(Core.getCenterFromDeltaIds([0, 0]).lat).to(beCloseTo(+71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([0, 0]).lng).to(beCloseTo( +0.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([0, 0, 0]).lat).to(beCloseTo(+71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaIds([0, 0, 0]).lng).to(beCloseTo( +0.000, within: 1e-3))
+            }
+        }
     }
 }
 
 /*
 class GeoDeltaTest < Test::Unit::TestCase
-  def getCenterFromDeltaIds
-    lat, lng = Core.getCenterFromDeltaIds([0])
-    assert_in_delta( +71.480, lat, 1.0E-3)
-    assert_in_delta(  +0.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaIds([1])
-    assert_in_delta( +46.024, lat, 1.0E-3)
-    assert_in_delta( +90.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaIds([2])
-    assert_in_delta( +71.480, lat, 1.0E-3)
-    assert_in_delta(-180.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaIds([3])
-    assert_in_delta( +46.024, lat, 1.0E-3)
-    assert_in_delta( -90.000, lng, 1.0E-3)
-
-    lat, lng = Core.getCenterFromDeltaIds([4])
-    assert_in_delta( -71.480, lat, 1.0E-3)
-    assert_in_delta(  +0.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaIds([5])
-    assert_in_delta( -46.024, lat, 1.0E-3)
-    assert_in_delta( +90.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaIds([6])
-    assert_in_delta( -71.480, lat, 1.0E-3)
-    assert_in_delta(-180.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaIds([7])
-    assert_in_delta( -46.024, lat, 1.0E-3)
-    assert_in_delta( -90.000, lng, 1.0E-3)
-
-    lat, lng = Core.getCenterFromDeltaIds([0, 0])
-    assert_in_delta(+71.480, lat, 1.0E-3)
-    assert_in_delta( +0.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaIds([0, 0, 0])
-    assert_in_delta(+71.480, lat, 1.0E-3)
-    assert_in_delta( +0.000, lng, 1.0E-3)
-  end
-
   def getCenterFromDeltaCode
     lat, lng = Core.getCenterFromDeltaCode("Z")
     assert_in_delta( +71.480, lat, 1.0E-3)

@@ -11,15 +11,16 @@ public class Core {
         let ids = Core.getDeltaIds(lat: lat, lng: lng, level: level)
         return try! Encoder.encode(ids)
     }
+
+    // デルタID列から中心座標を取得する
+    public static func getCenterFromDeltaIds(ids: [UInt8]) -> (lat: Double, lng: Double) {
+        let nxny = DeltaGeometry.getCenter(ids)
+        return Projector.nxNyToLatLng(nx: nxny.x, ny: nxny.y)
+    }
 }
 
 /*
 module GeoDelta
-  def getCenterFromDeltaIds(ids)
-    nx, ny = GeoDelta::DeltaGeometry.get_center(ids)
-    return GeoDelta::Projector.nxy_to_latlng(nx, ny)
-  end
-
   def getCenterFromDeltaCode(code)
     ids = GeoDelta::Encoder.decode(code)
     return self.get_center_from_delta_ids(ids)
