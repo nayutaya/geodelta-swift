@@ -66,11 +66,38 @@ class CoreSpec : QuickSpec {
                 expect(Core.getCenterFromDeltaIds([6]).lng).to(beCloseTo(180.000, within: 1e-3)) // TODO: Ruby版と符号が逆
                 expect(Core.getCenterFromDeltaIds([7]).lat).to(beCloseTo( -46.024, within: 1e-3))
                 expect(Core.getCenterFromDeltaIds([7]).lng).to(beCloseTo( -90.000, within: 1e-3))
-                
+
                 expect(Core.getCenterFromDeltaIds([0, 0]).lat).to(beCloseTo(+71.480, within: 1e-3))
                 expect(Core.getCenterFromDeltaIds([0, 0]).lng).to(beCloseTo( +0.000, within: 1e-3))
                 expect(Core.getCenterFromDeltaIds([0, 0, 0]).lat).to(beCloseTo(+71.480, within: 1e-3))
                 expect(Core.getCenterFromDeltaIds([0, 0, 0]).lng).to(beCloseTo( +0.000, within: 1e-3))
+            }
+        }
+
+        describe(".getCenterFromDeltaCode") {
+            it("GeoDeltaコードから中心座標を取得する") {
+                expect(Core.getCenterFromDeltaCode("Z").lat).to(beCloseTo( +71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("Z").lng).to(beCloseTo(  +0.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("Y").lat).to(beCloseTo( +46.024, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("Y").lng).to(beCloseTo( +90.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("X").lat).to(beCloseTo( +71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("X").lng).to(beCloseTo(180.000, within: 1e-3)) // TODO: Ruby版と符号が逆
+                expect(Core.getCenterFromDeltaCode("W").lat).to(beCloseTo( +46.024, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("W").lng).to(beCloseTo( -90.000, within: 1e-3))
+
+                expect(Core.getCenterFromDeltaCode("V").lat).to(beCloseTo( -71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("V").lng).to(beCloseTo(  +0.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("T").lat).to(beCloseTo( -46.024, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("T").lng).to(beCloseTo( +90.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("S").lat).to(beCloseTo( -71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("S").lng).to(beCloseTo(180.000, within: 1e-3)) // TODO: Ruby版と符号が逆
+                expect(Core.getCenterFromDeltaCode("R").lat).to(beCloseTo( -46.024, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("R").lng).to(beCloseTo( -90.000, within: 1e-3))
+
+                expect(Core.getCenterFromDeltaCode("ZK").lat).to(beCloseTo(+71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("ZK").lng).to(beCloseTo( +0.000, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("Z2").lat).to(beCloseTo(+71.480, within: 1e-3))
+                expect(Core.getCenterFromDeltaCode("Z2").lng).to(beCloseTo( +0.000, within: 1e-3))
             }
         }
     }
@@ -78,41 +105,6 @@ class CoreSpec : QuickSpec {
 
 /*
 class GeoDeltaTest < Test::Unit::TestCase
-  def getCenterFromDeltaCode
-    lat, lng = Core.getCenterFromDeltaCode("Z")
-    assert_in_delta( +71.480, lat, 1.0E-3)
-    assert_in_delta(  +0.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaCode("Y")
-    assert_in_delta( +46.024, lat, 1.0E-3)
-    assert_in_delta( +90.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaCode("X")
-    assert_in_delta( +71.480, lat, 1.0E-3)
-    assert_in_delta(-180.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaCode("W")
-    assert_in_delta( +46.024, lat, 1.0E-3)
-    assert_in_delta( -90.000, lng, 1.0E-3)
-
-    lat, lng = Core.getCenterFromDeltaCode("V")
-    assert_in_delta( -71.480, lat, 1.0E-3)
-    assert_in_delta(  +0.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaCode("T")
-    assert_in_delta( -46.024, lat, 1.0E-3)
-    assert_in_delta( +90.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaCode("S")
-    assert_in_delta( -71.480, lat, 1.0E-3)
-    assert_in_delta(-180.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaCode("R")
-    assert_in_delta( -46.024, lat, 1.0E-3)
-    assert_in_delta( -90.000, lng, 1.0E-3)
-
-    lat, lng = Core.getCenterFromDeltaCode("ZK")
-    assert_in_delta(+71.480, lat, 1.0E-3)
-    assert_in_delta( +0.000, lng, 1.0E-3)
-    lat, lng = Core.getCenterFromDeltaCode("Z2")
-    assert_in_delta(+71.480, lat, 1.0E-3)
-    assert_in_delta( +0.000, lng, 1.0E-3)
-  end
-
   def test_getCoordinatesFromIds__1
     delta0 = Core.getCoordinatesFromIds([0])
     assert_equal(4, delta0.size)
@@ -120,24 +112,24 @@ class GeoDeltaTest < Test::Unit::TestCase
     assert_equal(2, delta0[1].size)
     assert_equal(2, delta0[2].size)
     assert_equal(2, delta0[3].size)
-    assert_in_delta( +71.480, delta0[0][0], 1.0E-3)
-    assert_in_delta(  +0.000, delta0[0][1], 1.0E-3)
-    assert_in_delta(  +0.000, delta0[1][0], 1.0E-3)
-    assert_in_delta(  +0.000, delta0[1][1], 1.0E-3)
-    assert_in_delta( +82.467, delta0[2][0], 1.0E-3)
-    assert_in_delta( -90.000, delta0[2][1], 1.0E-3)
-    assert_in_delta( +82.467, delta0[3][0], 1.0E-3)
-    assert_in_delta( +90.000, delta0[3][1], 1.0E-3)
+    assert_in_delta( +71.480, delta0[0][0], 1e-3)
+    assert_in_delta(  +0.000, delta0[0][1], 1e-3)
+    assert_in_delta(  +0.000, delta0[1][0], 1e-3)
+    assert_in_delta(  +0.000, delta0[1][1], 1e-3)
+    assert_in_delta( +82.467, delta0[2][0], 1e-3)
+    assert_in_delta( -90.000, delta0[2][1], 1e-3)
+    assert_in_delta( +82.467, delta0[3][0], 1e-3)
+    assert_in_delta( +90.000, delta0[3][1], 1e-3)
 
     delta4 = Core.getCoordinatesFromIds([4])
-    assert_in_delta( -71.480, delta4[0][0], 1.0E-3)
-    assert_in_delta(  +0.000, delta4[0][1], 1.0E-3)
-    assert_in_delta(  +0.000, delta4[1][0], 1.0E-3)
-    assert_in_delta(  +0.000, delta4[1][1], 1.0E-3)
-    assert_in_delta( -82.467, delta4[2][0], 1.0E-3)
-    assert_in_delta( +90.000, delta4[2][1], 1.0E-3)
-    assert_in_delta( -82.467, delta4[3][0], 1.0E-3)
-    assert_in_delta( -90.000, delta4[3][1], 1.0E-3)
+    assert_in_delta( -71.480, delta4[0][0], 1e-3)
+    assert_in_delta(  +0.000, delta4[0][1], 1e-3)
+    assert_in_delta(  +0.000, delta4[1][0], 1e-3)
+    assert_in_delta(  +0.000, delta4[1][1], 1e-3)
+    assert_in_delta( -82.467, delta4[2][0], 1e-3)
+    assert_in_delta( +90.000, delta4[2][1], 1e-3)
+    assert_in_delta( -82.467, delta4[3][0], 1e-3)
+    assert_in_delta( -90.000, delta4[3][1], 1e-3)
   end
 
   def test_getCoordinatesFromIds__2
