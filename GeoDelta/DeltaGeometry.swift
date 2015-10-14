@@ -2,7 +2,7 @@
 public class DeltaGeometry {
     private static func mod(a: Double, _ b: Double) -> Double {
         var val = a
-        while ( val >= b ) { val -= b }
+        while ( val >= b  ) { val -= b }
         while ( val < 0.0 ) {  val += b }
         return val
     }
@@ -47,14 +47,10 @@ public class DeltaGeometry {
     
     // 指定されたデルタID列が上向きかどうか判定する
     public static func isUpperDelta(ids: [UInt8]) -> Bool {
-        var upper = false
+        var upper = isUpperWorldDelta(ids[0])
         let length = ids.count
-        for var i = 0; i < length; i++ {
-            if i == 0 {
-                upper = isUpperWorldDelta(ids[i])
-            } else {
-                upper = isUpperSubDelta(upper, ids[i])
-            }
+        for var i = 1; i < length; i++ {
+            upper = isUpperSubDelta(upper, ids[i])
         }
         return upper
     }
@@ -63,8 +59,8 @@ public class DeltaGeometry {
     public static func transformWorldDelta(id: UInt8, _ x: Double, _ y: Double) -> (x: Double, y: Double) {
         let xs = [+6.0, +0.0, -6.0, -12.0,  +6.0,  +0.0,  -6.0, -12.0]
         let ys = [+0.0, +0.0, +0.0,  +0.0, +12.0, +12.0, +12.0, +12.0]
-        let xx = DeltaGeometry.mod((x + xs[Int(id)]), 12.0)
-        let yy = DeltaGeometry.mod((y + ys[Int(id)]), 12.0)
+        let xx = DeltaGeometry.mod(x + xs[Int(id)], 12.0)
+        let yy = DeltaGeometry.mod(y + ys[Int(id)], 12.0)
         return (xx, yy)
     }
     
@@ -106,7 +102,7 @@ public class DeltaGeometry {
     // 指定されたワールドデルタIDの中心座標を取得する
     public static func getWorldDeltaCenter(id: UInt8) -> (x: Double, y: Double) {
         let xs = [+0.0, +6.0, +12.0, +18.0, +0.0, +6.0, +12.0, +18.0]
-        let ys = [+8.0, +4.0, +8.0, +4.0, -8.0, -4.0, -8.0, -4.0]
+        let ys = [+8.0, +4.0,  +8.0,  +4.0, -8.0, -4.0,  -8.0,  -4.0]
         let x = xs[Int(id)]
         let y = ys[Int(id)]
         return (x, y)
@@ -138,24 +134,17 @@ public class DeltaGeometry {
     // FIXME: メソッド名を「getDeltaCenter」に変更する
     // デルタID列から中心座標を取得する
     public static func getCenter(ids: [UInt8]) -> (x: Double, y: Double) {
-        var xs: [Double] = []
-        var ys: [Double] = []
-        var xy: (x: Double, y: Double) = (0, 0)
-        var upper = false
+        var xy = getWorldDeltaCenter(ids[0])
+        var upper = isUpperWorldDelta(ids[0])
+        var xs = [xy.x]
+        var ys = [xy.y]
 
         let length = ids.count
-        for var i = 0; i < length; i++ {
-            if i == 0 {
-                xy = getWorldDeltaCenter(ids[0])
-                upper = isUpperWorldDelta(ids[0])
-                xs.append(xy.x)
-                ys.append(xy.y)
-            } else {
-                xy = getSubDeltaDistance(upper, ids[i])
-                upper = isUpperSubDelta(upper, ids[i])
-                xs.append(xy.x / pow(Double(2), Double(i - 1)))
-                ys.append(xy.y / pow(Double(2), Double(i - 1)))
-            }
+        for var i = 1; i < length; i++ {
+            xy = getSubDeltaDistance(upper, ids[i])
+            upper = isUpperSubDelta(upper, ids[i])
+            xs.append(xy.x / pow(Double(2), Double(i - 1)))
+            ys.append(xy.y / pow(Double(2), Double(i - 1)))
         }
 
         xs.sortInPlace()
