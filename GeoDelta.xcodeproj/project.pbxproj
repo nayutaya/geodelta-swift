@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA4D18B21BCE36A0009AF095 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D18B11BCE36A0009AF095 /* Core.swift */; settings = {ASSET_TAGS = (); }; };
+		FA4D18B41BCE36B4009AF095 /* CoreSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D18B31BCE36B4009AF095 /* CoreSpec.swift */; settings = {ASSET_TAGS = (); }; };
 		FA6DA6F81BC8DE5E006BBA36 /* GeoDelta.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6DA6F71BC8DE5E006BBA36 /* GeoDelta.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA6DA6FF1BC8DE5E006BBA36 /* GeoDelta.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA6F41BC8DE5E006BBA36 /* GeoDelta.framework */; settings = {ASSET_TAGS = (); }; };
 		FA6DA70F1BC8E05B006BBA36 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA70E1BC8E05B006BBA36 /* Quick.framework */; };
@@ -50,6 +52,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA4D18B11BCE36A0009AF095 /* Core.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		FA4D18B31BCE36B4009AF095 /* CoreSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreSpec.swift; sourceTree = "<group>"; };
 		FA6DA6F41BC8DE5E006BBA36 /* GeoDelta.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GeoDelta.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6DA6F71BC8DE5E006BBA36 /* GeoDelta.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeoDelta.h; sourceTree = "<group>"; };
 		FA6DA6F91BC8DE5E006BBA36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -118,6 +122,7 @@
 				FA6DA7171BC8E542006BBA36 /* Projector.swift */,
 				FAB5A33D1BCCBC0B00D59966 /* Encoder.swift */,
 				FAF1474A1BCE0C4A007D227D /* DeltaGeometry.swift */,
+				FA4D18B11BCE36A0009AF095 /* Core.swift */,
 			);
 			path = GeoDelta;
 			sourceTree = "<group>";
@@ -129,6 +134,7 @@
 				FA6DA7191BC8E553006BBA36 /* ProjectorSpec.swift */,
 				FAB5A33F1BCCBC1B00D59966 /* EncoderSpec.swift */,
 				FAF1474C1BCE0C55007D227D /* DeltaGeometrySpec.swift */,
+				FA4D18B31BCE36B4009AF095 /* CoreSpec.swift */,
 			);
 			path = GeoDeltaTests;
 			sourceTree = "<group>";
@@ -244,6 +250,7 @@
 			files = (
 				FAB5A33E1BCCBC0B00D59966 /* Encoder.swift in Sources */,
 				FA6DA7181BC8E542006BBA36 /* Projector.swift in Sources */,
+				FA4D18B21BCE36A0009AF095 /* Core.swift in Sources */,
 				FAF1474B1BCE0C4A007D227D /* DeltaGeometry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6DA71A1BC8E553006BBA36 /* ProjectorSpec.swift in Sources */,
+				FA4D18B41BCE36B4009AF095 /* CoreSpec.swift in Sources */,
 				FAF1474D1BCE0C55007D227D /* DeltaGeometrySpec.swift in Sources */,
 				FAB5A3401BCCBC1B00D59966 /* EncoderSpec.swift in Sources */,
 			);
