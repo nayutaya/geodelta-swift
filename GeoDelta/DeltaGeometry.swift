@@ -166,31 +166,33 @@ public class DeltaGeometry {
         
         return ((x > 12.0 ? x - 24.0 : x), y)
     }
+
+    // FIXME: メソッド名を「getDeltaCoordinates」に変更する
+    // FIXME: 返り値を一次元配列に変更する
+    // デルタID列からデルタの中心座標、頂点座標を取得する
+    public static func getCoordinates(ids: [UInt8]) -> [(x: Double, y: Double)] {
+//        var cxy = this.getCenter(ids);
+//        var level = ids.length;
+//        var sign = (this.isUpperDelta(ids) ? +1 : -1);
+//        var scale = 1.0 / Math.pow(2, level - 1) * sign;
+//        
+//        var dx1 = 0.0;
+//        var dy1 = 8.0 * scale;
+//        var dx2 = 6.0 * scale;
+//        var dy2 = 4.0 * scale;
+//        
+//        return [
+//            [cxy[0], cxy[1]],
+//            [cxy[0] + dx1, cxy[1] + dy1],
+//            [cxy[0] + dx2, cxy[1] - dy2],
+//            [cxy[0] - dx2, cxy[1] - dy2],
+//        ];
+        return [(0, 0), (0, 0), (0, 0), (0, 0)]
+    }
 }
 
 /*
 
-// FIXME: メソッド名を「getDeltaCoordinates」に変更する
-// FIXME: 返り値を一次元配列に変更する
-// デルタID列からデルタの中心座標、頂点座標を取得する
-delta_geometry.getCoordinates = function(ids) {
-  var cxy = this.getCenter(ids);
-  var level = ids.length;
-  var sign = (this.isUpperDelta(ids) ? +1 : -1);
-  var scale = 1.0 / Math.pow(2, level - 1) * sign;
-
-  var dx1 = 0.0;
-  var dy1 = 8.0 * scale;
-  var dx2 = 6.0 * scale;
-  var dy2 = 4.0 * scale;
-
-  return [
-    [cxy[0], cxy[1]],
-    [cxy[0] + dx1, cxy[1] + dy1],
-    [cxy[0] + dx2, cxy[1] - dy2],
-    [cxy[0] - dx2, cxy[1] - dy2],
-  ];
-};
 
 module.exports = delta_geometry;
 */

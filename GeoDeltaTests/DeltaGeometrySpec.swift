@@ -366,129 +366,182 @@ class DeltaGeometrySpec : QuickSpec {
                 expect(DeltaGeometry.getCenter([0, 3, 0]).y).to(beCloseTo(+10.0, within: 1e-15))
             }
         }
+
+        describe(".getCoordinates") {
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル1）.1") {
+                let actual = DeltaGeometry.getCoordinates([0])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo( +8.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo( -6.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(+12.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(+12.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル1）.2") {
+                let actual = DeltaGeometry.getCoordinates([1])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo( +4.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo(+12.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo(+12.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo( +0.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル1）.3") {
+                let actual = DeltaGeometry.getCoordinates([4])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo( -8.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(-12.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo( -6.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(-12.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル1）.4") {
+                let actual = DeltaGeometry.getCoordinates([5])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo( -4.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo(-12.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo(+12.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo( +0.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル2）.1") {
+                let actual = DeltaGeometry.getCoordinates([0, 0])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo( +8.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo(+12.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo( +3.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo( -3.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo( +6.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル2）.2") {
+                let actual = DeltaGeometry.getCoordinates([0, 1])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo(+0.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo(-3.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(+6.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo(+3.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(+6.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル2）.3") {
+                let actual = DeltaGeometry.getCoordinates([0, 2])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( -3.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo(+10.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( -3.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo( -6.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(+12.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(+12.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル2）.4") {
+                let actual = DeltaGeometry.getCoordinates([0, 3])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( +3.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo( 10.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( +3.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(+12.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(+12.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル2）.5") {
+                let actual = DeltaGeometry.getCoordinates([4, 0])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo( -8.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo(-12.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo( -3.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo( -6.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo( +3.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo( -6.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル2）.6") {
+                let actual = DeltaGeometry.getCoordinates([4, 1])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo(-4.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo(+0.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo(+3.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(-6.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo(-3.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(-6.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル2）.7") {
+                let actual = DeltaGeometry.getCoordinates([4, 2])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( +3.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo(-10.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( +3.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo( -6.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(-12.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(-12.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル2）.8") {
+                let actual = DeltaGeometry.getCoordinates([4, 3])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo( -3.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo(-10.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo( -3.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo( -6.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(-12.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo( -6.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(-12.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル3）.1") {
+                let actual = DeltaGeometry.getCoordinates([0, 0, 0])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo(+8.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo(+6.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo(-1.5, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(+9.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo(+1.5, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(+9.0, within: 1e-15))
+            }
+            it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル3）.2") {
+                let actual = DeltaGeometry.getCoordinates([0, 1, 2])
+                expect(actual.count).to(equal(4))
+                expect(actual[0].x).to(beCloseTo(-1.5, within: 1e-15))
+                expect(actual[0].y).to(beCloseTo(+5.0, within: 1e-15))
+                expect(actual[1].x).to(beCloseTo(-1.5, within: 1e-15))
+                expect(actual[1].y).to(beCloseTo(+3.0, within: 1e-15))
+                expect(actual[2].x).to(beCloseTo(-3.0, within: 1e-15))
+                expect(actual[2].y).to(beCloseTo(+6.0, within: 1e-15))
+                expect(actual[3].x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(actual[3].y).to(beCloseTo(+6.0, within: 1e-15))
+            }
+        }
     }
 }
 
 /*
 describe("delta_geometry", function() {
-
-  describe(".getCoordinates", function() {
-    it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル1）", function() {
-      var expected1 = [
-          [+0.0,  +8.0],
-          [+0.0,  +0.0], // +0.0, -8.0
-          [-6.0, +12.0], // -6.0, +4.0
-          [+6.0, +12.0], // +6.0, +4.0
-      ];
-      assertArrayArrayEquals(expected1, delta_geometry.getCoordinates([0]), 1e-15);
-
-      var expected2 = [
-          [ +6.0,  +4.0],
-          [ +6.0, +12.0], // +0.0, +8.0
-          [+12.0,  +0.0], // +6.0, -4.0
-          [ +0.0,  +0.0], // -6.0, -4.0
-      ];
-      assertArrayArrayEquals(expected2, delta_geometry.getCoordinates([1]), 1e-15);
-
-      var expected3 = [
-          [+0.0,  -8.0],
-          [+0.0,  +0.0], // +0.0, +8.0
-          [+6.0, -12.0], // +6.0, -4.0
-          [-6.0, -12.0], // -6.0, -4.0
-      ];
-      assertArrayArrayEquals(expected3, delta_geometry.getCoordinates([4]), 1e-15);
-
-      var expected4 = [
-          [ +6.0,  -4.0],
-          [ +6.0, -12.0], // +0.0, -8.0
-          [ +0.0,  +0.0], // -6.0, +4.0
-          [+12.0,  +0.0], // +6.0, +4.0
-      ];
-      assertArrayArrayEquals(expected4, delta_geometry.getCoordinates([5]), 1e-15);
-    });
-    it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル2）", function() {
-      var expected1 = [
-          [ +0.0,  +8.0],
-          [ +0.0, +12.0], // +0.0, +4.0
-          [ +3.0,  +6.0], // +3.0, -2.0
-          [ -3.0,  +6.0], // -3.0, -2.0
-      ];
-      assertArrayArrayEquals(expected1, delta_geometry.getCoordinates([0, 0]), 1e-15);
-
-      var expected2 = [
-          [ +0.0, +4.0],
-          [ +0.0, +0.0], // +0.0, -4.0
-          [ -3.0, +6.0], // -3.0, +2.0
-          [ +3.0, +6.0], // +3.0, +2.0
-      ];
-      assertArrayArrayEquals(expected2, delta_geometry.getCoordinates([0, 1]), 1e-15);
-
-      var expected3 = [
-          [ -3.0, +10.0],
-          [ -3.0,  +6.0], // +0.0, -4.0
-          [ -6.0, +12.0], // -3.0, +2.0
-          [ +0.0, +12.0], // +3.0, +2.0
-      ];
-      assertArrayArrayEquals(expected3, delta_geometry.getCoordinates([0, 2]), 1e-15);
-
-      var expected4 = [
-          [ +3.0, +10.0],
-          [ +3.0,  +6.0], // +0.0, -4.0
-          [ +0.0, +12.0], // -3.0, +2.0
-          [ +6.0, +12.0], // +3.0, +2.0
-      ];
-      assertArrayArrayEquals(expected4, delta_geometry.getCoordinates([0, 3]), 1e-15);
-
-      var expected5 = [
-          [ +0.0,  -8.0],
-          [ +0.0, -12.0], // +0.0, -4.0
-          [ -3.0,  -6.0], // -3.0, +2.0
-          [ +3.0,  -6.0], // +3.0, +2.0
-      ];
-      assertArrayArrayEquals(expected5, delta_geometry.getCoordinates([4, 0]), 1e-15);
-
-      var expected6 = [
-          [ +0.0, -4.0],
-          [ +0.0, +0.0], // +0.0, +4.0
-          [ +3.0, -6.0], // +3.0, -2.0
-          [ -3.0, -6.0], // -3.0, -2.0
-      ];
-      assertArrayArrayEquals(expected6, delta_geometry.getCoordinates([4, 1]), 1e-15);
-
-      var expected7 = [
-          [ +3.0, -10.0],
-          [ +3.0,  -6.0], // +0.0, +4.0
-          [ +6.0, -12.0], // +3.0, -2.0
-          [ +0.0, -12.0], // -3.0, -2.0
-      ];
-      assertArrayArrayEquals(expected7, delta_geometry.getCoordinates([4, 2]), 1e-15);
-
-      var expected8 = [
-          [ -3.0, -10.0],
-          [ -3.0,  -6.0], // +0.0, +4.0
-          [ +0.0, -12.0], // +3.0, -2.0
-          [ -6.0, -12.0], // -3.0, -2.0
-      ];
-      assertArrayArrayEquals(expected8, delta_geometry.getCoordinates([4, 3]), 1e-15);
-    });
-    it("デルタID列からデルタの中心座標、頂点座標を取得する（レベル3）", function() {
-      var expected1 = [
-          [ +0.0, +8.0],
-          [ +0.0, +6.0], // +0.0, -2.0
-          [ -1.5, +9.0], // -1.5, +1.0
-          [ +1.5, +9.0], // +1.5, +1.0
-      ];
-      assertArrayArrayEquals(expected1, delta_geometry.getCoordinates([0, 0, 0]), 1e-15);
-
-      var expected = [
-          [ -1.5, +5.0],
-          [ -1.5, +3.0], // +0.0, -2.0
-          [ -3.0, +6.0], // -1.5, +1.0
-          [ +0.0, +6.0], // +1.5, +1.0
-      ];
-      assertArrayArrayEquals(expected, delta_geometry.getCoordinates([0, 1, 2]), 1e-15);
-    });
-  });
 
 /*
   function test_randomCenter()
