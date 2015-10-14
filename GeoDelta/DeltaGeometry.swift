@@ -43,22 +43,23 @@ public class DeltaGeometry {
     public static func isUpperSubDelta(parentIsUpper: Bool, _ id: UInt8) -> Bool {
         return (parentIsUpper ? (id != 0) : (id == 0))
     }
+    
+    // 指定されたデルタID列が上向きかどうか判定する
+    public static func isUpperDelta(ids: [UInt8]) -> Bool {
+        var upper = false
+        let length = ids.count
+        for var i = 0; i < length; i++ {
+            if i == 0 {
+                upper = isUpperWorldDelta(ids[i])
+            } else {
+                upper = isUpperSubDelta(upper, ids[i])
+            }
+        }
+        return upper
+    }
 }
 
 /*
-
-// 指定されたデルタID列が上向きかどうか判定する
-delta_geometry.isUpperDelta = function(ids) {
-  var upper = false;
-  for ( var i = 0, len = ids.length; i < len; i++ ) {
-    if ( i == 0 ) {
-      upper = this.isUpperWorldDelta(ids[i]);
-    } else {
-      upper = this.isUpperSubDelta(upper, ids[i]);
-    }
-  }
-  return upper;
-};
 
 // 指定された座標を指定されたワールドデルタID内における正規化座標系に平行移動する
 delta_geometry.transformWorldDelta = function(id, x, y) {

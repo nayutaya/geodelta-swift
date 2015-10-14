@@ -124,34 +124,34 @@ class DeltaGeometrySpec : QuickSpec {
                 expect(DeltaGeometry.isUpperSubDelta(false, 3)).to(equal(false))
             }
         }
+
+        describe(".isUpperDelta") {
+            it("指定されたデルタID列が上向きかどうか判定する") {
+                expect(DeltaGeometry.isUpperDelta([0])).to(equal(false))
+                expect(DeltaGeometry.isUpperDelta([1])).to(equal(true ))
+                expect(DeltaGeometry.isUpperDelta([4])).to(equal(true ))
+                expect(DeltaGeometry.isUpperDelta([5])).to(equal(false))
+
+                expect(DeltaGeometry.isUpperDelta([0, 0])).to(equal(true ))
+                expect(DeltaGeometry.isUpperDelta([0, 1])).to(equal(false))
+                expect(DeltaGeometry.isUpperDelta([0, 2])).to(equal(false))
+                expect(DeltaGeometry.isUpperDelta([0, 3])).to(equal(false))
+
+                expect(DeltaGeometry.isUpperDelta([4, 0])).to(equal(false))
+                expect(DeltaGeometry.isUpperDelta([4, 1])).to(equal(true ))
+                expect(DeltaGeometry.isUpperDelta([4, 2])).to(equal(true ))
+                expect(DeltaGeometry.isUpperDelta([4, 3])).to(equal(true ))
+
+                expect(DeltaGeometry.isUpperDelta([0, 0, 0      ])).to(equal(false))
+                expect(DeltaGeometry.isUpperDelta([0, 0, 0, 0   ])).to(equal(true ))
+                expect(DeltaGeometry.isUpperDelta([0, 0, 0, 0, 0])).to(equal(false))
+            }
+        }
     }
 }
 
 /*
 describe("delta_geometry", function() {
-
-  describe(".isUpperDelta", function() {
-    it("指定されたデルタID列が上向きかどうか判定する", function() {
-      assertEquals(false, delta_geometry.isUpperDelta([0]));
-      assertEquals(true,  delta_geometry.isUpperDelta([1]));
-      assertEquals(true,  delta_geometry.isUpperDelta([4]));
-      assertEquals(false, delta_geometry.isUpperDelta([5]));
-
-      assertEquals(true,  delta_geometry.isUpperDelta([0, 0]));
-      assertEquals(false, delta_geometry.isUpperDelta([0, 1]));
-      assertEquals(false, delta_geometry.isUpperDelta([0, 2]));
-      assertEquals(false, delta_geometry.isUpperDelta([0, 3]));
-
-      assertEquals(false, delta_geometry.isUpperDelta([4, 0]));
-      assertEquals(true,  delta_geometry.isUpperDelta([4, 1]));
-      assertEquals(true,  delta_geometry.isUpperDelta([4, 2]));
-      assertEquals(true,  delta_geometry.isUpperDelta([4, 3]));
-
-      assertEquals(false, delta_geometry.isUpperDelta([0, 0, 0]));
-      assertEquals(true,  delta_geometry.isUpperDelta([0, 0, 0, 0]));
-      assertEquals(false, delta_geometry.isUpperDelta([0, 0, 0, 0, 0]));
-    });
-  });
 
   describe(".transformWorldDelta", function() {
     it("指定された座標を指定されたワールドデルタID内における正規化座標系に平行移動する", function() {
