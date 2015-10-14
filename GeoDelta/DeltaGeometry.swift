@@ -67,18 +67,18 @@ public class DeltaGeometry {
         let yy = DeltaGeometry.mod((y + ys[Int(id)]), 12.0)
         return (xx, yy)
     }
+    
+    // 指定された座標を指定された上向きのサブデルタID内における正規化座標系に平行移動する
+    public static func transformUpperDelta(id: UInt8, _ x: Double, _ y: Double) -> (x: Double, y: Double) {
+        let xs = [-3.0, -3.0, -6.0, -0.0]
+        let ys = [-0.0, -6.0, -0.0, -0.0]
+        let xx = (x + xs[Int(id)]) * 2
+        let yy = (y + ys[Int(id)]) * 2
+        return (xx, yy)
+    }
 }
 
 /*
-
-// 指定された座標を指定された上向きのサブデルタID内における正規化座標系に平行移動する
-delta_geometry.transformUpperDelta = function(id, x, y) {
-  var xs = [-3.0, -3.0, -6.0, -0.0];
-  var ys = [-0.0, -6.0, -0.0, -0.0];
-  var xx = (x + xs[id]) * 2;
-  var yy = (y + ys[id]) * 2;
-  return [xx, yy];
-};
 
 // 指定された座標を指定された下向きのサブデルタID内における正規化座標系に平行移動する
 delta_geometry.transformLowerDelta = function(id, x, y) {
