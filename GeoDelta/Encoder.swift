@@ -11,32 +11,32 @@ public class Encoder {
     }
 
     // ワールドデルタIDをエンコードする
-    public static func encodeWorldDelta(id: Int) throws -> String {
-        guard id >= 0 && id <= 7 else { throw EncodeError.InvalidArguments }
-        return WORLD_DELTA_TABLE[id]
+    public static func encodeWorldDelta(id: UInt8) throws -> String {
+        guard id <= 7 else { throw EncodeError.InvalidArguments }
+        return WORLD_DELTA_TABLE[Int(id)]
     }
 
     // ワールドデルタコードをデコードする
-    public static func decodeWorldDelta(code: String) throws -> Int {
+    public static func decodeWorldDelta(code: String) throws -> UInt8 {
         guard let id = WORLD_DELTA_TABLE.indexOf(code) else {
             throw EncodeError.InvalidArguments
         }
-        return id
+        return UInt8(id)
     }
 
-    private static func encodeSubDelta1(id: Int) throws -> String {
-        guard id >= 0 && id <= 3 else { throw EncodeError.InvalidArguments }
-        return SUB_DELTA_TABLE1[id]
+    private static func encodeSubDelta1(id: UInt8) throws -> String {
+        guard id <= 3 else { throw EncodeError.InvalidArguments }
+        return SUB_DELTA_TABLE1[Int(id)]
     }
 
-    private static func encodeSubDelta2(id1: Int, _ id2: Int) throws -> String {
-        guard id1 >= 0 && id1 <= 3 else { throw EncodeError.InvalidArguments }
-        guard id2 >= 0 && id2 <= 3 else { throw EncodeError.InvalidArguments }
-        return SUB_DELTA_TABLE2[id1][id2]
+    private static func encodeSubDelta2(id1: UInt8, _ id2: UInt8) throws -> String {
+        guard id1 <= 3 else { throw EncodeError.InvalidArguments }
+        guard id2 <= 3 else { throw EncodeError.InvalidArguments }
+        return SUB_DELTA_TABLE2[Int(id1)][Int(id2)]
     }
 
     // サブデルタID列をエンコードする
-    public static func encodeSubDelta(ids: [Int]) throws -> String {
+    public static func encodeSubDelta(ids: [UInt8]) throws -> String {
         let length = ids.count
         guard length >= 1 else { throw EncodeError.InvalidArguments }
 
@@ -54,11 +54,11 @@ public class Encoder {
     }
 
     // サブデルタコードをデコードする
-    public static func decodeSubDelta(code: String) throws -> [Int] {
+    public static func decodeSubDelta(code: String) throws -> [UInt8] {
         let chars = code.characters
         guard chars.count >= 1 else { throw EncodeError.InvalidArguments }
 
-        var ids: [Int] = []
+        var ids: [UInt8] = []
         for ch in chars {
             switch ( ch ) {
                 case "2": ids += [0, 0]
@@ -89,7 +89,7 @@ public class Encoder {
     }
 
     // デルタID列をエンコードする
-    public static func encode(ids: [Int]) throws -> String {
+    public static func encode(ids: [UInt8]) throws -> String {
         let length = ids.count
         guard length >= 1 else { throw EncodeError.InvalidArguments }
         var code = try encodeWorldDelta(ids[0])
@@ -100,7 +100,7 @@ public class Encoder {
     }
 
     // GeoDeltaコードをデコードする
-    public static func decode(code: String) throws -> [Int] {
+    public static func decode(code: String) throws -> [UInt8] {
         let chars = code.characters
         guard chars.count >= 1 else { throw EncodeError.InvalidArguments }
         var ids = [try decodeWorldDelta((code as NSString).substringToIndex(1))]
