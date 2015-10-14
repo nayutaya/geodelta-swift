@@ -5,7 +5,21 @@ public class Encoder {
     private static let WORLD_DELTA_TABLE = ["Z", "Y", "X", "W", "V", "T", "S", "R"]
     private static let SUB_DELTA_TABLE1  = ["K", "M", "N", "P"]
     private static let SUB_DELTA_TABLE2  = [["2", "3", "4", "5"], ["6", "7", "8", "A"], ["B", "C", "D", "E"], ["F", "G", "H", "J"]]
-
+    private static let SUB_DELTA_MAP = Encoder.createSubDeltaMap()
+    
+    private static func createSubDeltaMap() -> [String: [UInt8]] {
+        var map = [String:[UInt8]]()
+        for var i = 0; i <= 3; i++ {
+            map[SUB_DELTA_TABLE1[i]] = [UInt8(i)]
+        }
+        for var i = 0; i <= 3; i++ {
+            for var j = 0; j <= 3; j++ {
+                map[SUB_DELTA_TABLE2[i][j]] = [UInt8(i), UInt8(j)]
+            }
+        }
+        return map
+    }
+    
     public enum EncodeError : ErrorType {
         case InvalidArguments
     }
@@ -60,28 +74,10 @@ public class Encoder {
 
         var ids: [UInt8] = []
         for ch in chars {
-            switch ( ch ) {
-                case "2": ids += [0, 0]
-                case "3": ids += [0, 1]
-                case "4": ids += [0, 2]
-                case "5": ids += [0, 3]
-                case "6": ids += [1, 0]
-                case "7": ids += [1, 1]
-                case "8": ids += [1, 2]
-                case "A": ids += [1, 3]
-                case "B": ids += [2, 0]
-                case "C": ids += [2, 1]
-                case "D": ids += [2, 2]
-                case "E": ids += [2, 3]
-                case "F": ids += [3, 0]
-                case "G": ids += [3, 1]
-                case "H": ids += [3, 2]
-                case "J": ids += [3, 3]
-                case "K": ids += [0]
-                case "M": ids += [1]
-                case "N": ids += [2]
-                case "P": ids += [3]
-                default: throw EncodeError.InvalidArguments
+            if let ids2 = Encoder.SUB_DELTA_MAP[String(ch)] {
+                ids += ids2
+            } else {
+                throw EncodeError.InvalidArguments
             }
         }
         
