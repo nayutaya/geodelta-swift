@@ -51,78 +51,78 @@ class CoreSpec : QuickSpec {
 
 /*
 class GeoDeltaTest < Test::Unit::TestCase
-  def test_get_center_from_delta_ids
-    lat, lng = @mod.get_center_from_delta_ids([0])
+  def getCenterFromDeltaIds
+    lat, lng = Core.getCenterFromDeltaIds([0])
     assert_in_delta( +71.480, lat, 1.0E-3)
     assert_in_delta(  +0.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_ids([1])
+    lat, lng = Core.getCenterFromDeltaIds([1])
     assert_in_delta( +46.024, lat, 1.0E-3)
     assert_in_delta( +90.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_ids([2])
+    lat, lng = Core.getCenterFromDeltaIds([2])
     assert_in_delta( +71.480, lat, 1.0E-3)
     assert_in_delta(-180.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_ids([3])
+    lat, lng = Core.getCenterFromDeltaIds([3])
     assert_in_delta( +46.024, lat, 1.0E-3)
     assert_in_delta( -90.000, lng, 1.0E-3)
 
-    lat, lng = @mod.get_center_from_delta_ids([4])
+    lat, lng = Core.getCenterFromDeltaIds([4])
     assert_in_delta( -71.480, lat, 1.0E-3)
     assert_in_delta(  +0.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_ids([5])
+    lat, lng = Core.getCenterFromDeltaIds([5])
     assert_in_delta( -46.024, lat, 1.0E-3)
     assert_in_delta( +90.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_ids([6])
+    lat, lng = Core.getCenterFromDeltaIds([6])
     assert_in_delta( -71.480, lat, 1.0E-3)
     assert_in_delta(-180.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_ids([7])
+    lat, lng = Core.getCenterFromDeltaIds([7])
     assert_in_delta( -46.024, lat, 1.0E-3)
     assert_in_delta( -90.000, lng, 1.0E-3)
 
-    lat, lng = @mod.get_center_from_delta_ids([0, 0])
+    lat, lng = Core.getCenterFromDeltaIds([0, 0])
     assert_in_delta(+71.480, lat, 1.0E-3)
     assert_in_delta( +0.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_ids([0, 0, 0])
-    assert_in_delta(+71.480, lat, 1.0E-3)
-    assert_in_delta( +0.000, lng, 1.0E-3)
-  end
-
-  def test_get_center_from_delta_code
-    lat, lng = @mod.get_center_from_delta_code("Z")
-    assert_in_delta( +71.480, lat, 1.0E-3)
-    assert_in_delta(  +0.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_code("Y")
-    assert_in_delta( +46.024, lat, 1.0E-3)
-    assert_in_delta( +90.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_code("X")
-    assert_in_delta( +71.480, lat, 1.0E-3)
-    assert_in_delta(-180.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_code("W")
-    assert_in_delta( +46.024, lat, 1.0E-3)
-    assert_in_delta( -90.000, lng, 1.0E-3)
-
-    lat, lng = @mod.get_center_from_delta_code("V")
-    assert_in_delta( -71.480, lat, 1.0E-3)
-    assert_in_delta(  +0.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_code("T")
-    assert_in_delta( -46.024, lat, 1.0E-3)
-    assert_in_delta( +90.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_code("S")
-    assert_in_delta( -71.480, lat, 1.0E-3)
-    assert_in_delta(-180.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_code("R")
-    assert_in_delta( -46.024, lat, 1.0E-3)
-    assert_in_delta( -90.000, lng, 1.0E-3)
-
-    lat, lng = @mod.get_center_from_delta_code("ZK")
-    assert_in_delta(+71.480, lat, 1.0E-3)
-    assert_in_delta( +0.000, lng, 1.0E-3)
-    lat, lng = @mod.get_center_from_delta_code("Z2")
+    lat, lng = Core.getCenterFromDeltaIds([0, 0, 0])
     assert_in_delta(+71.480, lat, 1.0E-3)
     assert_in_delta( +0.000, lng, 1.0E-3)
   end
 
-  def test_get_coordinates_from_ids__1
-    delta0 = @mod.get_coordinates_from_ids([0])
+  def getCenterFromDeltaCode
+    lat, lng = Core.getCenterFromDeltaCode("Z")
+    assert_in_delta( +71.480, lat, 1.0E-3)
+    assert_in_delta(  +0.000, lng, 1.0E-3)
+    lat, lng = Core.getCenterFromDeltaCode("Y")
+    assert_in_delta( +46.024, lat, 1.0E-3)
+    assert_in_delta( +90.000, lng, 1.0E-3)
+    lat, lng = Core.getCenterFromDeltaCode("X")
+    assert_in_delta( +71.480, lat, 1.0E-3)
+    assert_in_delta(-180.000, lng, 1.0E-3)
+    lat, lng = Core.getCenterFromDeltaCode("W")
+    assert_in_delta( +46.024, lat, 1.0E-3)
+    assert_in_delta( -90.000, lng, 1.0E-3)
+
+    lat, lng = Core.getCenterFromDeltaCode("V")
+    assert_in_delta( -71.480, lat, 1.0E-3)
+    assert_in_delta(  +0.000, lng, 1.0E-3)
+    lat, lng = Core.getCenterFromDeltaCode("T")
+    assert_in_delta( -46.024, lat, 1.0E-3)
+    assert_in_delta( +90.000, lng, 1.0E-3)
+    lat, lng = Core.getCenterFromDeltaCode("S")
+    assert_in_delta( -71.480, lat, 1.0E-3)
+    assert_in_delta(-180.000, lng, 1.0E-3)
+    lat, lng = Core.getCenterFromDeltaCode("R")
+    assert_in_delta( -46.024, lat, 1.0E-3)
+    assert_in_delta( -90.000, lng, 1.0E-3)
+
+    lat, lng = Core.getCenterFromDeltaCode("ZK")
+    assert_in_delta(+71.480, lat, 1.0E-3)
+    assert_in_delta( +0.000, lng, 1.0E-3)
+    lat, lng = Core.getCenterFromDeltaCode("Z2")
+    assert_in_delta(+71.480, lat, 1.0E-3)
+    assert_in_delta( +0.000, lng, 1.0E-3)
+  end
+
+  def test_getCoordinatesFromIds__1
+    delta0 = Core.getCoordinatesFromIds([0])
     assert_equal(4, delta0.size)
     assert_equal(2, delta0[0].size)
     assert_equal(2, delta0[1].size)
@@ -137,7 +137,7 @@ class GeoDeltaTest < Test::Unit::TestCase
     assert_in_delta( +82.467, delta0[3][0], 1.0E-3)
     assert_in_delta( +90.000, delta0[3][1], 1.0E-3)
 
-    delta4 = @mod.get_coordinates_from_ids([4])
+    delta4 = Core.getCoordinatesFromIds([4])
     assert_in_delta( -71.480, delta4[0][0], 1.0E-3)
     assert_in_delta(  +0.000, delta4[0][1], 1.0E-3)
     assert_in_delta(  +0.000, delta4[1][0], 1.0E-3)
@@ -148,8 +148,8 @@ class GeoDeltaTest < Test::Unit::TestCase
     assert_in_delta( -90.000, delta4[3][1], 1.0E-3)
   end
 
-  def test_get_coordinates_from_ids__2
-    delta = (0..7).map { |id| @mod.get_coordinates_from_ids([id]) }
+  def test_getCoordinatesFromIds__2
+    delta = (0..7).map { |id| Core.getCoordinatesFromIds([id]) }
     assert_equal(delta[0][1], delta[1][3])
     assert_equal(delta[0][1], delta[3][2])
     assert_equal(delta[0][1], delta[4][1])
@@ -170,8 +170,8 @@ class GeoDeltaTest < Test::Unit::TestCase
     assert_equal(delta[4][2], delta[6][3])
   end
 
-  def test_get_coordinates_from_ids__3
-    delta = (0..3).map { |id| @mod.get_coordinates_from_ids([0, id]) }
+  def test_getCoordinatesFromIds__3
+    delta = (0..3).map { |id| Core.getCoordinatesFromIds([0, id]) }
     assert_equal(delta[0][1], delta[2][3])
     assert_equal(delta[0][1], delta[3][2])
     assert_equal(delta[0][2], delta[1][3])
@@ -180,13 +180,13 @@ class GeoDeltaTest < Test::Unit::TestCase
     assert_equal(delta[0][3], delta[2][1])
   end
 
-  def test_get_coordinates_from_code
+  def test_getCoordinatesFromCode
     assert_equal(
-      @mod.get_coordinates_from_ids([0]),
-      @mod.get_coordinates_from_code("Z"))
+      Core.getCoordinatesFromIds([0]),
+      Core.getCoordinatesFromCode("Z"))
     assert_equal(
-      @mod.get_coordinates_from_ids([0, 1, 2]),
-      @mod.get_coordinates_from_code("Z8"))
+      Core.getCoordinatesFromIds([0, 1, 2]),
+      Core.getCoordinatesFromCode("Z8"))
   end
 
   def test_rush
@@ -194,12 +194,12 @@ class GeoDeltaTest < Test::Unit::TestCase
       lat1  = rand * 180.0 -  90.0
       lng1  = rand * 360.0 - 180.0
       level = rand(30) + 1
-      code1 = @mod.get_delta_code(lat1, lng1, level)
+      code1 = Core.get_delta_code(lat1, lng1, level)
       lat2,
-      lng2  = @mod.get_center_from_delta_code(code1)
-      code2 = @mod.get_delta_code(lat2, lng2, level)
+      lng2  = Core.getCenterFromDeltaCode(code1)
+      code2 = Core.get_delta_code(lat2, lng2, level)
       lat3,
-      lng3  = @mod.get_center_from_delta_code(code2)
+      lng3  = Core.getCenterFromDeltaCode(code2)
       assert_equal(code1, code2)
       assert_equal([lat2, lng2], [lat3, lng3])
     }

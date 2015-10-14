@@ -15,22 +15,22 @@ public class Core {
 
 /*
 module GeoDelta
-  def self.get_center_from_delta_ids(ids)
+  def getCenterFromDeltaIds(ids)
     nx, ny = GeoDelta::DeltaGeometry.get_center(ids)
     return GeoDelta::Projector.nxy_to_latlng(nx, ny)
   end
 
-  def self.get_center_from_delta_code(code)
+  def getCenterFromDeltaCode(code)
     ids = GeoDelta::Encoder.decode(code)
     return self.get_center_from_delta_ids(ids)
   end
 
-  def self.get_coordinates_from_ids(ids)
+  def getCoordinatesFromIds(ids)
     return GeoDelta::DeltaGeometry.get_coordinates(ids).
       map { |nx, ny| GeoDelta::Projector.nxy_to_latlng(nx, ny) }
   end
 
-  def self.get_coordinates_from_code(code)
+  def getCoordinatesFromCode(code)
     ids = GeoDelta::Encoder.decode(code)
     return self.get_coordinates_from_ids(ids)
   end
