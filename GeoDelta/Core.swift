@@ -5,14 +5,13 @@ public class Core {
         let nxny = Projector.latLngToNxNy(lat: lat, lng: lng)
         return DeltaGeometry.getDeltaIds(nxny.nx, nxny.ny, level)
     }
-}
 
-/*
-// 緯度経度からGeoDeltaコードを取得する
-core.getDeltaCode = function(lat, lng, level) {
-  var ids = this.getDeltaIds(lat, lng, level);
-  return encoder.encode(ids);
-};
+    // 緯度経度からGeoDeltaコードを取得する
+    public static func getDeltaCode(lat: Double, _ lng: Double, _ level: UInt8) -> String {
+        let ids = Core.getDeltaIds(lat, lng, level)
+        return try! Encoder.encode(ids)
+    }
+}
 
 /*
 module GeoDelta
@@ -36,7 +35,4 @@ module GeoDelta
     return self.get_coordinates_from_ids(ids)
   end
 end
-*/
-
-module.exports = core;
 */

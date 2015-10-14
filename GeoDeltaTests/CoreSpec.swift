@@ -25,40 +25,29 @@ class CoreSpec : QuickSpec {
                 expect(Core.getDeltaIds(+0.0, +0.0, 4)).to(equal([0, 1, 1, 1]))
             }
         }
+
+        describe(".getDeltaCode") {
+            it("緯度経度からGeoDeltaコードを取得する") {
+                expect(Core.getDeltaCode(+45.0,   +0.0, 1)).to(equal("Z"))
+                expect(Core.getDeltaCode(+45.0,  +90.0, 1)).to(equal("Y"))
+                expect(Core.getDeltaCode(+45.0, +180.0, 1)).to(equal("X"))
+                expect(Core.getDeltaCode(+45.0,  -90.0, 1)).to(equal("W"))
+                expect(Core.getDeltaCode(+45.0, -180.0, 1)).to(equal("X"))
+
+                expect(Core.getDeltaCode(-45.0,   +0.0, 1)).to(equal("V"))
+                expect(Core.getDeltaCode(-45.0,  +90.0, 1)).to(equal("T"))
+                expect(Core.getDeltaCode(-45.0, +180.0, 1)).to(equal("S"))
+                expect(Core.getDeltaCode(-45.0,  -90.0, 1)).to(equal("R"))
+                expect(Core.getDeltaCode(-45.0, -180.0, 1)).to(equal("S"))
+
+                expect(Core.getDeltaCode(+0.0, +0.0, 1)).to(equal("Z"  ))
+                expect(Core.getDeltaCode(+0.0, +0.0, 2)).to(equal("ZM" ))
+                expect(Core.getDeltaCode(+0.0, +0.0, 3)).to(equal("Z7" ))
+                expect(Core.getDeltaCode(+0.0, +0.0, 4)).to(equal("Z7M"))
+            }
+        }
     }
 }
-
-/*
-describe("delta_geometry", function() {
-
-  describe(".getDeltaCode", function() {
-    it("緯度経度からGeoDeltaコードを取得する", function() {
-      assertEquals("Z", core.getDeltaCode(+45.0,   +0.0, 1));
-      assertEquals("Y", core.getDeltaCode(+45.0,  +90.0, 1));
-      assertEquals("X", core.getDeltaCode(+45.0, +180.0, 1));
-      assertEquals("W", core.getDeltaCode(+45.0,  -90.0, 1));
-      assertEquals("X", core.getDeltaCode(+45.0, -180.0, 1));
-
-      assertEquals("V", core.getDeltaCode(-45.0,   +0.0, 1));
-      assertEquals("T", core.getDeltaCode(-45.0,  +90.0, 1));
-      assertEquals("S", core.getDeltaCode(-45.0, +180.0, 1));
-      assertEquals("R", core.getDeltaCode(-45.0,  -90.0, 1));
-      assertEquals("S", core.getDeltaCode(-45.0, -180.0, 1));
-
-      assertEquals("Z",   core.getDeltaCode(+0.0, +0.0, 1));
-      assertEquals("ZM",  core.getDeltaCode(+0.0, +0.0, 2));
-      assertEquals("Z7",  core.getDeltaCode(+0.0, +0.0, 3));
-      assertEquals("Z7M", core.getDeltaCode(+0.0, +0.0, 4));
-    });
-  });
-
-/*
-  describe(".TODO", function() {
-    it("TODO", function() {
-    });
-  });
-*/
-});
 
 /*
 class GeoDeltaTest < Test::Unit::TestCase
@@ -216,5 +205,4 @@ class GeoDeltaTest < Test::Unit::TestCase
     }
   end
 end
-*/
 */
