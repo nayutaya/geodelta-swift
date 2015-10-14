@@ -147,24 +147,32 @@ class DeltaGeometrySpec : QuickSpec {
                 expect(DeltaGeometry.isUpperDelta([0, 0, 0, 0, 0])).to(equal(false))
             }
         }
+
+        describe(".transformWorldDelta") {
+            it("指定された座標を指定されたワールドデルタID内における正規化座標系に平行移動する") {
+                expect(DeltaGeometry.transformWorldDelta(0,  +0.0, +4.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(0,  +0.0, +4.0).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(1,  +6.0, +4.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(1,  +6.0, +4.0).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(2, +12.0, +4.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(2, +12.0, +4.0).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(3, +18.0, +4.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(3, +18.0, +4.0).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(4,  +0.0, -8.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(4,  +0.0, -8.0).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(5,  +6.0, -8.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(5,  +6.0, -8.0).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(6, +12.0, -8.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(6, +12.0, -8.0).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(7, +18.0, -8.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformWorldDelta(7, +18.0, -8.0).y).to(beCloseTo(+4.0, within: 1e-15))
+            }
+        }
     }
 }
 
 /*
 describe("delta_geometry", function() {
-
-  describe(".transformWorldDelta", function() {
-    it("指定された座標を指定されたワールドデルタID内における正規化座標系に平行移動する", function() {
-      assertArrayEquals([+6.0, +4.0], delta_geometry.transformWorldDelta(0,  +0.0, +4.0), 1e-15);
-      assertArrayEquals([+6.0, +4.0], delta_geometry.transformWorldDelta(1,  +6.0, +4.0), 1e-15);
-      assertArrayEquals([+6.0, +4.0], delta_geometry.transformWorldDelta(2, +12.0, +4.0), 1e-15);
-      assertArrayEquals([+6.0, +4.0], delta_geometry.transformWorldDelta(3, +18.0, +4.0), 1e-15);
-      assertArrayEquals([+6.0, +4.0], delta_geometry.transformWorldDelta(4,  +0.0, -8.0), 1e-15);
-      assertArrayEquals([+6.0, +4.0], delta_geometry.transformWorldDelta(5,  +6.0, -8.0), 1e-15);
-      assertArrayEquals([+6.0, +4.0], delta_geometry.transformWorldDelta(6, +12.0, -8.0), 1e-15);
-      assertArrayEquals([+6.0, +4.0], delta_geometry.transformWorldDelta(7, +18.0, -8.0), 1e-15);
-    });
-  });
 
   describe(".transformUpperDelta", function() {
     it("指定された座標を指定された上向きのサブデルタID内における正規化座標系に平行移動する", function() {

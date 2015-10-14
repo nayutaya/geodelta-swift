@@ -1,14 +1,15 @@
 
 public class DeltaGeometry {
+    private static func mod(a: Double, _ b: Double) -> Double {
+        var val = a
+        while ( val >= b ) { val -= b }
+        while ( val < 0.0 ) {  val += b }
+        return val
+    }
+
     // 座標をワールドデルタIDに変換する
     public static func getWorldDeltaId(x: Double, _ y: Double) -> UInt8 {
-        let mod = { (a: Double, b: Double) -> Double in
-            var val = a
-            while ( val >= b ) { val -= b }
-            while ( val < 0.0 ) {  val += b }
-            return val
-        }
-        let xx = mod(x, 24.0)
+        let xx = DeltaGeometry.mod(x, 24.0)
         let yy = abs(y)
         let base: UInt8 = (y >= 0.0 ? 0 : 4)
         if      yy >= +2.0 * (xx -  0.0) { return base + 0 }
@@ -57,18 +58,18 @@ public class DeltaGeometry {
         }
         return upper
     }
+    
+    // 指定された座標を指定されたワールドデルタID内における正規化座標系に平行移動する
+    public static func transformWorldDelta(id: UInt8, _ x: Double, _ y: Double) -> (x: Double, y: Double) {
+        let xs = [+6.0, +0.0, -6.0, -12.0,  +6.0,  +0.0,  -6.0, -12.0]
+        let ys = [+0.0, +0.0, +0.0,  +0.0, +12.0, +12.0, +12.0, +12.0]
+        let xx = DeltaGeometry.mod((x + xs[Int(id)]), 12.0)
+        let yy = DeltaGeometry.mod((y + ys[Int(id)]), 12.0)
+        return (xx, yy)
+    }
 }
 
 /*
-
-// 指定された座標を指定されたワールドデルタID内における正規化座標系に平行移動する
-delta_geometry.transformWorldDelta = function(id, x, y) {
-  var xs = [+6.0, +0.0, -6.0, -12.0, +6.0, +0.0, -6.0, -12.0];
-  var ys = [+0.0, +0.0, +0.0, +0.0, +12.0, +12.0, +12.0, +12.0];
-  var xx = math.mod((x + xs[id]), 12.0);
-  var yy = math.mod((y + ys[id]), 12.0);
-  return [xx, yy];
-};
 
 // 指定された座標を指定された上向きのサブデルタID内における正規化座標系に平行移動する
 delta_geometry.transformUpperDelta = function(id, x, y) {
