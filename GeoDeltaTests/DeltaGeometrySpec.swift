@@ -181,20 +181,24 @@ class DeltaGeometrySpec : QuickSpec {
                 expect(DeltaGeometry.transformUpperDelta(3, +3.0, +2.0).y).to(beCloseTo(+4.0, within: 1e-15))
             }
         }
+
+        describe(".transformLowerDelta") {
+            it("指定された座標を指定された下向きのサブデルタID内における正規化座標系に平行移動する") {
+                expect(DeltaGeometry.transformLowerDelta(0, +6.0,  +8.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformLowerDelta(0, +6.0,  +8.0).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.transformLowerDelta(1, +6.0,  +4.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformLowerDelta(1, +6.0,  +4.0).y).to(beCloseTo(+8.0, within: 1e-15))
+                expect(DeltaGeometry.transformLowerDelta(2, +3.0, +10.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformLowerDelta(2, +3.0, +10.0).y).to(beCloseTo(+8.0, within: 1e-15))
+                expect(DeltaGeometry.transformLowerDelta(3, +9.0, +10.0).x).to(beCloseTo(+6.0, within: 1e-15))
+                expect(DeltaGeometry.transformLowerDelta(3, +9.0, +10.0).y).to(beCloseTo(+8.0, within: 1e-15))
+            }
+        }
     }
 }
 
 /*
 describe("delta_geometry", function() {
-
-  describe(".transformLowerDelta", function() {
-    it("指定された座標を指定された下向きのサブデルタID内における正規化座標系に平行移動する", function() {
-      assertArrayEquals([+6.0, +4.0], delta_geometry.transformLowerDelta(0, +6.0,  +8.0), 1e-15);
-      assertArrayEquals([+6.0, +8.0], delta_geometry.transformLowerDelta(1, +6.0,  +4.0), 1e-15);
-      assertArrayEquals([+6.0, +8.0], delta_geometry.transformLowerDelta(2, +3.0, +10.0), 1e-15);
-      assertArrayEquals([+6.0, +8.0], delta_geometry.transformLowerDelta(3, +9.0, +10.0), 1e-15);
-    });
-  });
 
   describe(".getDeltaIds", function() {
     it("指定された座標を指定されたレベルのデルタID列に変換する（レベル1）", function() {
