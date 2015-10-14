@@ -25,21 +25,17 @@ public class DeltaGeometry {
         else if y > 6.0              { return 1 }
         else                         { return 0 }
     }
+    
+    // 座標を下向きのサブデルタIDに変換する
+    public static func getLowerDeltaId(x: Double, _ y: Double) -> UInt8 {
+        if      y > -2.0 * (x - 12.0) { return 3 }
+        else if y > +2.0 * x          { return 2 }
+        else if y < 6.0               { return 1 }
+        else                          { return 0 }
+    }
 }
 
 /*
-
-// 座標を下向きのサブデルタIDに変換する
-delta_geometry.getLowerDeltaId = function(x, y) {
-  if ( y > -2.0 * (x - 12.0) ) {
-    return 3;
-  } else if ( y > +2.0 * x ) {
-    return 2;
-  } else if ( y < 6.0 ) {
-    return 1;
-  }
-  return 0;
-};
 
 // 指定されたワールドデルタIDが上向きかどうか判定する
 delta_geometry.isUpperWorldDelta = function(id) {

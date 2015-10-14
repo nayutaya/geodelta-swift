@@ -74,35 +74,35 @@ class DeltaGeometrySpec : QuickSpec {
                 expect(DeltaGeometry.getUpperDeltaId( 9.0,  6.0)).to(equal(0))
             }
         }
+
+        describe(".getLowerDeltaId") {
+            it("座標を下向きのサブデルタIDに変換する") {
+                expect(DeltaGeometry.getLowerDeltaId( 9.0, 12.0)).to(equal(3))
+                expect(DeltaGeometry.getLowerDeltaId( 9.0,  9.0)).to(equal(3))
+                expect(DeltaGeometry.getLowerDeltaId(10.5,  9.0)).to(equal(3))
+                expect(DeltaGeometry.getLowerDeltaId(12.0, 12.0)).to(equal(3))
+                expect(DeltaGeometry.getLowerDeltaId( 0.0, 12.0)).to(equal(2))
+                expect(DeltaGeometry.getLowerDeltaId( 1.5,  9.0)).to(equal(2))
+                expect(DeltaGeometry.getLowerDeltaId( 3.0, 12.0)).to(equal(2))
+                expect(DeltaGeometry.getLowerDeltaId( 3.0,  9.0)).to(equal(2))
+                expect(DeltaGeometry.getLowerDeltaId( 4.5,  3.0)).to(equal(1))
+                expect(DeltaGeometry.getLowerDeltaId( 6.0,  3.0)).to(equal(1))
+                expect(DeltaGeometry.getLowerDeltaId( 6.0,  0.0)).to(equal(1))
+                expect(DeltaGeometry.getLowerDeltaId( 7.5,  3.0)).to(equal(1))
+                expect(DeltaGeometry.getLowerDeltaId( 3.0,  6.0)).to(equal(0))
+                expect(DeltaGeometry.getLowerDeltaId( 4.5,  9.0)).to(equal(0))
+                expect(DeltaGeometry.getLowerDeltaId( 6.0, 12.0)).to(equal(0))
+                expect(DeltaGeometry.getLowerDeltaId( 6.0,  9.0)).to(equal(0))
+                expect(DeltaGeometry.getLowerDeltaId( 6.0,  6.0)).to(equal(0))
+                expect(DeltaGeometry.getLowerDeltaId( 7.5,  9.0)).to(equal(0))
+                expect(DeltaGeometry.getLowerDeltaId( 9.0,  6.0)).to(equal(0))
+            }
+        }
     }
 }
 
 /*
 describe("delta_geometry", function() {
-
-  describe(".getLowerDeltaId", function() {
-    it("座標を下向きのサブデルタIDに変換する", function() {
-      assertEquals(3, delta_geometry.getLowerDeltaId( 9.0, 12.0));
-      assertEquals(3, delta_geometry.getLowerDeltaId( 9.0,  9.0));
-      assertEquals(3, delta_geometry.getLowerDeltaId(10.5,  9.0));
-      assertEquals(3, delta_geometry.getLowerDeltaId(12.0, 12.0));
-      assertEquals(2, delta_geometry.getLowerDeltaId( 0.0, 12.0));
-      assertEquals(2, delta_geometry.getLowerDeltaId( 1.5,  9.0));
-      assertEquals(2, delta_geometry.getLowerDeltaId( 3.0, 12.0));
-      assertEquals(2, delta_geometry.getLowerDeltaId( 3.0,  9.0));
-      assertEquals(1, delta_geometry.getLowerDeltaId( 4.5,  3.0));
-      assertEquals(1, delta_geometry.getLowerDeltaId( 6.0,  3.0));
-      assertEquals(1, delta_geometry.getLowerDeltaId( 6.0,  0.0));
-      assertEquals(1, delta_geometry.getLowerDeltaId( 7.5,  3.0));
-      assertEquals(0, delta_geometry.getLowerDeltaId( 3.0,  6.0));
-      assertEquals(0, delta_geometry.getLowerDeltaId( 4.5,  9.0));
-      assertEquals(0, delta_geometry.getLowerDeltaId( 6.0, 12.0));
-      assertEquals(0, delta_geometry.getLowerDeltaId( 6.0,  9.0));
-      assertEquals(0, delta_geometry.getLowerDeltaId( 6.0,  6.0));
-      assertEquals(0, delta_geometry.getLowerDeltaId( 7.5,  9.0));
-      assertEquals(0, delta_geometry.getLowerDeltaId( 9.0,  6.0));
-    });
-  });
 
   describe(".isUpperWorldDelta", function() {
     it("指定されたワールドデルタIDが上向きかどうか判定する", function() {
