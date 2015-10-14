@@ -20,6 +20,8 @@
 		FAB5A3401BCCBC1B00D59966 /* EncoderSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB5A33F1BCCBC1B00D59966 /* EncoderSpec.swift */; settings = {ASSET_TAGS = (); }; };
 		FAC4FDF21BC8FB1B00556CA9 /* WebMercator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6DA71B1BC8E806006BBA36 /* WebMercator.framework */; };
 		FAC4FDF31BC8FB2900556CA9 /* WebMercator.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA6DA71B1BC8E806006BBA36 /* WebMercator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FAF1474B1BCE0C4A007D227D /* DeltaGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1474A1BCE0C4A007D227D /* DeltaGeometry.swift */; settings = {ASSET_TAGS = (); }; };
+		FAF1474D1BCE0C55007D227D /* DeltaGeometrySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1474C1BCE0C55007D227D /* DeltaGeometrySpec.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		FA6DA71B1BC8E806006BBA36 /* WebMercator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebMercator.framework; path = Carthage/Build/iOS/WebMercator.framework; sourceTree = "<group>"; };
 		FAB5A33D1BCCBC0B00D59966 /* Encoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
 		FAB5A33F1BCCBC1B00D59966 /* EncoderSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncoderSpec.swift; sourceTree = "<group>"; };
+		FAF1474A1BCE0C4A007D227D /* DeltaGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeltaGeometry.swift; sourceTree = "<group>"; };
+		FAF1474C1BCE0C55007D227D /* DeltaGeometrySpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeltaGeometrySpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +117,7 @@
 				FA6DA6F91BC8DE5E006BBA36 /* Info.plist */,
 				FA6DA7171BC8E542006BBA36 /* Projector.swift */,
 				FAB5A33D1BCCBC0B00D59966 /* Encoder.swift */,
+				FAF1474A1BCE0C4A007D227D /* DeltaGeometry.swift */,
 			);
 			path = GeoDelta;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 				FA6DA7051BC8DE5E006BBA36 /* Info.plist */,
 				FA6DA7191BC8E553006BBA36 /* ProjectorSpec.swift */,
 				FAB5A33F1BCCBC1B00D59966 /* EncoderSpec.swift */,
+				FAF1474C1BCE0C55007D227D /* DeltaGeometrySpec.swift */,
 			);
 			path = GeoDeltaTests;
 			sourceTree = "<group>";
@@ -238,6 +244,7 @@
 			files = (
 				FAB5A33E1BCCBC0B00D59966 /* Encoder.swift in Sources */,
 				FA6DA7181BC8E542006BBA36 /* Projector.swift in Sources */,
+				FAF1474B1BCE0C4A007D227D /* DeltaGeometry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6DA71A1BC8E553006BBA36 /* ProjectorSpec.swift in Sources */,
+				FAF1474D1BCE0C55007D227D /* DeltaGeometrySpec.swift in Sources */,
 				FAB5A3401BCCBC1B00D59966 /* EncoderSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
