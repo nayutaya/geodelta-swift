@@ -7,43 +7,43 @@ class CoreSpec : QuickSpec {
     override func spec() {
         describe(".getDeltaIds") {
             it("緯度経度からデルタID列を取得する") {
-                expect(Core.getDeltaIds(+45.0,   +0.0, 1)).to(equal([0]))
-                expect(Core.getDeltaIds(+45.0,  +90.0, 1)).to(equal([1]))
-                expect(Core.getDeltaIds(+45.0, +180.0, 1)).to(equal([2]))
-                expect(Core.getDeltaIds(+45.0,  -90.0, 1)).to(equal([3]))
-                expect(Core.getDeltaIds(+45.0, -180.0, 1)).to(equal([2]))
+                expect(Core.getDeltaIds(lat: +45.0, lng:   +0.0, level: 1)).to(equal([0]))
+                expect(Core.getDeltaIds(lat: +45.0, lng:  +90.0, level: 1)).to(equal([1]))
+                expect(Core.getDeltaIds(lat: +45.0, lng: +180.0, level: 1)).to(equal([2]))
+                expect(Core.getDeltaIds(lat: +45.0, lng:  -90.0, level: 1)).to(equal([3]))
+                expect(Core.getDeltaIds(lat: +45.0, lng: -180.0, level: 1)).to(equal([2]))
 
-                expect(Core.getDeltaIds(-45.0,   +0.0, 1)).to(equal([4]))
-                expect(Core.getDeltaIds(-45.0,  +90.0, 1)).to(equal([5]))
-                expect(Core.getDeltaIds(-45.0, +180.0, 1)).to(equal([6]))
-                expect(Core.getDeltaIds(-45.0,  -90.0, 1)).to(equal([7]))
-                expect(Core.getDeltaIds(-45.0, -180.0, 1)).to(equal([6]))
+                expect(Core.getDeltaIds(lat: -45.0, lng:   +0.0, level: 1)).to(equal([4]))
+                expect(Core.getDeltaIds(lat: -45.0, lng:  +90.0, level: 1)).to(equal([5]))
+                expect(Core.getDeltaIds(lat: -45.0, lng: +180.0, level: 1)).to(equal([6]))
+                expect(Core.getDeltaIds(lat: -45.0, lng:  -90.0, level: 1)).to(equal([7]))
+                expect(Core.getDeltaIds(lat: -45.0, lng: -180.0, level: 1)).to(equal([6]))
 
-                expect(Core.getDeltaIds(+0.0, +0.0, 1)).to(equal([0         ]))
-                expect(Core.getDeltaIds(+0.0, +0.0, 2)).to(equal([0, 1      ]))
-                expect(Core.getDeltaIds(+0.0, +0.0, 3)).to(equal([0, 1, 1   ]))
-                expect(Core.getDeltaIds(+0.0, +0.0, 4)).to(equal([0, 1, 1, 1]))
+                expect(Core.getDeltaIds(lat: +0.0, lng: +0.0, level: 1)).to(equal([0         ]))
+                expect(Core.getDeltaIds(lat: +0.0, lng: +0.0, level: 2)).to(equal([0, 1      ]))
+                expect(Core.getDeltaIds(lat: +0.0, lng: +0.0, level: 3)).to(equal([0, 1, 1   ]))
+                expect(Core.getDeltaIds(lat: +0.0, lng: +0.0, level: 4)).to(equal([0, 1, 1, 1]))
             }
         }
 
         describe(".getDeltaCode") {
             it("緯度経度からGeoDeltaコードを取得する") {
-                expect(Core.getDeltaCode(+45.0,   +0.0, 1)).to(equal("Z"))
-                expect(Core.getDeltaCode(+45.0,  +90.0, 1)).to(equal("Y"))
-                expect(Core.getDeltaCode(+45.0, +180.0, 1)).to(equal("X"))
-                expect(Core.getDeltaCode(+45.0,  -90.0, 1)).to(equal("W"))
-                expect(Core.getDeltaCode(+45.0, -180.0, 1)).to(equal("X"))
+                expect(Core.getDeltaCode(lat: +45.0, lng:   +0.0, level: 1)).to(equal("Z"))
+                expect(Core.getDeltaCode(lat: +45.0, lng:  +90.0, level: 1)).to(equal("Y"))
+                expect(Core.getDeltaCode(lat: +45.0, lng: +180.0, level: 1)).to(equal("X"))
+                expect(Core.getDeltaCode(lat: +45.0, lng:  -90.0, level: 1)).to(equal("W"))
+                expect(Core.getDeltaCode(lat: +45.0, lng: -180.0, level: 1)).to(equal("X"))
 
-                expect(Core.getDeltaCode(-45.0,   +0.0, 1)).to(equal("V"))
-                expect(Core.getDeltaCode(-45.0,  +90.0, 1)).to(equal("T"))
-                expect(Core.getDeltaCode(-45.0, +180.0, 1)).to(equal("S"))
-                expect(Core.getDeltaCode(-45.0,  -90.0, 1)).to(equal("R"))
-                expect(Core.getDeltaCode(-45.0, -180.0, 1)).to(equal("S"))
+                expect(Core.getDeltaCode(lat: -45.0, lng:   +0.0, level: 1)).to(equal("V"))
+                expect(Core.getDeltaCode(lat: -45.0, lng:  +90.0, level: 1)).to(equal("T"))
+                expect(Core.getDeltaCode(lat: -45.0, lng: +180.0, level: 1)).to(equal("S"))
+                expect(Core.getDeltaCode(lat: -45.0, lng:  -90.0, level: 1)).to(equal("R"))
+                expect(Core.getDeltaCode(lat: -45.0, lng: -180.0, level: 1)).to(equal("S"))
 
-                expect(Core.getDeltaCode(+0.0, +0.0, 1)).to(equal("Z"  ))
-                expect(Core.getDeltaCode(+0.0, +0.0, 2)).to(equal("ZM" ))
-                expect(Core.getDeltaCode(+0.0, +0.0, 3)).to(equal("Z7" ))
-                expect(Core.getDeltaCode(+0.0, +0.0, 4)).to(equal("Z7M"))
+                expect(Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 1)).to(equal("Z"  ))
+                expect(Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 2)).to(equal("ZM" ))
+                expect(Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 3)).to(equal("Z7" ))
+                expect(Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 4)).to(equal("Z7M"))
             }
         }
     }

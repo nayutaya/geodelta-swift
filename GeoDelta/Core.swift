@@ -1,14 +1,14 @@
 
 public class Core {
     // 緯度経度からデルタID列を取得する
-    public static func getDeltaIds(lat: Double, _ lng: Double, _ level: UInt8) -> [UInt8] {
+    public static func getDeltaIds(lat lat: Double, lng: Double, level: UInt8) -> [UInt8] {
         let nxny = Projector.latLngToNxNy(lat: lat, lng: lng)
         return DeltaGeometry.getDeltaIds(nxny.nx, nxny.ny, level)
     }
 
     // 緯度経度からGeoDeltaコードを取得する
-    public static func getDeltaCode(lat: Double, _ lng: Double, _ level: UInt8) -> String {
-        let ids = Core.getDeltaIds(lat, lng, level)
+    public static func getDeltaCode(lat lat: Double, lng: Double, level: UInt8) -> String {
+        let ids = Core.getDeltaIds(lat: lat, lng: lng, level: level)
         return try! Encoder.encode(ids)
     }
 }
