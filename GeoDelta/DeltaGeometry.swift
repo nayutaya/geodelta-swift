@@ -33,14 +33,14 @@ public class DeltaGeometry {
         else if y < 6.0               { return 1 }
         else                          { return 0 }
     }
+    
+    // 指定されたワールドデルタIDが上向きかどうか判定する
+    public static func isUpperWorldDelta(id: UInt8) -> Bool {
+        return (id % 2 == (id < 4 ? 1 : 0))
+    }
 }
 
 /*
-
-// 指定されたワールドデルタIDが上向きかどうか判定する
-delta_geometry.isUpperWorldDelta = function(id) {
-  return (id % 2 == (id < 4 ? 1 : 0));
-};
 
 // 指定されたサブデルタIDが上向きかどうか判定する
 delta_geometry.isUpperSubDelta = function(parentIsUpper, id) {
