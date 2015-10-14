@@ -38,14 +38,14 @@ public class DeltaGeometry {
     public static func isUpperWorldDelta(id: UInt8) -> Bool {
         return (id % 2 == (id < 4 ? 1 : 0))
     }
+    
+    // 指定されたサブデルタIDが上向きかどうか判定する
+    public static func isUpperSubDelta(parentIsUpper: Bool, _ id: UInt8) -> Bool {
+        return (parentIsUpper ? (id != 0) : (id == 0))
+    }
 }
 
 /*
-
-// 指定されたサブデルタIDが上向きかどうか判定する
-delta_geometry.isUpperSubDelta = function(parentIsUpper, id) {
-  return (parentIsUpper ? (id != 0) : (id == 0));
-};
 
 // 指定されたデルタID列が上向きかどうか判定する
 delta_geometry.isUpperDelta = function(ids) {
