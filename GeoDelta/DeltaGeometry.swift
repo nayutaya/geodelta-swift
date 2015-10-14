@@ -111,18 +111,18 @@ public class DeltaGeometry {
         let y = ys[Int(id)]
         return (x, y)
     }
+    
+    // 指定されたサブデルタIDの上向き上位デルタからの距離を取得する
+    public static func getUpperSubDeltaDistance(id: UInt8) -> (x: Double, y: Double) {
+        let xs = [+0.0, +0.0, +3.0, -3.0]
+        let ys = [+0.0, +4.0, -2.0, -2.0]
+        let dx = xs[Int(id)]
+        let dy = ys[Int(id)]
+        return (dx, dy)
+    }
 }
 
 /*
-
-// 指定されたサブデルタIDの上向き上位デルタからの距離を取得する
-delta_geometry.getUpperSubDeltaDistance = function(id) {
-  var xs = [+0.0, +0.0, +3.0, -3.0];
-  var ys = [+0.0, +4.0, -2.0, -2.0];
-  var dx = xs[id];
-  var dy = ys[id];
-  return [dx, dy];
-};
 
 // 指定されたサブデルタIDの下向き上位デルタからの距離を取得する
 delta_geometry.getLowerSubDeltaDistance = function(id) {

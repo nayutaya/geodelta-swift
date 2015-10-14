@@ -259,20 +259,24 @@ class DeltaGeometrySpec : QuickSpec {
                 expect(DeltaGeometry.getWorldDeltaCenter(7).y).to(beCloseTo( -4.0, within: 1e-15))
             }
         }
+
+        describe(".getUpperSubDeltaDistance") {
+            it("指定されたサブデルタIDの上向き上位デルタからの距離を取得する") {
+                expect(DeltaGeometry.getUpperSubDeltaDistance(0).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getUpperSubDeltaDistance(0).y).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getUpperSubDeltaDistance(1).x).to(beCloseTo(+0.0, within: 1e-15))
+                expect(DeltaGeometry.getUpperSubDeltaDistance(1).y).to(beCloseTo(+4.0, within: 1e-15))
+                expect(DeltaGeometry.getUpperSubDeltaDistance(2).x).to(beCloseTo(+3.0, within: 1e-15))
+                expect(DeltaGeometry.getUpperSubDeltaDistance(2).y).to(beCloseTo(-2.0, within: 1e-15))
+                expect(DeltaGeometry.getUpperSubDeltaDistance(3).x).to(beCloseTo(-3.0, within: 1e-15))
+                expect(DeltaGeometry.getUpperSubDeltaDistance(3).y).to(beCloseTo(-2.0, within: 1e-15))
+            }
+        }
     }
 }
 
 /*
 describe("delta_geometry", function() {
-
-  describe(".getUpperSubDeltaDistance", function() {
-    it("指定されたサブデルタIDの上向き上位デルタからの距離を取得する", function() {
-      assertArrayEquals([+0.0, +0.0], delta_geometry.getUpperSubDeltaDistance(0), 1e-15);
-      assertArrayEquals([+0.0, +4.0], delta_geometry.getUpperSubDeltaDistance(1), 1e-15);
-      assertArrayEquals([+3.0, -2.0], delta_geometry.getUpperSubDeltaDistance(2), 1e-15);
-      assertArrayEquals([-3.0, -2.0], delta_geometry.getUpperSubDeltaDistance(3), 1e-15);
-    });
-  });
 
   describe(".getLowerSubDeltaDistance", function() {
     it("指定されたサブデルタIDの下向き上位デルタからの距離を取得する", function() {
