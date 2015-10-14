@@ -85,26 +85,26 @@ public class DeltaGeometry {
         let yy = (y + ys[Int(id)]) * 2
         return (xx, yy)
     }
+    
+    // FIXME: メソッド名を「getDeltaId」に変更する
+    // 指定された座標を指定されたレベルのデルタID列に変換する
+    public static func getDeltaIds(x: Double, _ y: Double, _ level: UInt8) -> [UInt8] {
+        var ids: [UInt8] = [UInt8](count: Int(level), repeatedValue: 0)
+        ids[0] = getWorldDeltaId(x, y)
+        var xxyy = transformWorldDelta(ids[0], x, y)
+        var upper = isUpperWorldDelta(ids[0])
+
+        for var i = 1; i < Int(level); i++ {
+            ids[i] = (upper ? getUpperDeltaId(xxyy.x, xxyy.y) : getLowerDeltaId(xxyy.x, xxyy.y))
+            xxyy = (upper ? transformUpperDelta(ids[i], xxyy.x, xxyy.y) : transformLowerDelta(ids[i], xxyy.x, xxyy.y))
+            upper = isUpperSubDelta(upper, ids[i])
+        }
+        
+        return ids;
+    }
 }
 
 /*
-
-// FIXME: メソッド名を「getDeltaId」に変更する
-// 指定された座標を指定されたレベルのデルタID列に変換する
-delta_geometry.getDeltaIds = function(x, y, level) {
-  var ids = [];
-  ids[0] = this.getWorldDeltaId(x, y);
-  var xxyy = this.transformWorldDelta(ids[0], x, y);
-  var upper = this.isUpperWorldDelta(ids[0]);
-
-  for ( var i = 1; i < level; i++ ) {
-    ids[i] = (upper ? this.getUpperDeltaId(xxyy[0], xxyy[1]) : this.getLowerDeltaId(xxyy[0], xxyy[1]));
-    xxyy = (upper ? this.transformUpperDelta(ids[i], xxyy[0], xxyy[1]) : this.transformLowerDelta(ids[i], xxyy[0], xxyy[1]));
-    upper = this.isUpperSubDelta(upper, ids[i]);
-  }
-
-  return ids;
-};
 
 // 指定されたワールドデルタIDの中心座標を取得する
 delta_geometry.getWorldDeltaCenter = function(id) {

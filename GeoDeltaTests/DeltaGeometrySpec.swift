@@ -194,55 +194,55 @@ class DeltaGeometrySpec : QuickSpec {
                 expect(DeltaGeometry.transformLowerDelta(3, +9.0, +10.0).y).to(beCloseTo(+8.0, within: 1e-15))
             }
         }
+
+        describe(".getDeltaIds") {
+            it("指定された座標を指定されたレベルのデルタID列に変換する（レベル1）") {
+                expect(DeltaGeometry.getDeltaIds( 0.0, +6.0, 1)).to(equal([0]))
+                expect(DeltaGeometry.getDeltaIds( 6.0, +6.0, 1)).to(equal([1]))
+                expect(DeltaGeometry.getDeltaIds(12.0, +6.0, 1)).to(equal([2]))
+                expect(DeltaGeometry.getDeltaIds(18.0, +6.0, 1)).to(equal([3]))
+                expect(DeltaGeometry.getDeltaIds( 0.0, -6.0, 1)).to(equal([4]))
+                expect(DeltaGeometry.getDeltaIds( 6.0, -6.0, 1)).to(equal([5]))
+                expect(DeltaGeometry.getDeltaIds(12.0, -6.0, 1)).to(equal([6]))
+                expect(DeltaGeometry.getDeltaIds(18.0, -6.0, 1)).to(equal([7]))
+            }
+            it("指定された座標を指定されたレベルのデルタID列に変換する（レベル2）") {
+                expect(DeltaGeometry.getDeltaIds( +0.0,  +8.0, 2)).to(equal([0, 0]))
+                expect(DeltaGeometry.getDeltaIds( +0.0,  +4.0, 2)).to(equal([0, 1]))
+                expect(DeltaGeometry.getDeltaIds( -3.0, +10.0, 2)).to(equal([0, 2]))
+                expect(DeltaGeometry.getDeltaIds( +3.0, +10.0, 2)).to(equal([0, 3]))
+                expect(DeltaGeometry.getDeltaIds( +6.0,  +4.0, 2)).to(equal([1, 0]))
+                expect(DeltaGeometry.getDeltaIds( +6.0,  +8.0, 2)).to(equal([1, 1]))
+                expect(DeltaGeometry.getDeltaIds( +9.0,  +2.0, 2)).to(equal([1, 2]))
+                expect(DeltaGeometry.getDeltaIds( +3.0,  +2.0, 2)).to(equal([1, 3]))
+                expect(DeltaGeometry.getDeltaIds( +9.0, +10.0, 2)).to(equal([2, 2]))
+                expect(DeltaGeometry.getDeltaIds(+15.0,  +2.0, 2)).to(equal([3, 3]))
+
+                expect(DeltaGeometry.getDeltaIds( +0.0,  -8.0, 2)).to(equal([4, 0]))
+                expect(DeltaGeometry.getDeltaIds( +0.0,  -4.0, 2)).to(equal([4, 1]))
+                expect(DeltaGeometry.getDeltaIds( +3.0, -10.0, 2)).to(equal([4, 2]))
+                expect(DeltaGeometry.getDeltaIds( -3.0, -10.0, 2)).to(equal([4, 3]))
+                expect(DeltaGeometry.getDeltaIds( +6.0,  -4.0, 2)).to(equal([5, 0]))
+                expect(DeltaGeometry.getDeltaIds( +6.0,  -8.0, 2)).to(equal([5, 1]))
+                expect(DeltaGeometry.getDeltaIds( +3.0,  -2.0, 2)).to(equal([5, 2]))
+                expect(DeltaGeometry.getDeltaIds( +9.0,  -2.0, 2)).to(equal([5, 3]))
+                expect(DeltaGeometry.getDeltaIds(+15.0, -10.0, 2)).to(equal([6, 2]))
+                expect(DeltaGeometry.getDeltaIds(+21.0,  -2.0, 2)).to(equal([7, 3]))
+            }
+            it("指定された座標を指定されたレベルのデルタID列に変換する（レベル3）") {
+                expect(DeltaGeometry.getDeltaIds(+0.0, +8.0, 3)).to(equal([0, 0, 0]))
+                expect(DeltaGeometry.getDeltaIds(+6.0, +4.0, 3)).to(equal([1, 0, 0]))
+            }
+            it("指定された座標を指定されたレベルのデルタID列に変換する（レベル4）") {
+                expect(DeltaGeometry.getDeltaIds(+0.0, +8.0, 4)).to(equal([0, 0, 0, 0]))
+                expect(DeltaGeometry.getDeltaIds(+6.0, +4.0, 4)).to(equal([1, 0, 0, 0]))
+            }
+        }
     }
 }
 
 /*
 describe("delta_geometry", function() {
-
-  describe(".getDeltaIds", function() {
-    it("指定された座標を指定されたレベルのデルタID列に変換する（レベル1）", function() {
-      assertArrayEquals([0], delta_geometry.getDeltaIds( 0.0, +6.0, 1));
-      assertArrayEquals([1], delta_geometry.getDeltaIds( 6.0, +6.0, 1));
-      assertArrayEquals([2], delta_geometry.getDeltaIds(12.0, +6.0, 1));
-      assertArrayEquals([3], delta_geometry.getDeltaIds(18.0, +6.0, 1));
-      assertArrayEquals([4], delta_geometry.getDeltaIds( 0.0, -6.0, 1));
-      assertArrayEquals([5], delta_geometry.getDeltaIds( 6.0, -6.0, 1));
-      assertArrayEquals([6], delta_geometry.getDeltaIds(12.0, -6.0, 1));
-      assertArrayEquals([7], delta_geometry.getDeltaIds(18.0, -6.0, 1));
-    });
-    it("指定された座標を指定されたレベルのデルタID列に変換する（レベル2）", function() {
-      assertArrayEquals([0, 0], delta_geometry.getDeltaIds( +0.0,  +8.0, 2));
-      assertArrayEquals([0, 1], delta_geometry.getDeltaIds( +0.0,  +4.0, 2));
-      assertArrayEquals([0, 2], delta_geometry.getDeltaIds( -3.0, +10.0, 2));
-      assertArrayEquals([0, 3], delta_geometry.getDeltaIds( +3.0, +10.0, 2));
-      assertArrayEquals([1, 0], delta_geometry.getDeltaIds( +6.0,  +4.0, 2));
-      assertArrayEquals([1, 1], delta_geometry.getDeltaIds( +6.0,  +8.0, 2));
-      assertArrayEquals([1, 2], delta_geometry.getDeltaIds( +9.0,  +2.0, 2));
-      assertArrayEquals([1, 3], delta_geometry.getDeltaIds( +3.0,  +2.0, 2));
-      assertArrayEquals([2, 2], delta_geometry.getDeltaIds( +9.0, +10.0, 2));
-      assertArrayEquals([3, 3], delta_geometry.getDeltaIds(+15.0,  +2.0, 2));
-
-      assertArrayEquals([4, 0], delta_geometry.getDeltaIds( +0.0,  -8.0, 2));
-      assertArrayEquals([4, 1], delta_geometry.getDeltaIds( +0.0,  -4.0, 2));
-      assertArrayEquals([4, 2], delta_geometry.getDeltaIds( +3.0, -10.0, 2));
-      assertArrayEquals([4, 3], delta_geometry.getDeltaIds( -3.0, -10.0, 2));
-      assertArrayEquals([5, 0], delta_geometry.getDeltaIds( +6.0,  -4.0, 2));
-      assertArrayEquals([5, 1], delta_geometry.getDeltaIds( +6.0,  -8.0, 2));
-      assertArrayEquals([5, 2], delta_geometry.getDeltaIds( +3.0,  -2.0, 2));
-      assertArrayEquals([5, 3], delta_geometry.getDeltaIds( +9.0,  -2.0, 2));
-      assertArrayEquals([6, 2], delta_geometry.getDeltaIds(+15.0, -10.0, 2));
-      assertArrayEquals([7, 3], delta_geometry.getDeltaIds(+21.0,  -2.0, 2));
-    });
-    it("指定された座標を指定されたレベルのデルタID列に変換する（レベル3）", function() {
-      assertArrayEquals([0, 0, 0], delta_geometry.getDeltaIds(+0.0, +8.0, 3));
-      assertArrayEquals([1, 0, 0], delta_geometry.getDeltaIds(+6.0, +4.0, 3));
-    });
-    it("指定された座標を指定されたレベルのデルタID列に変換する（レベル4）", function() {
-      assertArrayEquals([0, 0, 0, 0], delta_geometry.getDeltaIds(+0.0, +8.0, 4));
-      assertArrayEquals([1, 0, 0, 0], delta_geometry.getDeltaIds(+6.0, +4.0, 4));
-    });
-  });
 
   describe(".getWorldDeltaCenter", function() {
     it("指定されたワールドデルタIDの中心座標を取得する", function() {
