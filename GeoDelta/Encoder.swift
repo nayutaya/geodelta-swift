@@ -5,9 +5,19 @@ public class Encoder {
     private static let WORLD_DELTA_TABLE = ["Z", "Y", "X", "W", "V", "T", "S", "R"]
     private static let SUB_DELTA_TABLE1  = ["K", "M", "N", "P"]
     private static let SUB_DELTA_TABLE2  = [["2", "3", "4", "5"], ["6", "7", "8", "A"], ["B", "C", "D", "E"], ["F", "G", "H", "J"]]
+    
+    private static let WORLD_DELTA_MAP = Encoder.createWorldDeltaMap()
     private static let SUB_DELTA_MAP = Encoder.createSubDeltaMap()
     
-    private static func createSubDeltaMap() -> [String: [UInt8]] {
+    private static func createWorldDeltaMap() -> [Character:UInt8] {
+        var map = [Character:UInt8]()
+        for var i = 0; i < WORLD_DELTA_TABLE.count; i++ {
+            map[WORLD_DELTA_TABLE[i].characters.first!] = UInt8(i)
+        }
+        return map
+    }
+    
+    private static func createSubDeltaMap() -> [String:[UInt8]] {
         var map = [String:[UInt8]]()
         for var i = 0; i <= 3; i++ {
             map[SUB_DELTA_TABLE1[i]] = [UInt8(i)]
@@ -32,10 +42,10 @@ public class Encoder {
 
     // ワールドデルタコードをデコードする
     public static func decodeWorldDelta(code: String) throws -> UInt8 {
-        guard let id = WORLD_DELTA_TABLE.indexOf(code) else {
+        guard let id = WORLD_DELTA_MAP[code.characters.first!] else {
             throw EncodeError.InvalidArguments
         }
-        return UInt8(id)
+        return id
     }
 
     private static func encodeSubDelta1(id: UInt8) throws -> String {
