@@ -102,18 +102,18 @@ public class DeltaGeometry {
         
         return ids;
     }
+    
+    // 指定されたワールドデルタIDの中心座標を取得する
+    public static func getWorldDeltaCenter(id: UInt8) -> (x: Double, y: Double) {
+        let xs = [+0.0, +6.0, +12.0, +18.0, +0.0, +6.0, +12.0, +18.0]
+        let ys = [+8.0, +4.0, +8.0, +4.0, -8.0, -4.0, -8.0, -4.0]
+        let x = xs[Int(id)]
+        let y = ys[Int(id)]
+        return (x, y)
+    }
 }
 
 /*
-
-// 指定されたワールドデルタIDの中心座標を取得する
-delta_geometry.getWorldDeltaCenter = function(id) {
-  var xs = [+0.0, +6.0, +12.0, +18.0, +0.0, +6.0, +12.0, +18.0];
-  var ys = [+8.0, +4.0, +8.0, +4.0, -8.0, -4.0, -8.0, -4.0];
-  var x = xs[id];
-  var y = ys[id];
-  return [x, y];
-};
 
 // 指定されたサブデルタIDの上向き上位デルタからの距離を取得する
 delta_geometry.getUpperSubDeltaDistance = function(id) {

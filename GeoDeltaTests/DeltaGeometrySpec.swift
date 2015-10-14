@@ -238,24 +238,32 @@ class DeltaGeometrySpec : QuickSpec {
                 expect(DeltaGeometry.getDeltaIds(+6.0, +4.0, 4)).to(equal([1, 0, 0, 0]))
             }
         }
+
+        describe(".getWorldDeltaCenter") {
+            it("指定されたワールドデルタIDの中心座標を取得する") {
+                expect(DeltaGeometry.getWorldDeltaCenter(0).x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(0).y).to(beCloseTo( +8.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(1).x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(1).y).to(beCloseTo( +4.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(2).x).to(beCloseTo(+12.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(2).y).to(beCloseTo( +8.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(3).x).to(beCloseTo(+18.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(3).y).to(beCloseTo( +4.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(4).x).to(beCloseTo( +0.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(4).y).to(beCloseTo( -8.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(5).x).to(beCloseTo( +6.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(5).y).to(beCloseTo( -4.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(6).x).to(beCloseTo(+12.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(6).y).to(beCloseTo( -8.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(7).x).to(beCloseTo(+18.0, within: 1e-15))
+                expect(DeltaGeometry.getWorldDeltaCenter(7).y).to(beCloseTo( -4.0, within: 1e-15))
+            }
+        }
     }
 }
 
 /*
 describe("delta_geometry", function() {
-
-  describe(".getWorldDeltaCenter", function() {
-    it("指定されたワールドデルタIDの中心座標を取得する", function() {
-      assertArrayEquals([ +0.0, +8.0], delta_geometry.getWorldDeltaCenter(0), 1e-15);
-      assertArrayEquals([ +6.0, +4.0], delta_geometry.getWorldDeltaCenter(1), 1e-15);
-      assertArrayEquals([+12.0, +8.0], delta_geometry.getWorldDeltaCenter(2), 1e-15);
-      assertArrayEquals([+18.0, +4.0], delta_geometry.getWorldDeltaCenter(3), 1e-15);
-      assertArrayEquals([ +0.0, -8.0], delta_geometry.getWorldDeltaCenter(4), 1e-15);
-      assertArrayEquals([ +6.0, -4.0], delta_geometry.getWorldDeltaCenter(5), 1e-15);
-      assertArrayEquals([+12.0, -8.0], delta_geometry.getWorldDeltaCenter(6), 1e-15);
-      assertArrayEquals([+18.0, -4.0], delta_geometry.getWorldDeltaCenter(7), 1e-15);
-    });
-  });
 
   describe(".getUpperSubDeltaDistance", function() {
     it("指定されたサブデルタIDの上向き上位デルタからの距離を取得する", function() {
