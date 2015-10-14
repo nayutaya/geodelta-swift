@@ -28,22 +28,22 @@ class CoreSpec : QuickSpec {
 
         describe(".getDeltaCode") {
             it("緯度経度からGeoDeltaコードを取得する") {
-                expect(Core.getDeltaCode(lat: +45.0, lng:   +0.0, level: 1)).to(equal("Z"))
-                expect(Core.getDeltaCode(lat: +45.0, lng:  +90.0, level: 1)).to(equal("Y"))
-                expect(Core.getDeltaCode(lat: +45.0, lng: +180.0, level: 1)).to(equal("X"))
-                expect(Core.getDeltaCode(lat: +45.0, lng:  -90.0, level: 1)).to(equal("W"))
-                expect(Core.getDeltaCode(lat: +45.0, lng: -180.0, level: 1)).to(equal("X"))
+                expect(try! Core.getDeltaCode(lat: +45.0, lng:   +0.0, level: 1)).to(equal("Z"))
+                expect(try! Core.getDeltaCode(lat: +45.0, lng:  +90.0, level: 1)).to(equal("Y"))
+                expect(try! Core.getDeltaCode(lat: +45.0, lng: +180.0, level: 1)).to(equal("X"))
+                expect(try! Core.getDeltaCode(lat: +45.0, lng:  -90.0, level: 1)).to(equal("W"))
+                expect(try! Core.getDeltaCode(lat: +45.0, lng: -180.0, level: 1)).to(equal("X"))
 
-                expect(Core.getDeltaCode(lat: -45.0, lng:   +0.0, level: 1)).to(equal("V"))
-                expect(Core.getDeltaCode(lat: -45.0, lng:  +90.0, level: 1)).to(equal("T"))
-                expect(Core.getDeltaCode(lat: -45.0, lng: +180.0, level: 1)).to(equal("S"))
-                expect(Core.getDeltaCode(lat: -45.0, lng:  -90.0, level: 1)).to(equal("R"))
-                expect(Core.getDeltaCode(lat: -45.0, lng: -180.0, level: 1)).to(equal("S"))
+                expect(try! Core.getDeltaCode(lat: -45.0, lng:   +0.0, level: 1)).to(equal("V"))
+                expect(try! Core.getDeltaCode(lat: -45.0, lng:  +90.0, level: 1)).to(equal("T"))
+                expect(try! Core.getDeltaCode(lat: -45.0, lng: +180.0, level: 1)).to(equal("S"))
+                expect(try! Core.getDeltaCode(lat: -45.0, lng:  -90.0, level: 1)).to(equal("R"))
+                expect(try! Core.getDeltaCode(lat: -45.0, lng: -180.0, level: 1)).to(equal("S"))
 
-                expect(Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 1)).to(equal("Z"  ))
-                expect(Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 2)).to(equal("ZM" ))
-                expect(Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 3)).to(equal("Z7" ))
-                expect(Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 4)).to(equal("Z7M"))
+                expect(try! Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 1)).to(equal("Z"  ))
+                expect(try! Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 2)).to(equal("ZM" ))
+                expect(try! Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 3)).to(equal("Z7" ))
+                expect(try! Core.getDeltaCode(lat: +0.0, lng: +0.0, level: 4)).to(equal("Z7M"))
             }
         }
 
@@ -76,28 +76,28 @@ class CoreSpec : QuickSpec {
 
         describe(".getCenterFromDeltaCode") {
             it("GeoDeltaコードから中心座標を取得する") {
-                expect(Core.getCenterFromDeltaCode("Z").lat).to(beCloseTo( +71.480, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("Z").lng).to(beCloseTo(  +0.000, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("Y").lat).to(beCloseTo( +46.024, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("Y").lng).to(beCloseTo( +90.000, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("X").lat).to(beCloseTo( +71.480, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("X").lng).to(beCloseTo(180.000, within: 1e-3)) // TODO: Ruby版と符号が逆
-                expect(Core.getCenterFromDeltaCode("W").lat).to(beCloseTo( +46.024, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("W").lng).to(beCloseTo( -90.000, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("Z").lat).to(beCloseTo( +71.480, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("Z").lng).to(beCloseTo(  +0.000, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("Y").lat).to(beCloseTo( +46.024, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("Y").lng).to(beCloseTo( +90.000, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("X").lat).to(beCloseTo( +71.480, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("X").lng).to(beCloseTo(180.000, within: 1e-3)) // TODO: Ruby版と符号が逆
+                expect(try! Core.getCenterFromDeltaCode("W").lat).to(beCloseTo( +46.024, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("W").lng).to(beCloseTo( -90.000, within: 1e-3))
 
-                expect(Core.getCenterFromDeltaCode("V").lat).to(beCloseTo( -71.480, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("V").lng).to(beCloseTo(  +0.000, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("T").lat).to(beCloseTo( -46.024, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("T").lng).to(beCloseTo( +90.000, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("S").lat).to(beCloseTo( -71.480, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("S").lng).to(beCloseTo(180.000, within: 1e-3)) // TODO: Ruby版と符号が逆
-                expect(Core.getCenterFromDeltaCode("R").lat).to(beCloseTo( -46.024, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("R").lng).to(beCloseTo( -90.000, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("V").lat).to(beCloseTo( -71.480, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("V").lng).to(beCloseTo(  +0.000, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("T").lat).to(beCloseTo( -46.024, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("T").lng).to(beCloseTo( +90.000, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("S").lat).to(beCloseTo( -71.480, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("S").lng).to(beCloseTo(180.000, within: 1e-3)) // TODO: Ruby版と符号が逆
+                expect(try! Core.getCenterFromDeltaCode("R").lat).to(beCloseTo( -46.024, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("R").lng).to(beCloseTo( -90.000, within: 1e-3))
 
-                expect(Core.getCenterFromDeltaCode("ZK").lat).to(beCloseTo(+71.480, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("ZK").lng).to(beCloseTo( +0.000, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("Z2").lat).to(beCloseTo(+71.480, within: 1e-3))
-                expect(Core.getCenterFromDeltaCode("Z2").lng).to(beCloseTo( +0.000, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("ZK").lat).to(beCloseTo(+71.480, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("ZK").lng).to(beCloseTo( +0.000, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("Z2").lat).to(beCloseTo(+71.480, within: 1e-3))
+                expect(try! Core.getCenterFromDeltaCode("Z2").lng).to(beCloseTo( +0.000, within: 1e-3))
             }
         }
     }

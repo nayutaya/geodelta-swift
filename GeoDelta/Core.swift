@@ -2,25 +2,25 @@
 public class Core {
     // 緯度経度からデルタID列を取得する
     public static func getDeltaIds(lat lat: Double, lng: Double, level: UInt8) -> [UInt8] {
-        let nxny = Projector.latLngToNxNy(lat: lat, lng: lng)
-        return DeltaGeometry.getDeltaIds(nxny.nx, nxny.ny, level)
+        let np = Projector.latLngToNxNy(lat: lat, lng: lng)
+        return DeltaGeometry.getDeltaIds(np.nx, np.ny, level)
     }
 
     // 緯度経度からGeoDeltaコードを取得する
-    public static func getDeltaCode(lat lat: Double, lng: Double, level: UInt8) -> String {
+    public static func getDeltaCode(lat lat: Double, lng: Double, level: UInt8) throws -> String {
         let ids = Core.getDeltaIds(lat: lat, lng: lng, level: level)
-        return try! Encoder.encode(ids)
+        return try Encoder.encode(ids)
     }
 
     // デルタID列から中心座標を取得する
     public static func getCenterFromDeltaIds(ids: [UInt8]) -> (lat: Double, lng: Double) {
-        let nxny = DeltaGeometry.getCenter(ids)
-        return Projector.nxNyToLatLng(nx: nxny.x, ny: nxny.y)
+        let np = DeltaGeometry.getCenter(ids)
+        return Projector.nxNyToLatLng(nx: np.x, ny: np.y)
     }
     
     // GeoDeltaコードから中心座標を取得する
-    public static func getCenterFromDeltaCode(code: String) -> (lat: Double, lng: Double) {
-        let ids = try! Encoder.decode(code)
+    public static func getCenterFromDeltaCode(code: String) throws -> (lat: Double, lng: Double) {
+        let ids = try Encoder.decode(code)
         return Core.getCenterFromDeltaIds(ids)
     }
 }
