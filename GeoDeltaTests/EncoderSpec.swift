@@ -17,8 +17,7 @@ class EncoderSpec : QuickSpec {
                 expect(try! Encoder.encodeWorldDelta(7)).to(equal("R"))
             }
             it("異常値の場合、エラーをスローする") {
-                expect { try Encoder.encodeWorldDelta(-1) }.to(throwError())
-                expect { try Encoder.encodeWorldDelta( 8) }.to(throwError())
+                expect { try Encoder.encodeWorldDelta(8) }.to(throwError())
             }
         }
 
@@ -41,7 +40,7 @@ class EncoderSpec : QuickSpec {
 
         describe("encode and decode world delta") {
             it("") {
-                for var id = 0; id <= 7; id++ {
+                for var id: UInt8 = 0; id <= 7; id++ {
                     let encoded1 = try! Encoder.encodeWorldDelta(id)
                     let decoded1 = try! Encoder.decodeWorldDelta(encoded1)
                     let encoded2 = try! Encoder.encodeWorldDelta(decoded1)
@@ -83,12 +82,9 @@ class EncoderSpec : QuickSpec {
             }
             it("異常値の場合、エラーをスローする") {
                 expect { try Encoder.encodeSubDelta([]) }.to(throwError())
-                expect { try Encoder.encodeSubDelta([-1]) }.to(throwError())
-                expect { try Encoder.encodeSubDelta([ 4]) }.to(throwError())
-                expect { try Encoder.encodeSubDelta([-1,  0]) }.to(throwError())
-                expect { try Encoder.encodeSubDelta([ 4,  0]) }.to(throwError())
-                expect { try Encoder.encodeSubDelta([ 0, -1]) }.to(throwError())
-                expect { try Encoder.encodeSubDelta([ 0,  4]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([4]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([4, 0]) }.to(throwError())
+                expect { try Encoder.encodeSubDelta([0, 4]) }.to(throwError())
             }
         }
 
@@ -132,7 +128,7 @@ class EncoderSpec : QuickSpec {
 
         describe("encode and decode sub delta") {
             it("level2") {
-                for var id1 = 0; id1 <= 3; id1++ {
+                for var id1: UInt8 = 0; id1 <= 3; id1++ {
                     let ids = [id1]
                     let encoded1 = try! Encoder.encodeSubDelta(ids)
                     let decoded1 = try! Encoder.decodeSubDelta(encoded1)
@@ -141,8 +137,8 @@ class EncoderSpec : QuickSpec {
                 }
             }
             it("level3") {
-                for var id1 = 0; id1 <= 3; id1++ {
-                    for var id2 = 0; id2 <= 3; id2++ {
+                for var id1: UInt8 = 0; id1 <= 3; id1++ {
+                    for var id2: UInt8 = 0; id2 <= 3; id2++ {
                         let ids = [id1, id2]
                         let encoded1 = try! Encoder.encodeSubDelta(ids)
                         let decoded1 = try! Encoder.decodeSubDelta(encoded1)
