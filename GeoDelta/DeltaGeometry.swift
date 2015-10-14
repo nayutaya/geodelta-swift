@@ -129,14 +129,14 @@ public class DeltaGeometry {
         let dy = ys[Int(id)]
         return (dx, dy)
     }
+    
+    // 指定されたサブデルタIDの上位デルタからの距離を取得する
+    public static func getSubDeltaDistance(parentIsUpper: Bool, _ id: UInt8) -> (x: Double, y: Double) {
+        return (parentIsUpper ? getUpperSubDeltaDistance(id) : getLowerSubDeltaDistance(id))
+    }
 }
 
 /*
-
-// 指定されたサブデルタIDの上位デルタからの距離を取得する
-delta_geometry.getSubDeltaDistance = function(parentIsUpper, id) {
-  return (parentIsUpper ? this.getUpperSubDeltaDistance(id) : this.getLowerSubDeltaDistance(id));
-};
 
 // FIXME: メソッド名を「getDeltaCenter」に変更する
 // デルタID列から中心座標を取得する
