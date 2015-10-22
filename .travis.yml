@@ -2,13 +2,15 @@ language: objective-c
 osx_image: xcode7
 xcode_project: GeoDelta.xcodeproj
 xcode_scheme: GeoDelta
+xcode_sdk: iphonesimulator
 before_install:
   - brew update
+  - brew upgrade xctool || true
   - brew install carthage
   # http://docs.travis-ci.com/user/common-build-problems/#Mac%3A-Code-Signing-Errors
-  - KEY_CHAIN=ios-build.keychain
-  - security create-keychain -p travis $KEY_CHAIN
-  - security default-keychain -s $KEY_CHAIN
-  - security unlock-keychain -p travis $KEY_CHAIN
-  - security set-keychain-settings -t 3600 -u $KEY_CHAIN
-  - carthage bootstrap --verbose --configuration Debug
+  # - KEY_CHAIN=ios-build.keychain
+  # - security create-keychain -p travis $KEY_CHAIN
+  # - security default-keychain -s $KEY_CHAIN
+  # - security unlock-keychain -p travis $KEY_CHAIN
+  # - security set-keychain-settings -t 3600 -u $KEY_CHAIN
+  - carthage bootstrap --verbose
